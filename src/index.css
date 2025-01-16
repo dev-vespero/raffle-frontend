@@ -5,14 +5,14 @@
 @tailwind utilities;
 
 :root {
-  --primary: #c5010e;
-  --secondary: #f8cc13;
-  --dark: #73141c;
-  --header-bg: #610b10;
+  --primary: #0977e5;
+  --secondary: #006aff;
+  --dark: #00220b;
+  --header-bg: #0c610b;
 }
 
 body {
-  font-family: 'Jaro', sans-serif;
+  /* font-family: 'Jaro', sans-serif; */
 }
 
 .neon-text {

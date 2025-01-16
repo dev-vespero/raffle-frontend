@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Motorcycle } from 'lucide-react';
+import { useState } from 'react';
 
 function App() {
   const [selectedTickets, setSelectedTickets] = useState<number[]>([]);

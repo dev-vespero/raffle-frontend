@@ -1,0 +1,407 @@
+.header {
+  background: var(--background-color-body);
+}
+
+.header .header-title,
+.header .header-subtitle,
+.header pre,
+.header p,
+.progress-percent {
+  color: #faf6f6;
+}
+
+.navbar {
+  border-top: 8px solid var(--color-accent);
+  border-bottom: 8px solid var(--color-accent);
+}
+
+.header-scrolled {
+  -webkit-box-shadow: 0 5px 6px 0 var(--color-dark);
+  box-shadow: 0 5px 6px 0 var(--color-dark);
+}
+
+a.link {
+  color: var(--color-accent);
+}
+
+button.magic_button {
+  color: var(--color-accent);
+}
+
+.progress-actual {
+  background: var(--color-accent);
+}
+
+.progress-total {
+  border: 2px solid var(--color-important);
+}
+
+button.magic_button:active,
+button.waves-effect.next:active,
+button.waves-effect.prev:active {
+  color: var(--color-important) !important;
+}
+
+.nav-item .nav-link:hover .nav-link-number {
+  color: var(--color-accent) !important;
+}
+
+.nav-item .nav-link:hover .nav-link-menu {
+  color: var(--color-accent) !important;
+}
+
+.navbar-toggler:not(:disabled):not(.disabled) {
+  color: var(--color-accent);
+}
+
+.learn-more-btn,
+button {
+  background-color: var(--color-accent);
+}
+
+.learn-more-btn,
+.plusminus button,
+.btn-large,
+button.magic_button,
+#buttfixed,
+#containerSearch {
+  box-shadow: 0 0 18px #c5010e4a;
+}
+
+.learn-more-btn:hover,
+button:hover {
+  background-color: var(--color-important);
+}
+
+.learn-more-btn:hover,
+.btn-large:hover,
+.plusminus button:hover,
+button.magic_button:hover,
+#buttfixed:hover {
+  box-shadow: 0 0 18px var(--color-important-ex);
+}
+
+.card .card-body .payment-type .types .type.selected::after {
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+}
+
+.btn-invert {
+  background-color: var(--color-accent) !important;
+}
+
+.services-accordion .accordion {
+  background-color: var(--color-accent);
+}
+
+.accordion:active,
+.accordion:hover {
+  color: #ffffff;
+  background-color: var(--color-important) !important;
+}
+
+.btn-invert:hover {
+  background-color: var(--color-important) !important;
+  color: #ffffff;
+}
+
+.header-img-section img {
+  box-shadow: 0 0 18px var(--color-important-ex);
+}
+
+#msjNombre,
+.pricing-head h4,
+.clients-title,
+.contact-title,
+.pricing-title h2,
+.blog-title,
+.services-title,
+.contact-subtitle,
+strong#textSeleccionados,
+strong#total_amount {
+  color: var(--color-accent);
+}
+
+input[type=range]+.thumb,
+.btn,
+.btn-large,
+.btn-small,
+.btn:focus,
+.btn-large:focus,
+.btn-small:focus,
+.btn-floating:focus,
+.btn_view_selected:hover {
+  background-color: var(--color-accent);
+}
+
+input[type=range]+.thumb .value,
+.input-field .prefix.active,
+.dropdown-content li>a,
+.dropdown-content li>span {
+  color: var(--color-important);
+}
+
+button.btn-large,
+button.btn-small,
+a.btn-large,
+a.btn-small {
+  border: 2px solid transparent;
+}
+
+.featured_award {
+  background: var(--color-accent);
+}
+
+.poppuler .btn {
+  color: var(--color-accent);
+}
+
+.plusminus button:active,
+.plusminus button:focus {
+  background: var(--color-important);
+  color: #ffffff !important;
+}
+
+.learn-more-btn,
+button,
+.plusminus button {
+  color: #ffffff;
+}
+
+button.magic_button:hover,
+#page_navigation>button:hover {
+  color: #ffffff !important;
+}
+
+button.magic_button:focus {
+  color: #000;
+}
+
+.learn-more-btn:hover,
+button.btn-large:hover {
+  color: #ffffff;
+}
+
+.plusminus button:hover {
+  color: #ffffff;
+}
+
+strong#textSeleccionados {
+  color: var(--color-accent);
+  background: #f7f7f7
+}
+
+.teal,
+.teal.lighten-1 {
+  background-color: var(--color-accent) !important;
+}
+
+.teal.lighten-2 {
+  background-color: var(--color-accent) !important
+}
+
+.sidenav-trigger,
+.teal-text.text-lighten-2 {
+  color: var(--color-accent) !important;
+}
+
+input:not([type]):focus:not([readonly])+label,
+input[type=text]:not(.browser-default):focus:not([readonly])+label,
+input[type=password]:not(.browser-default):focus:not([readonly])+label,
+input[type=email]:not(.browser-default):focus:not([readonly])+label,
+input[type=url]:not(.browser-default):focus:not([readonly])+label,
+input[type=time]:not(.browser-default):focus:not([readonly])+label,
+input[type=date]:not(.browser-default):focus:not([readonly])+label,
+input[type=datetime]:not(.browser-default):focus:not([readonly])+label,
+input[type=datetime-local]:not(.browser-default):focus:not([readonly])+label,
+input[type=tel]:not(.browser-default):focus:not([readonly])+label,
+input[type=number]:not(.browser-default):focus:not([readonly])+label,
+input[type=search]:not(.browser-default):focus:not([readonly])+label,
+textarea.materialize-textarea:focus:not([readonly])+label {
+  color: var(--color-accent) !important;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid var(--color-accent);
+  -webkit-box-shadow: 0 1px 0 0 var(--color-accent);
+  box-shadow: 0 0 6px 0 var(--color-accent);
+}
+
+input.valid:not([type]),
+input.valid:not([type]):focus,
+input[type=text].valid:not(.browser-default),
+input[type=text].valid:not(.browser-default):focus,
+input[type=password].valid:not(.browser-default),
+input[type=password].valid:not(.browser-default):focus,
+input[type=email].valid:not(.browser-default),
+input[type=email].valid:not(.browser-default):focus,
+input[type=url].valid:not(.browser-default),
+input[type=url].valid:not(.browser-default):focus,
+input[type=time].valid:not(.browser-default),
+input[type=time].valid:not(.browser-default):focus,
+input[type=date].valid:not(.browser-default),
+input[type=date].valid:not(.browser-default):focus,
+input[type=datetime].valid:not(.browser-default),
+input[type=datetime].valid:not(.browser-default):focus,
+input[type=datetime-local].valid:not(.browser-default),
+input[type=datetime-local].valid:not(.browser-default):focus,
+input[type=tel].valid:not(.browser-default),
+input[type=tel].valid:not(.browser-default):focus,
+input[type=number].valid:not(.browser-default),
+input[type=number].valid:not(.browser-default):focus,
+input[type=search].valid:not(.browser-default),
+input[type=search].valid:not(.browser-default):focus,
+textarea.materialize-textarea.valid,
+textarea.materialize-textarea.valid:focus,
+.select-wrapper.valid>input.select-dropdown {
+  border-bottom: 1px solid var(--color-accent);
+  -webkit-box-shadow: 0 1px 0 0 var(--color-accent);
+  box-shadow: 0 0 2px 0 #7d7d7d;
+}
+
+.chip .close {
+  background: var(--color-important-ex);
+}
+
+.chip .close:hover {
+  background: var(--color-important);
+}
+
+.chip.selected_number,
+#pagingBox div.chip.selected {
+  background: var(--color-accent);
+}
+
+.container_selected_number small>span {
+  color: var(--color-accent);
+}
+
+.btn:hover,
+.btn-large:hover,
+.btn-small:hover {
+  background-color: var(--color-important);
+}
+
+.chip.misticketsson {
+  background: var(--color-accent);
+}
+
+@media screen and (min-width: 992px) {
+  body widget {
+    -webkit-filter: drop-shadow(1px 1px 6px var(--color-accent));
+    filter: drop-shadow(1px 1px 6px var(--color-accent));
+  }
+}
+
+body widget[type='ticket'] .top,
+body widget[type='ticket'] .bottom,
+body widget[type='ticket'] .rip {
+  background-color: var(--color-accent);
+}
+
+body widget[type='ticket'] .rip:before,
+body widget[type='ticket'] .rip:after {
+  border-top-color: var(--color-important) !important;
+  border-right-color: var(--color-important) !important;
+}
+
+body widget[type='ticket'] .buy,
+body widget[type='ticket'] .bottom>strong {
+  color: var(--color-accent);
+}
+
+body widget[type='ticket'] .top {
+  border-left: 2px solid var(--color-accent);
+  border-right: 2px solid var(--color-accent);
+}
+
+body widget[type='ticket'] .bottom>strong {
+  border: 2px dashed var(--color-accent);
+}
+
+body widget[type='ticket'] .mode,
+body widget[type='ticket'] .status {
+  color: var(--color-accent);
+}
+
+body widget .container_banner>div.tourname {
+  background-image: var(--background-image-h);
+}
+
+body widget[type='ticket'] .rip {
+  box-shadow: 0 1px 0 0 var(--color-accent), 0 -1px 0 0 var(--color-accent);
+}
+
+.bandname.-bold {
+  border-top: 4px solid var(--color-important);
+  color: var(--color-accent);
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+  background-color: var(--color-accent);
+}
+
+.switch label input[type=checkbox]:checked+.lever:after {
+  background-color: var(--color-important);
+}
+
+.footer-section {
+  background-color: var(--color-accent);
+}
+
+.modal i {
+  color: var(--color-accent);
+}
+
+#randomShuffleNumber {
+  transition: all .66s ease-out;
+}
+
+.generate.number.winner {
+  color: var(--color-accent);
+  text-shadow: 0 0 22px var(--color-important-ex);
+}
+
+.generate.number {
+  color: var(--color-accent);
+}
+
+#buttfixed {
+  background: var(--color-accent);
+}
+
+#buttfixed:hover {
+  background: var(--color-important);
+}
+
+#buttfixed>span {
+  color: var(--color-accent);
+}
+
+.modal-overlay {
+  background: var(--color-accent);
+}
+
+img.loading {
+  background: var(--color-important-ex);
+}
+
+.footer-social-media-icon .fa:hover {
+  color: var(--color-important);
+}
+
+body .chip {
+  width: 48px;
+}

@@ -27,6 +27,7 @@ let number_of_pages = 0
 let startTime, intervalPlusId, intervalMinusId
 
 const ticketName = "boleto"
+export const form = document.getElementById('formimage');
 const contentChips = document.getElementById("pagingBox");
 export const numeros_seleccionados = document.getElementById("numeros_seleccionados");
 const textSeleccionados = document.getElementById("textSeleccionados");
@@ -34,6 +35,12 @@ const resultTickets = document.getElementById("resultTickets");
 export const container_fixed = document.getElementById('container_select_to_fixed');
 export const priceConvert = document.getElementById("priceConvert");
 const container_element = document.getElementById('container-get-ticket');
+
+/******************************************************
+ *** File input                                     ***
+ ******************************************************/
+export const max_width = fileinput.getAttribute('data-maxwidth');
+export const max_height = fileinput.getAttribute('data-maxheight');
 
 const btn_upload_voucher = document.getElementById("btn_upload_voucher");
 export const btn_view_selected = document.getElementById('btn_view_selected');

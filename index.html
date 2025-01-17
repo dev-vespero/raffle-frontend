@@ -504,46 +504,7 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script type="modules" src="/assets/js/configs.mjs"></script>
-
-  <script type="text/javascript">
-    const fileinput = document.getElementById('files');
-
-    const max_width = fileinput.getAttribute('data-maxwidth');
-    const max_height = fileinput.getAttribute('data-maxheight');
-    
-    fileinput.onchange = function () {
-      if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
-        alert('The File APIs are not fully supported in this browser.');
-        return false;
-      }
-      readfiles(fileinput.files);
-      containimagenVoucher.style.display = "block";
-    }
-    setInputFilter(document.getElementById("celular"), (value) => /^\d*$/.test(value));
-    setInputFilter(document.getElementById("inputSearchTicket"), (value) => /^\d*$/.test(value));
-    
-    const form = document.getElementById('formimage');
-
-    function setInputFilter (textbox, inputFilter) {
-      ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function (event) {
-        textbox.addEventListener(event, function () {
-          if (inputFilter(this.value)) {
-            this.oldValue = this.value;
-            this.oldSelectionStart = this.selectionStart;
-            this.oldSelectionEnd = this.selectionEnd;
-          } else if (this.hasOwnProperty("oldValue")) {
-            this.value = this.oldValue;
-            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-          } else {
-            this.value = "";
-          }
-        });
-      });
-    }
-
-    $("#navbarNav").on("click", "a", () => $(".navbar-toggle").click());
-    $(".nav-item").on("click", "a", () => $("#navbarNav").removeClass('show'));
-  </script>
+  <script type="modules" src="/assets/js/main.mjs"></script>
   <script>$("#btn_view_selected_bot").click();</script>
 </body>
 </html>

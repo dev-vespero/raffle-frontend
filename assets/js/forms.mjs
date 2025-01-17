@@ -1,5 +1,3 @@
-import { APIManager } from "./api.mjs";
-
 export const FormManager = {
   buildBuyer: (token) => {
     const formBuyerData = new FormData();

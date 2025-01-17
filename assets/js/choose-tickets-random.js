@@ -68,14 +68,3 @@ function toogleSelected () {
     btn_view_selected_bot.classList.add('fa-chevron-down')
   }
 }
-
-function resetTodo () {
-  $("i.fa-times.close").click();
-  imageBlob = new Blob();
-  imagePushed = false;
-  containimagenVoucher.innerHTML = '';
-  resizeBiggUploadContainer();
-  containimagenVoucher.style.display = "none";
-  nameBuyer.value = '';
-  phoneBuyer.value = '';
-}

@@ -442,12 +442,6 @@
     </div>
   </div>
 
-  <div class="container_btn_help">
-    <div id="buttfixed"> <i class="fa fa-commenting"></i><span>Chat</span></div>
-    <div id="linksfixed" style="display:none" class="activehelp">
-    </div>
-  </div>
-
   <!-- Modal Success -->
   <div id="modalSuccess" class="modal center">
     <div class="modal-content">
@@ -472,30 +466,6 @@
     </div>
     <div class="modal-footer row center">
       <button id="btnSuccessModal" onclick="openVerMisTickets()" class="btn-large">Ver mis Boletos</a>
-    </div>
-  </div>
-
-  <!-- Modal Loader -->
-  <div id="modalLoader" class="modal center">
-    <div class="modal-content text-center">
-      <img class="loading" src="https://rifarito.s3.amazonaws.com/assets/loadingc.gif">
-    </div>
-  </div>
-
-  <!-- Modal Machine -->
-  <div id="modalMachine" class="modal center">
-    <div class="modal-content text-center">
-      <div class="lds-grid">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
     </div>
   </div>
 
@@ -531,60 +501,27 @@
     </div>
   </div>
 
-  <!-- Modal TermsConds -->
-  <div id="modalTermsConds" class="modal center">
-    <div class="modal-content">
-      <pre class="clientTermsConds"></pre>
-    </div>
-    <a id="btnAccepTermsConds" href="#!" class="modal-close link">ACEPTAR</a>
-    <a id="btnCancelTermsConds" href="#!" class="modal-close red link">CANCELAR</a>
-  </div>
-
-  <!-- Modal Voucher -->
-  <div id="modalVoucher" class="modal center">
-    <div class="modal-content">
-      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-      <h5>Por favor suba el Comprobante de Pago</h5>
-    </div>
-    <div class="modal-footer">
-      <a id="btnAccepTerms" href="#!" class="modal-close learn-more-btn large-btn">OK</a>
-    </div>
-  </div>
-
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script>    
-    const baseUrl = "/api/v1/"
-    const configClient = {
-      clientToken: "WqX5DQ",
-      raffleToken: "vyUrgVCW"
-    }
-    const raffleData = { "name": "GANATE UNA SBR 6G 2025 0KM", "slug": "motosbr6g", "description": "PARTICIPA Y GANATE UNA SBR 6G 2025 0KM POR TAN SOLO 1.5$ CADA TICKET Y LO MEJOR DE TODO A TASA BCV.\r\n\r\nPREMIOS:\r\n🥇1ER LUGAR: SBR 6G 0KM 2025 🏍️\r\n🥈2DO LUGAR: 50$ 💴\r\n🥉3ER LUGAR: 2 CAMBIOS DE ACEITE PARA MOTO 150 CC\r\n\r\n** CON COMPRAS MAYOR A 60$ EN NUESTRAS TIENDAS YA ESTARAS PARTICIPANDO.\r\n** LA RIFA SERA REALIZADA AL TOTALIZAR LA VENTA DE LOS TICKETS\r\n** FECHA PUBLICADA ESTA SUJETA A CAMBIOS POR LA VENTA DE LOS BOLETOS", "price_unit": 1.5, "draw_date_short": "24 FEB 2025", "draw_date": "24 Febrero, 2025", "draw_hour": "08:00 PM", "draw_is_today": false, "done_successfully": false, "opportunities": 1, "multiplier": 1, "address": "Guatire, Miranda, Venezuela", "image": { "url": "https://rifarito.s3.amazonaws.com/uploads/raffle/image/3046/bnrrpost-ig.jpg", "name": "bnrrpost-ig.jpg" }, "colors": { "dark": "#73141c", "primary": "#c5010e", "bg_header": "#610b10", "secondary": "#f8cc13", "text_hover": "#ffffff", "text_header": "#faf6f6", "text_normal": "#ffffff" }, "phones": [], "min_tickets_buy": 1, "max_tickets_buy": 50, "choose_numbers": true, "on_quantity": 1000, "off_quantity": 0, "visible": true, "active": true, "custom_scripts": "$(\"#btn_view_selected_bot\").click();\r\n//setDemo();", "custom_styles": "", "limit_purchase": true, "digits": 3, "numbers_on": true, "start_number_on": 0, "end_number_on": 999, "numbers_off": false, "start_number_off": 0, "end_number_off": 0, "voucher_wait_hours": 24, "transmission": "instagram", "discount_rate": 0.0, "discount_rate_increase": 0.0, "discount_max_tickets": 0, "free_ticket_promo": 0, "terms": "", "custom_text": { "form_option_send_after": "Enviar comprobante de pago a WhatsApp" }, "show_used": true, "custom_message_whatsapp": "Hola, soy *|buyer_name|*, con mi celular *|buyer_phone|* registré estos números: *|tickets|* en *|raffle_name|* *|url|*", "modality": "end_date", "show_progress": true, "percent_draw_date": 0, "start_date": "2024-12-18T16:50:00.000-05:00", "token": "vyUrgVCW", "created_at": "2024-12-18T16:50:48.022-05:00", "updated_at": "2024-12-20T08:10:01.632-05:00", "country": { "id": 14, "name": "Venezuela", "var_name": "VENEZUELA", "code": "VE", "iso": "VEN", "code_phone": "58", "language": "es" }, "client": { "name": "MOTO MOTO RIFAS", "identification": "S/N", "description": "MOTO MOTO RIFAS", "address": "MIranda, Venezuela, Miranda, Venezuela", "time_zone": "America/Caracas", "full_address": "MIranda, Venezuela, Miranda, Venezuela", "phones": ["04129753098"], "redirect_whats": false, "extra_fields": {}, "custom_text": { "ticket": "boleto" }, "tracking": {}, "social": { "tiktok": "", "twitter": "", "youtube": "", "facebook": "", "linkedin": "", "instagram": "https://www.instagram.com/motomotorifascom/" }, "website": "https://www.motomotorifas.com", "token": "WqX5DQ", "logo": { "url": "https://rifarito.s3.amazonaws.com/uploads/client/logo/2334/llgLOGO1-min.png", "name": "llgLOGO1-min.png" } }, "currency": { "id": 1, "name": "Dólares Americanos", "code": "USD", "symbol": "$", "decimals": 2, "country_code": "US", "value": 1.0 }, "questions": [] }
-    const configPaymentTypes = [{ "id": 4198, "client_id": 2334, "name": "KATIUSKA MIRELES", "owner": "KATIUSKA MIRELES", "type_account": "personal", "number": "0412 9753098", "interbank": "14755978", "number_alias": "TELÉFONO", "interbank_alias": "CÉDULA", "link": "", "link_alias": "", "visible_public": true, "icon": "", "mode": "offline", "active": true, "exchange_rate": "1.0", "notes": "", "bank": { "id": 54, "description": "Banco de Venezuela", "name": "PagomóvilBDV", "var_name": "PAGO_MOVIL", "logo": { "url": "https://rifarito.s3.amazonaws.com/uploads/bank/logo/54/vepagomovilc2c.png", "name": "vepagomovilc2c.png" } }, "currency": { "id": 1, "name": "Dólares Americanos", "code": "USD", "symbol": "$", "decimals": 2, "country_code": "US", "value": 1.0 } }]
-    const listSponsors = []
-    const listAwards = []
-    const ticketName = "boleto"
-    const tokenBearer = "0000+L22:20:71L41-100000+L22:20:71L41-10"
-  </script>
-  <script src="/assets/js/configs.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script type="modules" src="/assets/js/configs.mjs"></script>
 
   <script type="text/javascript">
     const fileinput = document.getElementById('files');
-    let max_width, max_height
-    if (!raffleData.done_successfully) {
-      max_width = fileinput.getAttribute('data-maxwidth');
-      max_height = fileinput.getAttribute('data-maxheight');
-      fileinput.onchange = function () {
-        if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
-          alert('The File APIs are not fully supported in this browser.');
-          return false;
-        }
-        readfiles(fileinput.files);
-        containimagenVoucher.style.display = "block";
+
+    const max_width = fileinput.getAttribute('data-maxwidth');
+    const max_height = fileinput.getAttribute('data-maxheight');
+    
+    fileinput.onchange = function () {
+      if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
+        alert('The File APIs are not fully supported in this browser.');
+        return false;
       }
-      setInputFilter(document.getElementById("celular"), (value) => /^\d*$/.test(value));
-      setInputFilter(document.getElementById("inputSearchTicket"), (value) => /^\d*$/.test(value));
-      setInputFilter(document.getElementById("findPhone"), (value) => /^\d*$/.test(value));
+      readfiles(fileinput.files);
+      containimagenVoucher.style.display = "block";
     }
+    setInputFilter(document.getElementById("celular"), (value) => /^\d*$/.test(value));
+    setInputFilter(document.getElementById("inputSearchTicket"), (value) => /^\d*$/.test(value));
+    
     const form = document.getElementById('formimage');
 
     function setInputFilter (textbox, inputFilter) {
@@ -604,48 +541,8 @@
       });
     }
 
-    $("#navbarNav").on("click", "a", function () {
-      $(".navbar-toggle").click();
-    });
-    $(".nav-item").on("click", "a", function () {
-      $("#navbarNav").removeClass('show');
-    });
-
-    $(window).scroll(function () {
-      if ($(this).scrollTop() > 20) {
-        $('#navbar').addClass('header-scrolled');
-      } else {
-        $('#navbar').removeClass('header-scrolled');
-      }
-    });
-
-    function getTokenFirebase (action_name, obj) {
-      grecaptcha.ready(function () {
-        grecaptcha.execute('6LctjKkfAAAAAAvlMbLxs_6tz_2H_jzkh0MT87V1', { action: action_name })
-          .then(function (token) {
-            if (action_name == 'build_buyer') {
-              buildBuyer(token);
-            }
-            else if (action_name == 'build_purchase') {
-              buildPurchase(token, obj);
-            }
-            else if (action_name == 'build_voucher') {
-              buildVoucher(token, obj);
-            }
-            else if (action_name == 'build_find_phone') {
-              buildFindPhone(token, obj);
-            }
-            else if (action_name == 'build_find_ticket') {
-              buildFindTicket(token, obj);
-            }
-          })
-          .catch(function (error) {
-            console.error('Error al obtener el token de reCAPTCHA:', error);
-            showError("Ocurrió un error, reintentar por favor.");
-            instanceLoader.close();
-          });
-      });
-    }
+    $("#navbarNav").on("click", "a", () => $(".navbar-toggle").click());
+    $(".nav-item").on("click", "a", () => $("#navbarNav").removeClass('show'));
   </script>
   <script>$("#btn_view_selected_bot").click();</script>
 </body>

@@ -1,3 +1,5 @@
+import { raffleData } from "./constants.mjs";
+
 let formBuyerData = new FormData();
 let formPurchaseData = new FormData();
 let formVoucherData = new FormData();
@@ -15,10 +17,10 @@ let total_promo_discount = 0;
 let total_tickets_promo = 0;
 let chipslibres = "";
 let ticketsSelected = [];
-let limitTicketsChoosen = 0; 
+let limitTicketsChoosen = 0;
 let countTicketsSelected = 0;
 let switchViewNumbers = false;
-let loadRaffleTickets = false; 
+let loadRaffleTickets = false;
 let participatingTickets = [];
 let max_tickets_buy = 100;
 let min_tickets_buy = 1;
@@ -45,30 +47,30 @@ window.addEventListener('scroll', () => {
   var rect = contentChips.getBoundingClientRect();
   var windowHeight = window.innerHeight;
 
-  if (rect.bottom - 333 <= windowHeight && rect.bottom + 180 > windowHeight ) {
+  if (rect.bottom - 333 <= windowHeight && rect.bottom + 180 > windowHeight) {
     container_fixed.classList.add('fixed');
   } else {
     container_fixed.classList.remove('fixed');
   }
   const height_fixed = window.innerWidth < 600 ? 92 : 300
-  if (rect.bottom + height_fixed <= windowHeight && rect.bottom + 1100 > windowHeight ) {
+  if (rect.bottom + height_fixed <= windowHeight && rect.bottom + 1100 > windowHeight) {
     priceConvert.classList.add('pricefixed');
   } else {
     priceConvert.classList.remove('pricefixed');
   }
 });
 
-function continueForm() {
+function continueForm () {
   if (numeros_seleccionados.style.display === "block") {
     toogleSelected()
   }
   $("#nombre").focus();
 }
 
-btn_view_selected.addEventListener('click', function(elmnt){toogleSelected()});
-btn_view_selected_bot.addEventListener('click', function(elmnt){toogleSelected()});
+btn_view_selected.addEventListener('click', function (elmnt) { toogleSelected() });
+btn_view_selected_bot.addEventListener('click', function (elmnt) { toogleSelected() });
 
-function toogleSelected(){
+function toogleSelected () {
   if (numeros_seleccionados.style.display === "none") {
     numeros_seleccionados.style.display = "block";
   } else {
@@ -127,58 +129,58 @@ const findPhone = document.getElementById("findPhone");
 const msjRptaBusqueda = document.getElementById("msjRptaBusqueda");
 const qrCode = document.getElementById("qrCode");
 
-function showError(msj) {
+function showError (msj) {
   msjerror.innerHTML = msj
   instanceError.open()
 }
 
-function plusCountTickets(){
+function plusCountTickets () {
   startTime = Date.now();
-  intervalPlusId = setInterval(function() {
+  intervalPlusId = setInterval(function () {
     let pressDuration = (Date.now() - startTime) / 1;
     if (pressDuration > 400) $("#btnPlus").click();
   }, 50);
 }
-function minusCountTickets(){
+function minusCountTickets () {
   startTime = Date.now();
-  intervalMinusId = setInterval(function() {
+  intervalMinusId = setInterval(function () {
     let pressDuration = (Date.now() - startTime) / 1;
     if (pressDuration > 400) $("#btnMinus").click();
   }, 50);
 }
-$("#btnPlus").on("mousedown touchstart", function() {
+$("#btnPlus").on("mousedown touchstart", function () {
   plusCountTickets()
 });
-$("#btnMinus").on("mousedown touchstart", function() {
+$("#btnMinus").on("mousedown touchstart", function () {
   minusCountTickets()
 });
 
-$("#btnPlus").on("mouseup mouseout touchend touchleave", function() { 
+$("#btnPlus").on("mouseup mouseout touchend touchleave", function () {
   clearInterval(intervalPlusId);
 });
-$("#btnMinus").on("mouseup mouseout touchend touchleave", function() { 
+$("#btnMinus").on("mouseup mouseout touchend touchleave", function () {
   clearInterval(intervalMinusId);
 });
 
 
 (function ($) {
-  $.fn.numberPicker = function() {
+  $.fn.numberPicker = function () {
     var dis = 'disabled';
-    return this.each(function() {
+    return this.each(function () {
       var picker = $(this),
         m = picker.find('button:first-child'),
         p = picker.find('button:last-child'),
-        input = picker.find('input'),                 
+        input = picker.find('input'),
         min = parseInt(input.attr('min'), 10),
         // max = parseInt(input.attr('max'), 10),
         max = max_tickets_buy,
-        inputFunc = function(picker) {
+        inputFunc = function (picker) {
           var i = parseInt(input.val(), 10);
           $('.ticket_name').html(`${ticketName.toUpperCase()}${(i == 1) ? "" : "S"}`);
-          if ( (min == 1) && (max == 1) ) {
+          if ((min == 1) && (max == 1)) {
             m.prop(dis, true);
             p.prop(dis, true);
-          } else if ( (i <= min) || (!i) ) {
+          } else if ((i <= min) || (!i)) {
             input.val(min);
             m.prop(dis, true);
             p.prop(dis, false);
@@ -186,43 +188,46 @@ $("#btnMinus").on("mouseup mouseout touchend touchleave", function() {
           } else if (i >= max) {
             input.val(max);
             m.prop(dis, false);
-            p.prop(dis, true); 
+            p.prop(dis, true);
             clearInterval(intervalPlusId);
           } else {
             m.prop(dis, false);
             p.prop(dis, false);
           }
         },
-        changeFunc = function(picker, quantity) {
+        changeFunc = function (picker, quantity) {
           var q = parseInt(quantity, 10),
-              i = parseInt(input.val(), 10);
+            i = parseInt(input.val(), 10);
           if ((i < max && (q > 0)) || (i > min && !(q > 0))) {
             input.val(i + q);
             inputFunc(picker);
           }
         };
-      m.on('click', function(){
+
+      m.on('click', function () {
         let difference_number = limitTicketsChoosen - countTicketsSelected
         if (difference_number < raffleData.multiplier) {
-          showError(`Tiene ${countTicketsSelected} ${ticketName}s elegidos, elimine ${raffleData.multiplier - difference_number } por favor.`);
+          showError(`Tiene ${countTicketsSelected} ${ticketName}s elegidos, elimine ${raffleData.multiplier - difference_number} por favor.`);
           return
         }
-        changeFunc(picker,-1);
+        changeFunc(picker, -1);
         ticket_qty--;
-        $("#continueForm"). attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
+        $("#continueForm").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
         calcMaxTicketSelect("decrease");
         calcTotalPrice("minus");
         printSelectedTickets();
       });
-      p.on('click', function(){
-        changeFunc(picker,1);
+
+      p.on('click', function () {
+        changeFunc(picker, 1);
         ticket_qty++;
-        $("#continueForm"). attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
+        $("#continueForm").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
         calcMaxTicketSelect("increase");
         calcTotalPrice("plus");
         printSelectedTickets();
       });
-      input.on('change', function(){inputFunc(picker);});
+
+      input.on('change', function () { inputFunc(picker); });
       inputFunc(picker); //init
     });
   };
@@ -234,25 +239,18 @@ setRaffle()
 if (!raffleData.done_successfully) getAllTickets()
 getPaymentTypes()
 setPaymentTypes(configPaymentTypes)
-$('.option-payment').on('click', function(){clicPaymentOption(this)});
+$('.option-payment').on('click', function () { clicPaymentOption(this) });
 changePaymentChoose()
 calcTotalPrice("plus")
 getSponsors()
 getAwards()
 setClient()
 
-
-if (!raffleData.questions || raffleData.questions.length == 0) {
-  $(".services-section").hide();
-  $(".awardsFaq").hide();
-  $(".faqLink").hide();
-}
-
-function getAllTickets() {
+function getAllTickets () {
   $.ajax({
     url: `${baseUrl}raffles/${raffleData.token}/all_tickets`,
     type: 'GET',
-    beforeSend: function(request) {
+    beforeSend: function (request) {
       request.setRequestHeader("Authorization", tokenBearer);
     },
     dataType: 'json',
@@ -260,7 +258,7 @@ function getAllTickets() {
       a_all_tickets = tickets
       setNumbers()
       if (raffleData.show_progress) calculateProgress();
-      if (raffleData.modality == "percentage" ) calcDrawDate();
+      if (raffleData.modality == "percentage") calcDrawDate();
     },
     error: function (request, message, error) {
       handleException(request, message, error);
@@ -268,7 +266,7 @@ function getAllTickets() {
   });
 }
 
-function buildFindPhone(token, phone) {
+function buildFindPhone (token, phone) {
   return $.ajax({
     url: `${baseUrl}raffles/${configClient.raffleToken}/buyers/${phone}?token_recaptcha=${token}&recaptcha_group=${recaptchaGroup}`,
     type: 'GET',
@@ -283,7 +281,7 @@ function buildFindPhone(token, phone) {
     error: function (request, message, error) {
       if (error == "Unauthorized") {
         showError("Ocurrió un error, reintentar por favor.")
-      }else {
+      } else {
         showError("No registrado en el sistema.")
       }
       instanceLoader.close();
@@ -291,7 +289,7 @@ function buildFindPhone(token, phone) {
   });
 }
 
-function buildFindTicket(token, ticket) {
+function buildFindTicket (token, ticket) {
   return $.ajax({
     url: `${baseUrl}raffles/${configClient.raffleToken}/tickets/${ticket}?token_recaptcha=${token}&recaptcha_group=${recaptchaGroup}`,
     type: 'GET',
@@ -304,7 +302,7 @@ function buildFindTicket(token, ticket) {
     error: function (request, message, error) {
       if (error == "Unauthorized") {
         showError("Ocurrió un error, reintentar por favor.")
-      }else {
+      } else {
         showError("No registrado en el sistema.")
       }
       instanceLoader.close();
@@ -312,9 +310,9 @@ function buildFindTicket(token, ticket) {
   });
 }
 
-function getRaffleTickets() {
+function getRaffleTickets () {
   $('#randomNumberTicket').show();
-  if (loadRaffleTickets){
+  if (loadRaffleTickets) {
     shuffleTickets(participatingTickets);
     instanceLoader.close();
     return;
@@ -337,7 +335,7 @@ function getRaffleTickets() {
   });
 }
 
-function getAwards() {
+function getAwards () {
   if (!listAwards || listAwards.length == 0) {
     $(".blog-section").hide();
     $(".awardsLink").hide();
@@ -348,7 +346,7 @@ function getAwards() {
   }
 }
 
-function getSponsors() {
+function getSponsors () {
   if (!listSponsors || listSponsors.length == 0) {
     $(".clients-section").hide();
   }
@@ -358,35 +356,35 @@ function getSponsors() {
   }
 }
 
-function getPaymentTypes() {
+function getPaymentTypes () {
   currentPaymentType = configPaymentTypes[0]
   changeBtnToPayOnline()
 }
 
-function setClient(){
+function setClient () {
   if (raffleData.client.social.facebook) {
-    $(".linkFacebook").attr("href", raffleData.client.social.facebook )
+    $(".linkFacebook").attr("href", raffleData.client.social.facebook)
     $(".linkFacebook").show();
     // $(".linkMessenger").attr("href", `https://m.me/${raffleData.client.social.facebook.split("com/")[1]}` )
   }
   if (raffleData.client.social.instagram) {
-    $(".linkInstagram").attr("href", raffleData.client.social.instagram )
+    $(".linkInstagram").attr("href", raffleData.client.social.instagram)
     $(".linkInstagram").show();
   }
   if (raffleData.client.social.tiktok) {
-    $(".linkTiktok").attr("href", raffleData.client.social.tiktok )
+    $(".linkTiktok").attr("href", raffleData.client.social.tiktok)
     $(".linkTiktok").show();
   }
   if (raffleData.client.social.twitter) {
-    $(".linkTwitter").attr("href", raffleData.client.social.twitter )
+    $(".linkTwitter").attr("href", raffleData.client.social.twitter)
     $(".linkTwitter").show();
   }
   if (raffleData.client.social.youtube) {
-    $(".linkYoutube").attr("href", raffleData.client.social.youtube )
+    $(".linkYoutube").attr("href", raffleData.client.social.youtube)
     $(".linkYoutube").show();
   }
   if (raffleData.client.social.linkedin) {
-    $(".linkLinkedin").attr("href", raffleData.client.social.linkedin )
+    $(".linkLinkedin").attr("href", raffleData.client.social.linkedin)
     $(".linkLinkedin").show();
   }
   if (raffleData.client.website) {
@@ -401,7 +399,7 @@ function setClient(){
   $(".clientDescription").html(raffleData.client.description)
 }
 
-function setPhones(){
+function setPhones () {
   let phones = raffleData.phones.length > 0 ? raffleData.phones : raffleData.client.phones
   $(".phoneClient").html("+" + raffleData.country.code_phone + " " + + phones[0])
   $.each(phones, function (index, phone) {
@@ -413,7 +411,7 @@ function setPhones(){
   })
 }
 
-function setNumbers(){
+function setNumbers () {
   if (a_all_tickets.length < raffleData.max_tickets_buy) {
     max_tickets_buy = a_all_tickets.length
   }
@@ -435,7 +433,7 @@ function setNumbers(){
     $("#btnPlus").click();
   }
 }
-function setRaffle(){
+function setRaffle () {
   let name_social_up = raffleData.transmission.charAt(0).toUpperCase() + raffleData.transmission.slice(1);
   if (raffleData.custom_text.form_title) $("#formTitle").html(raffleData.custom_text.form_title)
   if (raffleData.custom_text.form_btn_random) $("#formBtnRandom").html(raffleData.custom_text.form_btn_random)
@@ -447,33 +445,33 @@ function setRaffle(){
     $(".checkboxPayAfter").hide();
   }
   if (name_social_up == "Facebook") {
-    $(".linkTransmission").attr("href", raffleData.client.social.facebook )
+    $(".linkTransmission").attr("href", raffleData.client.social.facebook)
   } else if (name_social_up == "Instagram") {
-    $(".linkTransmission").attr("href", raffleData.client.social.instagram )
+    $(".linkTransmission").attr("href", raffleData.client.social.instagram)
   } else if (name_social_up == "Tiktok") {
-    $(".linkTransmission").attr("href", raffleData.client.social.tiktok )
+    $(".linkTransmission").attr("href", raffleData.client.social.tiktok)
   } else if (name_social_up == "Youtube") {
-    $(".linkTransmission").attr("href", raffleData.client.social.youtube )
+    $(".linkTransmission").attr("href", raffleData.client.social.youtube)
   } else if (name_social_up == "Twitter") {
-    $(".linkTransmission").attr("href", raffleData.client.social.twitter )
+    $(".linkTransmission").attr("href", raffleData.client.social.twitter)
   } else if (name_social_up == "Website") {
-    $(".linkTransmission").attr("href", raffleData.client.website )
+    $(".linkTransmission").attr("href", raffleData.client.website)
   }
   $(".linkTransmission").html(name_social_up)
   $(".voucherWaitHours").html(raffleData.voucher_wait_hours)
   if (raffleData.price_unit == 0) $("#sectionAllPayments").hide()
   $(document.body).addClass(raffleData.color);
   $("#montoTotal").attr("data-original-title", raffleData.currency.name)
-  if (raffleData.draw_is_today) $(".shuffle-section").show() ;
-  if (raffleData.opportunities > 1){
+  if (raffleData.draw_is_today) $(".shuffle-section").show();
+  if (raffleData.opportunities > 1) {
     $(".textOpportunities").show()
     $(".textSelectOpportunities").show()
     $(".quantityOpportunities").html(raffleData.opportunities)
   }
-  if (raffleData.discount_rate || raffleData.discount_rate_increase){
+  if (raffleData.discount_rate || raffleData.discount_rate_increase) {
     $(".textDiscounts").show()
   }
-  if (raffleData.free_ticket_promo > 1){
+  if (raffleData.free_ticket_promo > 1) {
     $(".textTicketPromos").show()
   }
 
@@ -533,9 +531,9 @@ function setRaffle(){
   printTextSeleccionados();
   printPlaceHolder();
   setQuestions(raffleData.questions);
-  if (raffleData.done_successfully) {setRaffleSuccess(); return};
+  if (raffleData.done_successfully) { setRaffleSuccess(); return };
 }
-function calculateProgress() {
+function calculateProgress () {
   $(".progress-contain").show()
   let progress = ((raffleData.on_quantity - a_all_tickets.length) * 100.00 / raffleData.on_quantity).toFixed(1)
   $(".progress-actual").css("width", `${progress}%`);
@@ -543,10 +541,10 @@ function calculateProgress() {
   $(".progress-percent").html(`${progress}%`);
 }
 
-function setAwards(awards){
+function setAwards (awards) {
   let countAwards = 0
   let mini_raffles = awards.map(award => award.draw_date)
-  let filteredArray = mini_raffles.filter(function(e) { return e !== undefined })
+  let filteredArray = mini_raffles.filter(function (e) { return e !== undefined })
 
   $.each(awards, function (index, award) {
     awardAddRow(index, award, filteredArray.length);
@@ -554,10 +552,10 @@ function setAwards(awards){
   });
   $("#cantAwards").html(countAwards)
 }
-function awardAddRow(index, award, awards_length) {
+function awardAddRow (index, award, awards_length) {
   $("#awardList").append(awardBuildTableRow(index, award, awards_length));
 }
-function awardBuildTableRow(index, award, awards_length) {
+function awardBuildTableRow (index, award, awards_length) {
   let feature_award = ``
   let awardHeader = `<span class="btn"">${index + 1}</span>`
   let divsWinners = ``
@@ -600,15 +598,15 @@ function awardBuildTableRow(index, award, awards_length) {
   return divAward;
 }
 
-function setSponsors(sponsors){
+function setSponsors (sponsors) {
   $.each(sponsors, function (index, sponsor) {
     sponsorAddRow(sponsor);
   });
 }
-function sponsorAddRow(sponsor) {
+function sponsorAddRow (sponsor) {
   $("#sponsorList").append(sponsorBuildTableRow(sponsor));
 }
-function sponsorBuildTableRow(sponsor) {
+function sponsorBuildTableRow (sponsor) {
   let divSponsor = `
     <div class="item client-logo-section">
       <a href="${sponsor.website}" target="_blank">
@@ -619,15 +617,15 @@ function sponsorBuildTableRow(sponsor) {
   return divSponsor;
 }
 
-function setPaymentTypes(paymentTypes){
+function setPaymentTypes (paymentTypes) {
   $.each(paymentTypes, function (index, paymentType) {
     paymentTypeAddRow(index, paymentType);
   });
 }
-function paymentTypeAddRow(index, paymentType) {
+function paymentTypeAddRow (index, paymentType) {
   $("#container-payments").append(paymentTypeBuildTableRow(index, paymentType));
 }
-function paymentTypeBuildTableRow(index, paymentType) {
+function paymentTypeBuildTableRow (index, paymentType) {
   let selected = ""
   if (index == 0) {
     selected = "selected"
@@ -643,16 +641,16 @@ function paymentTypeBuildTableRow(index, paymentType) {
   return divPaymentType;
 }
 
-function setQuestions(questions){
+function setQuestions (questions) {
   $.each(questions, function (index, question) {
     questionAddRow(question);
   });
   setAccordion();
 }
-function questionAddRow(question) {
+function questionAddRow (question) {
   $("#questionList").append(questionBuildTableRow(question));
 }
-function questionBuildTableRow(question) {
+function questionBuildTableRow (question) {
   let divQuestion = `
     <button class="accordion">${question.name}</button>
     <div class="panel">
@@ -662,7 +660,7 @@ function questionBuildTableRow(question) {
   return divQuestion;
 }
 
-function createBuyer() {
+function createBuyer () {
   $.ajax({
     url: `${baseUrl}buyers`,
     type: 'POST',
@@ -679,7 +677,7 @@ function createBuyer() {
   });
 }
 
-function createPurchase(buyerToken) {
+function createPurchase (buyerToken) {
   $.ajax({
     url: `${baseUrl}buyers/${buyerToken}/purchases`,
     type: 'POST',
@@ -708,7 +706,7 @@ function createPurchase(buyerToken) {
   });
 }
 
-function updatePurchase(buyerToken, purchaseToken) {
+function updatePurchase (buyerToken, purchaseToken) {
   $.ajax({
     url: `${baseUrl}buyers/${buyerToken}/purchases/${purchaseToken}`,
     type: 'PATCH',
@@ -727,7 +725,7 @@ function updatePurchase(buyerToken, purchaseToken) {
   });
 }
 
-function msjMontoCorrecto(){
+function msjMontoCorrecto () {
   let bankName = currentPaymentType.bank.name.toUpperCase()
   // priceTotal / raffleData.price_unit
   let amountLocal = `
@@ -738,10 +736,10 @@ function msjMontoCorrecto(){
   `
   montoCorrecto.innerHTML = amountLocal;
   priceConvert.innerHTML = amountInternat;
-  $('[data-toggle="tooltip"]').tooltip({html: true});
+  $('[data-toggle="tooltip"]').tooltip({ html: true });
 }
 
-function calcTotalPrice(mode){
+function calcTotalPrice (mode) {
   let promo_ticket_free = raffleData.free_ticket_promo
   let text_promo_free = ''
   priceTotal = ticket_qty * raffleData.price_unit
@@ -756,8 +754,8 @@ function calcTotalPrice(mode){
       total_tickets_promo++
     }
     if (ticket_qty % promo_ticket_free == (promo_ticket_free - 1) && mode == "minus") {
-      let moreoneticket = calcDiscount(((ticket_qty + 1) * raffleData.price_unit), ticket_qty + 1) 
-      let current_ticket = calcDiscount(((ticket_qty) * raffleData.price_unit), ticket_qty) 
+      let moreoneticket = calcDiscount(((ticket_qty + 1) * raffleData.price_unit), ticket_qty + 1)
+      let current_ticket = calcDiscount(((ticket_qty) * raffleData.price_unit), ticket_qty)
       total_promo_discount -= moreoneticket - current_ticket
       total_tickets_promo--
     }
@@ -776,7 +774,7 @@ function calcTotalPrice(mode){
   msjMontoCorrecto();
 }
 
-function calcDiscount(total_price, quantity) {
+function calcDiscount (total_price, quantity) {
   let ticket_less = quantity - 1
   let discount_ticket_rate = ticket_less * raffleData.discount_rate
   let discount_increase = ticket_less * raffleData.discount_rate_increase
@@ -786,7 +784,7 @@ function calcDiscount(total_price, quantity) {
   return total_price - (discount_ticket_rate * discount_increase * 100 / raffleData.price_unit).toFixed(0)
 }
 
-function calcMaxTicketSelect(mode) {
+function calcMaxTicketSelect (mode) {
   if (mode == "increase") {
     limitTicketsChoosen += raffleData.multiplier;
   } else if (mode == "decrease") {
@@ -794,11 +792,11 @@ function calcMaxTicketSelect(mode) {
   }
 }
 
-function parsePriceCountry(price, nation) {
+function parsePriceCountry (price, nation) {
   let country_code, currency_code, currencyDecimals, exchangeRate, currencyName
   // local inter
   currencyName = ""
-  if (nation == "local") { 
+  if (nation == "local") {
     country_code = raffleData.country.code
     currency_code = raffleData.currency.code
     currencyDecimals = raffleData.currency.decimals
@@ -820,23 +818,23 @@ function parsePriceCountry(price, nation) {
   try {
     return new Intl.NumberFormat(languageCountryCode, { style: 'currency', currency: currency_code, maximumFractionDigits: currencyDecimals }).format(price * exchangeRate) + " " + currencyName;
   } catch (e) {
-    return new Intl.NumberFormat(languageCountryCode, { style: 'currency', currency: currency_code}).format(price * exchangeRate) + " " + currencyName;
+    return new Intl.NumberFormat(languageCountryCode, { style: 'currency', currency: currency_code }).format(price * exchangeRate) + " " + currencyName;
   }
 }
 
-function setDemo(){
+function setDemo () {
   let htmldemo = `<div class="confidential-watermark" style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);z-index: 9999;opacity: 0.2;pointer-events: none;"><p style="font-size: 3em;color: #383838;background: #fff;border-radius: 11px;padding: 9px;font-weight: bold;transform: rotate(-45deg);white-space: nowrap;">SITIO WEB DE PRUEBAS</p></div>`;
   $("#raffleDescription").prepend(htmldemo);
 }
 
-function openVerMisTickets(){
+function openVerMisTickets () {
   instanceSuccess.close();
   findPhone.value = phoneBuyer.value || buyerFoundData.phone;
   searchBuyer(findPhone.value)
   resetTodo();
 }
 
-function clicPaymentOption(my_object){
+function clicPaymentOption (my_object) {
   var option_id = $(my_object).attr('data-id')
   currentPaymentType = configPaymentTypes.find(payment => payment.id == option_id)
   changePaymentChoose();
@@ -847,19 +845,19 @@ function clicPaymentOption(my_object){
   }
 }
 
-function changeBtnToPayOnline(){
+function changeBtnToPayOnline () {
   if (currentPaymentType.mode == "online") {
     $(".containerAllVoucher").hide();
-    $('#checkboxPayAfter').prop( "checked", true );
+    $('#checkboxPayAfter').prop("checked", true);
   }
   else {
     $(".containerAllVoucher").show();
     $('.s-voucher').show()
-    $('#checkboxPayAfter').prop( "checked", false );
+    $('#checkboxPayAfter').prop("checked", false);
   }
 }
 
-function execPayOnline(purchase_token){
+function execPayOnline (purchase_token) {
   instanceLoader.open();
   let formPayData = new FormData();
   let url = window.location.href.split(/\?|#/)[0]
@@ -889,7 +887,7 @@ function execPayOnline(purchase_token){
   });
 }
 
-function buildExecFormPayOnline(data){
+function buildExecFormPayOnline (data) {
   let form = document.createElement('form');
   form.method = 'POST';
   form.action = data.url;
@@ -907,10 +905,10 @@ function buildExecFormPayOnline(data){
   form.submit();
 }
 
-function changePaymentChoose(){
-  let icon_type_account = `<i class="help-account fa fa-${currentPaymentType.type_account == "personal" ? "user" : "university" }" aria-hidden="true"></i>`
+function changePaymentChoose () {
+  let icon_type_account = `<i class="help-account fa fa-${currentPaymentType.type_account == "personal" ? "user" : "university"}" aria-hidden="true"></i>`
   let text_type_account = currentPaymentType.type_account == "personal" ? "Personal" : "de Empresa"
-  let image_qr = currentPaymentType.image ? `<img src="${currentPaymentType.image.url}" alt="Imagen" width="320" height="320">` : "" 
+  let image_qr = currentPaymentType.image ? `<img src="${currentPaymentType.image.url}" alt="Imagen" width="320" height="320">` : ""
 
   let data_interbank = ``
   if (currentPaymentType.interbank) {
@@ -946,19 +944,19 @@ function changePaymentChoose(){
   msjMontoCorrecto();
 }
 
-function transformLink(text){
+function transformLink (text) {
   if (text.split("//")[1]) {
     return `<a href="${text}" target="_blank" rel="nofollow noopener noreferrer">${text.split("/")[2]}</a>`
   }
   return text
 }
 
-function validURL(url) {
+function validURL (url) {
   let regex = /^(https?:\/\/)?(www\.)?[\w\.-]+\.\w{2,}(\/\S*)?$/;
   return regex.test(url);
 }
 
-function genButtonCopyLink(mode, text){
+function genButtonCopyLink (mode, text) {
   if (mode == "online") return ''
   let type_btn = {
     title: 'Copiar',
@@ -973,11 +971,11 @@ function genButtonCopyLink(mode, text){
   return `<button onClick="actionButtonAccounts('${type_btn.type}', this, '${text}')" class="magic_button" data-toggle="tooltip" data-placement="top" title='${type_btn.title}'><i class="fa fa-${type_btn.icon}" aria-hidden="true"></i></button>`
 }
 
-function readfiles(files) {
+function readfiles (files) {
   var existinginputs = document.getElementsByName('images[]');
   while (existinginputs.length > 0) {
     form.removeChild(existinginputs[0]);
-  } 
+  }
 
   for (var i = 0; i < files.length; i++) {
     processfile(files[i]); // process each file at once
@@ -985,37 +983,36 @@ function readfiles(files) {
   fileinput.value = "";
 }
 
-function processfile(file) {
-  if( !( /image/i ).test( file.type ) )
-      {
-          alert( "File "+ file.name +" is not an image." );
-          return false;
-      }
+function processfile (file) {
+  if (!(/image/i).test(file.type)) {
+    alert("File " + file.name + " is not an image.");
+    return false;
+  }
   var reader = new FileReader();
   reader.readAsArrayBuffer(file);
-  
+
   reader.onload = function (event) {
     var blob = new Blob([event.target.result]);
     var myURL = window.URL || window.webkitURL;
     let blobURL = myURL.createObjectURL(blob);
-    
+
     let image = new Image();
     image.src = blobURL;
-    
-    image.onload = function() {
+
+    image.onload = function () {
       let resized = resizeMeToBlob(image);
       const contentType = 'image/jpg';
       const b64Data = resized.split(",")[1];
       imageBlob = base64toBlob(b64Data, contentType);
-      nameFileDate = new Date().getTime() + ".jpg"; 
-      containimagenVoucher.innerHTML = '<img src="'+resized+'">';
+      nameFileDate = new Date().getTime() + ".jpg";
+      containimagenVoucher.innerHTML = '<img src="' + resized + '">';
       resizeSmallUploadContainer()
       imagePushed = true
     }
   };
 }
 
-function resizeMeToBlob(img) {
+function resizeMeToBlob (img) {
   var canvas = document.createElement('canvas');
   var width = img.width;
   var height = img.height;
@@ -1037,7 +1034,7 @@ function resizeMeToBlob(img) {
   return canvas.toDataURL("image/jpeg", 0.82);
 }
 
-const base64toBlob = (b64Data, contentType='', sliceSize=512) => {
+const base64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
   const byteCharacters = atob(b64Data);
   const byteArrays = [];
 
@@ -1051,30 +1048,30 @@ const base64toBlob = (b64Data, contentType='', sliceSize=512) => {
     byteArrays.push(byteArray);
   }
 
-  const blob = new Blob(byteArrays, {type: contentType});
+  const blob = new Blob(byteArrays, { type: contentType });
   return blob;
 }
 
-function resizeSmallUploadContainer(){
+function resizeSmallUploadContainer () {
   $('#container_voucher_up').removeClass("col-lg-12");
   $('#container_voucher_up').addClass("col-lg-6");
 }
-function resizeBiggUploadContainer(){
+function resizeBiggUploadContainer () {
   $('#container_voucher_up').addClass("col-lg-12");
   $('#container_voucher_up').removeClass("col-lg-6");
 }
 
-function buildNameStatsBuyer(buyerName, buyerPhone, numberTickets) {
+function buildNameStatsBuyer (buyerName, buyerPhone, numberTickets) {
   let urlBuyer = window.location.href.split(/\?|#/)[0] + "#" + buyerPhone
   // let qrCodeImage = `https://chart.googleapis.com/chart?chs=120x120&cht=qr&choe=UTF-8&chl=${encodeURIComponent(urlBuyer)}&chld=L|2`
   let qrCodeImage = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(urlBuyer)}`
-  
+
   qrCode.src = qrCodeImage;
   msjNombre.innerHTML = buyerName;
-  msjRptaBusqueda.innerHTML = "Números en total: "+ (numberTickets * raffleData.opportunities) + "";
+  msjRptaBusqueda.innerHTML = "Números en total: " + (numberTickets * raffleData.opportunities) + "";
 }
 
-function purchasesAddRow(buyer, purchases) {
+function purchasesAddRow (buyer, purchases) {
   if (purchases == null) {
     purchases = sortArrPurchases(buyer.purchases)
   }
@@ -1082,7 +1079,7 @@ function purchasesAddRow(buyer, purchases) {
   $("#ticketsContain").html("");
 
   for (var i = 0; i < purchases.length; i++) {
-    $("#numbersContain").append('<div class="chip misticketsson ">'+generateAllNumbers(purchases[i].tickets, 'web')+'</div>');
+    $("#numbersContain").append('<div class="chip misticketsson ">' + generateAllNumbers(purchases[i].tickets, 'web') + '</div>');
     if (buyer) {
       let linkTicketPrint = `<div class="minibtn"><a data-toggle="tooltip" data-placement="top" title="Versión para Imprimir" class="btn btn-invert" href="/printing/${purchases[i].token}" target="_blank"><i class="fa fa-print" aria-hidden="true"></i> Imprimir</a></div>`
       if (purchases[i].status == "no_voucher") {
@@ -1093,26 +1090,26 @@ function purchasesAddRow(buyer, purchases) {
                  </p>`
         $("#ticketsContain").append(btn_up_voucher);
       }
-      $("#ticketsContain").append(`<div id="container-minibtn-ticket"> ${linkTicketPrint}</div>`);  
+      $("#ticketsContain").append(`<div id="container-minibtn-ticket"> ${linkTicketPrint}</div>`);
     }
     $.each(purchases[i].tickets, function (index, ticket) {
       $("#ticketsContain").append(drawTicket(purchases[i], ticket, buyer));
     });
   };
 
-  $('[data-toggle="tooltip"]').tooltip({html: true});
+  $('[data-toggle="tooltip"]').tooltip({ html: true });
   resultTickets.style.display = "block";
   var element_to_scroll_to = document.getElementById('tickets');
   element_to_scroll_to.scrollIntoView();
 }
 
-function downloadTicket(div_id, btn_download_id) {
-  let btn_download = document.getElementById(btn_download_id); 
+function downloadTicket (div_id, btn_download_id) {
+  let btn_download = document.getElementById(btn_download_id);
   btn_download.disabled = true;
-  setTimeout(function() {
+  setTimeout(function () {
     btn_download.disabled = false;
   }, 5000);
-  let div_ticket = document.getElementById(div_id); 
+  let div_ticket = document.getElementById(div_id);
   html2canvas(div_ticket, {
     allowTaint: true,
     useCORS: true
@@ -1124,10 +1121,10 @@ function downloadTicket(div_id, btn_download_id) {
     div_ticket_download.download = 'boleto_' + formattedDateTime + '.png';
     div_ticket_download.click();
   });
-} 
+}
 
-function sortArrPurchases(purchases){
-  return purchases.sort(function(a, b) {
+function sortArrPurchases (purchases) {
+  return purchases.sort(function (a, b) {
     let dateA = new Date(a.created_at);
     let dateB = new Date(b.created_at);
     if (dateA < dateB) {
@@ -1146,7 +1143,7 @@ function sortArrPurchases(purchases){
   });
 }
 
-function drawTicket(purchase, ticket, buyer){
+function drawTicket (purchase, ticket, buyer) {
   let linkDownloadTicket = ''
   if (buyer) {
     linkDownloadTicket = `<div class="minibtn_download mb-1">
@@ -1182,7 +1179,7 @@ function drawTicket(purchase, ticket, buyer){
   }
   span_status = `<span class="ticket_status ${color}"><i class="fa fa-${icon_status}" aria-hidden="true"></i> ${text_status}</span>`
   // let tickets_str = generateAllNumbers(purchase.tickets, 'web')
-  
+
   let extra_numbers = ''
   if (raffleData.opportunities > 1) {
     extra_numbers = "(" + genExtraNums(raffleData.digits, raffleData.start_number_on, raffleData.end_number_on, ticket, raffleData.opportunities).join(", ") + ")"
@@ -1194,7 +1191,7 @@ function drawTicket(purchase, ticket, buyer){
   } else if (extra_numbers.length > 30) {
     size_number = 20
   }
-  
+
   return `
   <div class="container_ticket">
   ${linkDownloadTicket}
@@ -1233,7 +1230,7 @@ function drawTicket(purchase, ticket, buyer){
   `
 }
 
-function generateAllNumbers(list_tickets, platform){
+function generateAllNumbers (list_tickets, platform) {
   let all_tickets = ""
   let open_tag = ''
   let close_tag = ''
@@ -1247,7 +1244,7 @@ function generateAllNumbers(list_tickets, platform){
     }
   }
   $.each(list_tickets, function (index, ticket) {
-    all_tickets += open_tag+ticket+close_tag
+    all_tickets += open_tag + ticket + close_tag
     if (raffleData.opportunities > 1) {
       let extras_numbers = genExtraNums(raffleData.digits, raffleData.start_number_on, raffleData.end_number_on, ticket, raffleData.opportunities)
       if (platform == 'web') {
@@ -1266,26 +1263,26 @@ function generateAllNumbers(list_tickets, platform){
   return all_tickets
 }
 
-function changeViewTicket(){
-  if (switchViewNumbers){
+function changeViewTicket () {
+  if (switchViewNumbers) {
     $('#ticketsContain').fadeIn();
     $('#numbersContain').fadeOut();
   }
-  else{
+  else {
     $('#ticketsContain').fadeOut();
     $('#numbersContain').fadeIn();
   }
   switchViewNumbers = !switchViewNumbers
 }
 
-findPhone.addEventListener("keyup", function(event) {
+findPhone.addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
     event.preventDefault();
     searchBuyer(findPhone.value)
   }
 });
 
-function searchBuyer(buyerPhone = findPhone.value){
+function searchBuyer (buyerPhone = findPhone.value) {
   let size_ticket = raffleData.digits
   let is_ticket = buyerPhone.length == size_ticket
   if (buyerPhone == "") {
@@ -1298,7 +1295,7 @@ function searchBuyer(buyerPhone = findPhone.value){
       return;
     }
   }
-  else if (buyerPhone.length > 15){
+  else if (buyerPhone.length > 15) {
     showError("Porfavor ingrese un celular válido.");
     return;
   }
@@ -1315,11 +1312,11 @@ function searchBuyer(buyerPhone = findPhone.value){
   }
 }
 
-function printTextSeleccionados() {
+function printTextSeleccionados () {
   textSeleccionados.innerHTML = `${countTicketsSelected} de ${limitTicketsChoosen}`;
 }
 
-function printPlaceHolder() {
+function printPlaceHolder () {
   let holder = ""
   for (let i = 0; i < limitTicketsChoosen; i++) {
     holder += '<div class="chip unselected_number">_ _ _</div>';
@@ -1327,7 +1324,7 @@ function printPlaceHolder() {
   numeros_seleccionados.innerHTML = holder;
 }
 
-function resetTodo(){
+function resetTodo () {
   $("i.fa-times.close").click();
   formBuyerData = new FormData();
   formPurchaseData = new FormData();
@@ -1340,53 +1337,53 @@ function resetTodo(){
   nameBuyer.value = '';
   phoneBuyer.value = '';
 }
-function setRaffleSuccess() {
+function setRaffleSuccess () {
   resetTodo();
   $("#container-get-ticket").remove();
   $("#btnBuyTicket").remove();
-  $("#btnGetTickets").attr("href", "#" )
+  $("#btnGetTickets").attr("href", "#")
   $("#btnGetTickets").html("FINALIZADO")
 }
 
-function setRaffleNoAvailableTickets() {
+function setRaffleNoAvailableTickets () {
   resetTodo();
   $("#container-get-ticket").remove();
   $("#btnBuyTicket").remove();
-  $("#btnGetTickets").attr("href", "#" )
+  $("#btnGetTickets").attr("href", "#")
   $("#btnGetTickets").html(`${ticketName.toUpperCase()}s AGOTADOS`)
 }
 
-function showMsjNoVoucher(purchase) {
+function showMsjNoVoucher (purchase) {
   let link_msj = urlSendTicketsWhatsApp(purchase)
   $("#msgTimeVoucherUpload").show();
-  $(".linkCustomWhatsApp").attr("href", link_msj )
+  $(".linkCustomWhatsApp").attr("href", link_msj)
 }
 
-function optionRedirectWhats(purchase) {
+function optionRedirectWhats (purchase) {
   let link_msj = urlSendTicketsWhatsApp(purchase)
   $("#btnSuccessModal").hide();
   $("#msgTimeVoucherUpload").hide();
   $("#msgRedirectWhats").show();
-  $(".linkCustomWhatsApp").attr("href", link_msj )
+  $(".linkCustomWhatsApp").attr("href", link_msj)
   let time = 4
   let counter = setInterval(function () {
-    if(time === 0){
+    if (time === 0) {
       clearInterval(counter);
     }
     $("#timerRedirect").html(time.toString())
     time--
   }, 1000);
-  
-  setTimeout(function() {
+
+  setTimeout(function () {
     window.location.href = link_msj;
-  }, 4000);  
+  }, 4000);
 }
 
-function urlSendTicketsWhatsApp(purchase){
+function urlSendTicketsWhatsApp (purchase) {
   // $("#log").append("<br>build voucher ")
   let datetime = purchase.created_at_time_zone.split(".")[0].split("T")
   let url = (window.location.href.split(/\?|#/)[0]) + "#" + purchase.phone
-  let tickets = generateAllNumbers(purchase.tickets, 'whatsapp') 
+  let tickets = generateAllNumbers(purchase.tickets, 'whatsapp')
   let text_in = raffleData.custom_message_whatsapp
   text_in = text_in.replace(/\*\|buyer_name\|\*/g, purchase.name)
   text_in = text_in.replace(/\*\|buyer_phone\|\*/g, (purchase.phone_code + purchase.phone))
@@ -1403,12 +1400,12 @@ function urlSendTicketsWhatsApp(purchase){
   return `https://api.whatsapp.com/send?phone=${raffleData.country.code_phone}${phone}&text=${text_in}`
 }
 
-function paddy(num, padlen) {
+function paddy (num, padlen) {
   let pad = new Array(1 + padlen).join('0');
   return (pad + num).slice(-pad.length);
 }
 
-function dibujarLibres(availableTickets, show_used) {
+function dibujarLibres (availableTickets, show_used) {
   let chipslibres = ""
   if (!show_used) { // hide used
     $.each(availableTickets, function (index, ticket) {
@@ -1444,22 +1441,22 @@ function dibujarLibres(availableTickets, show_used) {
     else show_per_page = 2010
   }
   if (!show_used) { // hide used
-    number_of_pages = Math.ceil(availableTickets.length/show_per_page);
+    number_of_pages = Math.ceil(availableTickets.length / show_per_page);
   }
   else { // show used
-    number_of_pages = Math.ceil(raffleData.on_quantity/show_per_page);
+    number_of_pages = Math.ceil(raffleData.on_quantity / show_per_page);
   }
 
-  if (number_of_pages == 1) {$("#page_navigation").hide()}
+  if (number_of_pages == 1) { $("#page_navigation").hide() }
   $('#current_page').val(0);
   $('#show_per_page').val(show_per_page);
 
   var navigation_html = '<button onclick="go_to_page(0);" class="btn-large waves-effect prev prevfirst"><i class="fa fa-angle-double-left" aria-hidden="true"></i></button> ';
   navigation_html += '<button onclick="previous();" class="btn-large waves-effect prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></button> ';
-  navigation_html += '<small><strong id="number_page_current">Pag: 1/'+number_of_pages+'</strong></small> ';
+  navigation_html += '<small><strong id="number_page_current">Pag: 1/' + number_of_pages + '</strong></small> ';
   navigation_html += '<button onclick="next();" class="btn-large waves-effect next"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>';
-  navigation_html += '<button onclick="go_to_page('+ (number_of_pages - 1) +');" class="btn-large waves-effect next nextlast"><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>';
-  
+  navigation_html += '<button onclick="go_to_page(' + (number_of_pages - 1) + ');" class="btn-large waves-effect next nextlast"><i class="fa fa-angle-double-right" aria-hidden="true"></i></button>';
+
   $('#page_navigation').html(navigation_html);
   $('#page_navigation .page_link:first').addClass('active_page');
 
@@ -1467,24 +1464,24 @@ function dibujarLibres(availableTickets, show_used) {
 
   $.each(object_tickets, function (index, obj_ticket) {
     let chip_used = obj_ticket.used ? "used" : ""
-    chipslibres += '<div id="'+obj_ticket.ticket+'" class="chip '+ chip_used +'" onclick="selectChip(this)">'+obj_ticket.ticket+'</div>';
+    chipslibres += '<div id="' + obj_ticket.ticket + '" class="chip ' + chip_used + '" onclick="selectChip(this)">' + obj_ticket.ticket + '</div>';
   });
 
   contentChips.innerHTML = chipslibres;
 }
 
 //Pagination JS
-function previous(){
+function previous () {
   let new_page = parseInt($('#current_page').val()) - 1;
   if (new_page < 0) return
   go_to_page(new_page);
 }
-function next(){
+function next () {
   let new_page = parseInt($('#current_page').val()) + 1;
   if (new_page >= number_of_pages) return
   go_to_page(new_page);
 }
-function go_to_page(page_num){
+function go_to_page (page_num) {
   var show_per_page = parseInt($('#show_per_page').val());
   let start_from = page_num * show_per_page;
   let end_on = start_from + show_per_page;
@@ -1493,36 +1490,36 @@ function go_to_page(page_num){
   $.each(object_tickets, function (index, obj_ticket) {
     let select_css = obj_ticket.selected ? "selected" : ""
     let chip_used = obj_ticket.used ? "used" : ""
-    chipslibres += '<div id="'+obj_ticket.ticket+'" class="chip '+ chip_used + ' ' + select_css +'" onclick="selectChip(this)">'+obj_ticket.ticket+'</div>';
+    chipslibres += '<div id="' + obj_ticket.ticket + '" class="chip ' + chip_used + ' ' + select_css + '" onclick="selectChip(this)">' + obj_ticket.ticket + '</div>';
   });
   contentChips.innerHTML = chipslibres;
   let text_current_page = `Pag: ${(page_num + 1)}/${number_of_pages}`
   $('#number_page_current').html(text_current_page);
   $('#pagingBox').scrollTop(0);
-  $('.page_link[longdesc=' + page_num +']').addClass('active_page').siblings('.active_page').removeClass('active_page');
+  $('.page_link[longdesc=' + page_num + ']').addClass('active_page').siblings('.active_page').removeClass('active_page');
   $('#current_page').val(page_num);
 }
 
-function go_to_search(hash_tickets, page_num){
+function go_to_search (hash_tickets, page_num) {
   let chipslibres = ""
   $.each(hash_tickets, function (index, obj_ticket) {
     let select_css = obj_ticket.selected ? "selected" : ""
     let chip_used = obj_ticket.used ? "used" : ""
-    chipslibres += '<div id="'+obj_ticket.ticket+'" class="chip '+ chip_used + ' ' + select_css +'" onclick="selectChip(this)">'+obj_ticket.ticket+'</div>';
+    chipslibres += '<div id="' + obj_ticket.ticket + '" class="chip ' + chip_used + ' ' + select_css + '" onclick="selectChip(this)">' + obj_ticket.ticket + '</div>';
   });
   contentChips.innerHTML = chipslibres;
   let text_current_page = `Pag: ${(page_num + 1)}/${number_of_pages}`
   $('#number_page_current').html(text_current_page);
   $('#pagingBox').scrollTop(0);
-  $('.page_link[longdesc=' + page_num +']').addClass('active_page').siblings('.active_page').removeClass('active_page');
+  $('.page_link[longdesc=' + page_num + ']').addClass('active_page').siblings('.active_page').removeClass('active_page');
   $('#current_page').val(page_num);
 }
 
-function selectChip(chip) {
+function selectChip (chip) {
   var contenidoChip = chip.innerHTML;
   if (chip.classList.contains("selected")) {
     chip.classList.remove("selected");
-    hash_all_tickets.find( obj => obj.ticket === contenidoChip ).selected = false
+    hash_all_tickets.find(obj => obj.ticket === contenidoChip).selected = false
     const index = ticketsSelected.indexOf(contenidoChip);
     if (index > -1) {
       ticketsSelected.splice(index, 1);
@@ -1535,7 +1532,7 @@ function selectChip(chip) {
   else {
     if (countTicketsSelected >= limitTicketsChoosen) {
       if (countTicketsSelected >= max_tickets_buy) {
-        showError(`Lo sentimos. No puedes seleccionar más ${ticketName}s.`);        
+        showError(`Lo sentimos. No puedes seleccionar más ${ticketName}s.`);
         return;
       }
       else {
@@ -1543,56 +1540,56 @@ function selectChip(chip) {
       }
     };
     countTicketsSelected++;
-    hash_all_tickets.find( obj => obj.ticket === contenidoChip ).selected = true
+    hash_all_tickets.find(obj => obj.ticket === contenidoChip).selected = true
     chip.classList.add("selected");
     ticketsSelected.push(contenidoChip);
-    
+
     sendDataPixel('AddedNumbers', { number_ticket: contenidoChip });
   }
-  $("#continueForm"). attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
+  $("#continueForm").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
   printSelectedTickets()
 }
 
-function deleteChip(numeroChip) {
+function deleteChip (numeroChip) {
   const index = ticketsSelected.indexOf(numeroChip);
   if (index > -1) {
     ticketsSelected.splice(index, 1);
     sendDataPixel('RemovedNumbers', { number_ticket: numeroChip });
   }
-  
+
   countTicketsSelected--;
   let chip = document.getElementById(numeroChip);
   if (chip) chip.classList.remove("selected");
-  hash_all_tickets.find( obj => obj.ticket === numeroChip ).selected = false
+  hash_all_tickets.find(obj => obj.ticket === numeroChip).selected = false
 
   printSelectedTickets();
   if (countTicketsSelected > 0) {
     $("#btnMinus").click();
   }
-  $("#continueForm"). attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
+  $("#continueForm").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
 }
 
-function printSelectedTickets() {
+function printSelectedTickets () {
   var tickets = ticketsSelected.sort();
   let contenido = "";
   for (let i = 0; i < tickets.length; i++) {
     let extra_numbers = genExtraNums(raffleData.digits, raffleData.start_number_on, raffleData.end_number_on, tickets[i], raffleData.opportunities)
-    if (raffleData.opportunities > 1) {contenido += `<div class="container_selected_number">`;}
+    if (raffleData.opportunities > 1) { contenido += `<div class="container_selected_number">`; }
     contenido += `
       <div class="chip selected_number">${tickets[i]}
         <i onclick="deleteChip('${tickets[i]}')" class="fa fa-times close" aria-hidden="true"></i>
       </div>
     `;
-    if (raffleData.opportunities > 1) {contenido += `<small>${buildExtraNumbers(extra_numbers)}</small></div>`;}
+    if (raffleData.opportunities > 1) { contenido += `<small>${buildExtraNumbers(extra_numbers)}</small></div>`; }
   }
   for (let i = 0; i < limitTicketsChoosen - countTicketsSelected; i++) {
-    contenido += '<div class="chip unselected_number">_ _ _</div>'; 
+    contenido += '<div class="chip unselected_number">_ _ _</div>';
   }
   numeros_seleccionados.innerHTML = contenido;
   printTextSeleccionados();
 }
 
-function buildExtraNumbers(array_numbers) {
+function buildExtraNumbers (array_numbers) {
   let extra_numbers = ``
   $.each(array_numbers, function (index, number) {
     extra_numbers += `<span>${number}</span>`
@@ -1600,7 +1597,7 @@ function buildExtraNumbers(array_numbers) {
   return extra_numbers
 }
 
-function genExtraNums(digits, start_number, end_number, number_str, extras) {
+function genExtraNums (digits, start_number, end_number, number_str, extras) {
   let extra_numbers = []
   let number = parseInt(number_str, 10)
   let total_numbers = end_number - start_number + 1
@@ -1615,14 +1612,14 @@ function genExtraNums(digits, start_number, end_number, number_str, extras) {
   return extra_numbers
 }
 
-function confirmTickets(){
+function confirmTickets () {
   if (countTicketsSelected < min_tickets_buy && min_tickets_buy > 1) {
     let miss_tickets = min_tickets_buy - countTicketsSelected;
     let txterror = `Debes elegir al menos ${min_tickets_buy} ${ticketName}s. Aún te falta seleccionar ${miss_tickets}.`;
     showError(txterror);
     return;
   }
-  else if (countTicketsSelected < limitTicketsChoosen ) {
+  else if (countTicketsSelected < limitTicketsChoosen) {
     let resta = limitTicketsChoosen - countTicketsSelected;
     let txterror = `Falta ${resta} ${ticketName}${resta > 1 ? "s" : ""} por elegir.`;
     showError(txterror);
@@ -1631,13 +1628,13 @@ function confirmTickets(){
   else if (nameBuyer.value == "") showError("Por favor escriba su nombre.");
   else if (nameBuyer.value.length < 9 || nameBuyer.value.split(" ").length == 1) showError("Por favor ingrese su nombre completo.");
   else if (phoneBuyer.value == "") showError("Por favor escriba su celular.");
-  else if (phoneBuyer.value.length > 14 || phoneBuyer.value.length < 8 ) showError("Por favor ingrese un celular correcto.");
+  else if (phoneBuyer.value.length > 14 || phoneBuyer.value.length < 8) showError("Por favor ingrese un celular correcto.");
   else if ((raffleData.client.extra_fields.email && emailBuyer.value.length > 0) && !validateEmail(emailBuyer.value)) showError("Por favor ingrese un email correcto.");
   else if ((raffleData.client.extra_fields.email && raffleData.client.extra_fields.email.required) && emailBuyer.value.length == 0) showError("Por favor ingrese un email.");
   else if ((raffleData.client.extra_fields.identification && raffleData.client.extra_fields.identification.required) && identificationBuyer.value.length == 0) showError("Disculpe, el campo " + raffleData.client.extra_fields.identification.label + " es obligatorio.");
   else if ((raffleData.client.extra_fields.notes && raffleData.client.extra_fields.notes.required) && notesPurchase.value.length == 0) showError("Disculpe, el campo " + raffleData.client.extra_fields.notes.label + " es obligatorio.");
   else if (imagePushed == false && !$('#checkboxPayAfter').prop('checked')) instanceVoucher.open();
-  else if (raffleData.terms && raffleData.terms != "hide" && (!$('#checkboxClientTermsConds').prop('checked') )) {
+  else if (raffleData.terms && raffleData.terms != "hide" && (!$('#checkboxClientTermsConds').prop('checked'))) {
     showError("Por favor acepte los Términos y Condiciones.")
   }
   else {
@@ -1654,14 +1651,14 @@ function confirmTickets(){
   }
 }
 
-function validateEmail(mail){
-  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/.test(mail)){
+function validateEmail (mail) {
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/.test(mail)) {
     return true
   }
   return false
 }
 
-function buildVoucher(token, buyer){
+function buildVoucher (token, buyer) {
   formVoucherData = new FormData();
   formVoucherData.append("purchase[file]", imageBlob, nameFileDate);
   formVoucherData.append('purchase[token_recaptcha]', token);
@@ -1670,7 +1667,7 @@ function buildVoucher(token, buyer){
   updatePurchase(buyer.token, purchaseWOPayFoundData.token)
 }
 
-function buildPurchase(token, response_buyer){
+function buildPurchase (token, response_buyer) {
   if (response_buyer.status == "success") {
     formPurchaseData = new FormData();
     formPurchaseData.append('purchase[name]', nameBuyer.value);
@@ -1693,7 +1690,7 @@ function buildPurchase(token, response_buyer){
   }
 }
 
-function buildBuyer(token){
+function buildBuyer (token) {
   formBuyerData = new FormData();
   formBuyerData.append('buyer[raffle_token]', configClient.raffleToken);
   formBuyerData.append('buyer[name]', nameBuyer.value);
@@ -1722,45 +1719,45 @@ function buildBuyer(token){
   createBuyer();
 }
 
-function setAccordion(){
+function setAccordion () {
   var acc = document.getElementsByClassName("accordion");
   var i;
   for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
+    acc[i].addEventListener("click", function () {
       this.classList.toggle("active");
       var panel = this.nextElementSibling;
-      if (panel.style.maxHeight){
+      if (panel.style.maxHeight) {
         panel.style.maxHeight = null;
       } else {
         panel.style.maxHeight = panel.scrollHeight + "px";
-      } 
+      }
     });
   }
 }
 
-function chooseTicketsAuto(){
+function chooseTicketsAuto () {
   let actual_count = countTicketsSelected - 1
   $("i.fa-times.close").click();
   for (let i = 0; i < actual_count; i++) {
     $("#btnPlus").click();
   }
 
-  hash_all_tickets.filter(obj => {return obj.selected === true}).map(obj => obj.selected = false)
-  const hashes_numbers = hash_all_tickets.filter(obj => {return obj.used === false}).slice(0, limitTicketsChoosen);
+  hash_all_tickets.filter(obj => { return obj.selected === true }).map(obj => obj.selected = false)
+  const hashes_numbers = hash_all_tickets.filter(obj => { return obj.used === false }).slice(0, limitTicketsChoosen);
   $.each(hashes_numbers, function (index, hash_number) {
     let chip = $(`#${hash_number.ticket}`)
-    if(chip[0] != undefined && !chip.hasClass("selected") && !chip.hasClass("used")){
+    if (chip[0] != undefined && !chip.hasClass("selected") && !chip.hasClass("used")) {
       chip.addClass("selected");
     }
     countTicketsSelected++;
     ticketsSelected.push(hash_number.ticket);
-    hash_all_tickets.find( obj => obj.ticket === hash_number.ticket ).selected = true
+    hash_all_tickets.find(obj => obj.ticket === hash_number.ticket).selected = true
   });
   printSelectedTickets()
   window.location.href = "#lista";
 }
 
-function chooseTicketsRandom(){
+function chooseTicketsRandom () {
   instanceMachine.open();
   // $(".chip.selected").click();
   let actual_count = countTicketsSelected - 1
@@ -1770,28 +1767,28 @@ function chooseTicketsRandom(){
   }
 
   // Clean Hash Selected
-  hash_all_tickets.filter(obj => {return obj.selected === true}).map(obj => obj.selected = false)
+  hash_all_tickets.filter(obj => { return obj.selected === true }).map(obj => obj.selected = false)
   const digits = raffleData.digits
 
   let random_numbers_s = []
   do {
     const random_position = Math.floor((Math.random() * (a_all_tickets.length)));
-    const random_number = a_all_tickets[random_position]   
+    const random_number = a_all_tickets[random_position]
     if (!random_numbers_s.includes(paddy(random_number, digits))) {
-        random_numbers_s.push(paddy(random_number, digits));
+      random_numbers_s.push(paddy(random_number, digits));
     }
   } while (random_numbers_s.length < limitTicketsChoosen);
-  
-  setTimeout(function() {
+
+  setTimeout(function () {
     $.each(random_numbers_s, function (index, random_number_s) {
-      let found_ticket = hash_all_tickets.find( obj => obj.ticket === random_number_s )     
+      let found_ticket = hash_all_tickets.find(obj => obj.ticket === random_number_s)
       let chip = $(`#${found_ticket.ticket}`)
-      if(chip[0] != undefined && !chip.hasClass("selected")){
+      if (chip[0] != undefined && !chip.hasClass("selected")) {
         chip.addClass("selected");
       }
       countTicketsSelected++;
       ticketsSelected.push(found_ticket.ticket);
-      hash_all_tickets.find( obj => obj.ticket === found_ticket.ticket ).selected = true
+      hash_all_tickets.find(obj => obj.ticket === found_ticket.ticket).selected = true
     });
     printSelectedTickets()
     continueForm()
@@ -1800,7 +1797,7 @@ function chooseTicketsRandom(){
 
 }
 
-function searchHashTicket(value) {
+function searchHashTicket (value) {
   let val_int = parseInt(value);
   let val_str = ""
   if (val_int <= raffleData.end_number_on) {
@@ -1808,17 +1805,17 @@ function searchHashTicket(value) {
   }
   else {
     if (raffleData.opportunities == 1) return;
-    val_str = decodeNumber(raffleData.start_number_on, raffleData.end_number_on, raffleData.digits, value.toString() )
+    val_str = decodeNumber(raffleData.start_number_on, raffleData.end_number_on, raffleData.digits, value.toString())
   }
 
   // let hash_ticket_filtered = searchArray(hash_ticket_filtered, val_str)
-  let hash_ticket_filtered = hash_all_tickets.filter(obj => {return obj.used == false && obj.ticket == val_str})
+  let hash_ticket_filtered = hash_all_tickets.filter(obj => { return obj.used == false && obj.ticket == val_str })
   let object_tickets = hash_ticket_filtered.slice(0, 100);
 
   go_to_search(object_tickets, 0)
 }
 
-function decodeNumber(start_number, end_number, digits, number_str) {
+function decodeNumber (start_number, end_number, digits, number_str) {
   let number_i = parseInt(number_str)
   const total_numbers = end_number - start_number + 1
   let count = 1
@@ -1838,36 +1835,36 @@ function decodeNumber(start_number, end_number, digits, number_str) {
   return paddy(result, digits)
 }
 
-function searchArray(myArray, number){
-  for (var i=0; i < myArray.length; i++) {
-      if (myArray[i].ticket == number) {
-          return myArray[i];
-      }
+function searchArray (myArray, number) {
+  for (var i = 0; i < myArray.length; i++) {
+    if (myArray[i].ticket == number) {
+      return myArray[i];
+    }
   }
 }
 
-function randomName(tickets) {
+function randomName (tickets) {
   let rand = Math.floor(Math.random() * tickets.length);
   let ticket = tickets[rand];
   $('#randomNumberTicket').text(ticket);
 }
-function shuffleTickets(tickets) {
-  $('#btnShuffleNumber').prop( "disabled", true );
-  $('#randomNumberTicket').removeClass( "winner" );
-  
-  setDeceleratingTimeout(function() { randomName(tickets) }, 10, 40);
-  
-  setTimeout(function() {
+function shuffleTickets (tickets) {
+  $('#btnShuffleNumber').prop("disabled", true);
+  $('#randomNumberTicket').removeClass("winner");
+
+  setDeceleratingTimeout(function () { randomName(tickets) }, 10, 40);
+
+  setTimeout(function () {
     var winner = $('#randomNumberTicket').text();
-    $('#btnShuffleNumber').prop( "disabled", false );
-    $('#randomNumberTicket').addClass( "winner" );
+    $('#btnShuffleNumber').prop("disabled", false);
+    $('#randomNumberTicket').addClass("winner");
   }, 7666);
 }
-function setDeceleratingTimeout(callback, factor, times) {
-  var internalCallback = function(t, counter) {
-    return function() {
+function setDeceleratingTimeout (callback, factor, times) {
+  var internalCallback = function (t, counter) {
+    return function () {
       if (--t > 0) {
-        window.setTimeout( internalCallback, ++counter * factor );
+        window.setTimeout(internalCallback, ++counter * factor);
         callback();
       }
     }
@@ -1875,7 +1872,7 @@ function setDeceleratingTimeout(callback, factor, times) {
   window.setTimeout(internalCallback, factor);
 };
 
-function confirmVoucher(){
+function confirmVoucher () {
   if (currentPaymentType.mode == "online") {
     execPayOnline(purchaseWOPayFoundData.token)
   } else {
@@ -1887,15 +1884,15 @@ function confirmVoucher(){
   }
 }
 
-function actionButtonAccounts(action_type, elemnt, text) {
+function actionButtonAccounts (action_type, elemnt, text) {
   if (action_type == 'copy') {
-    $(elemnt).addClass( "copied" );
+    $(elemnt).addClass("copied");
     setTimeout(function () {
-      $(elemnt).removeClass( "copied" );
+      $(elemnt).removeClass("copied");
     }, 1200);
     var sampleTextarea = document.createElement("textarea");
     document.body.appendChild(sampleTextarea);
-    sampleTextarea.value = text.replace(/ /g,'');
+    sampleTextarea.value = text.replace(/ /g, '');
     sampleTextarea.select();
     document.execCommand("copy");
     document.body.removeChild(sampleTextarea);
@@ -1905,7 +1902,7 @@ function actionButtonAccounts(action_type, elemnt, text) {
   }
 }
 
-function activateUploadVoucher(purchase_token){
+function activateUploadVoucher (purchase_token) {
   purchaseWOPayFoundData = buyerFoundData.purchases.find(purchase => purchase.token == purchase_token)
   ticket_qty = purchaseWOPayFoundData.quantity
   priceTotal = purchaseWOPayFoundData.amount
@@ -1915,26 +1912,26 @@ function activateUploadVoucher(purchase_token){
   $(".labelPersonalData").hide();
   $('.s-voucher').show()
   $('.checkboxPayAfter').hide();
-  
+
   $("#confirmTickets").html("Completar")
   $("#confirmTickets").attr("onclick", "confirmVoucher()")
   if (currentPaymentType.mode == "online") {
-    $('#checkboxPayAfter').prop( "checked", true );
+    $('#checkboxPayAfter').prop("checked", true);
   }
   else {
-    $('#checkboxPayAfter').prop( "checked", false );
+    $('#checkboxPayAfter').prop("checked", false);
   }
 
   msjMontoCorrecto();
 }
 
-function searchTicket(){
+function searchTicket () {
   $("#btnSearchTickets").hide()
   $("#inputSearchTicket").show()
   $("#resetSearchTicket").show()
   $("#inputSearchTicket").focus();
 }
-function closeSearchTicket(){
+function closeSearchTicket () {
   $("#btnSearchTickets").show()
   $("#inputSearchTicket").hide()
   $("#resetSearchTicket").hide()
@@ -1943,7 +1940,7 @@ function closeSearchTicket(){
   go_to_page(0)
 }
 
-function calcDrawDate() {
+function calcDrawDate () {
   const start_date = new Date(raffleData.start_date);
   const current_date = new Date();
   const days_passed = Math.floor((current_date - start_date) / (1000 * 60 * 60 * 24)); // 10
@@ -1953,7 +1950,7 @@ function calcDrawDate() {
   }
   const total_selled = raffleData.on_quantity - a_all_tickets.length
   if (total_selled < 8) return $("#aprox_date").html("POR DETERMINAR")
-  const total_days_need = Math.ceil(days_passed * raffleData.percent_draw_date / total_selled );
+  const total_days_need = Math.ceil(days_passed * raffleData.percent_draw_date / total_selled);
 
   let aprox_date = new Date();
   aprox_date.setDate(current_date.getDate() + total_days_need);
@@ -1962,12 +1959,12 @@ function calcDrawDate() {
   $("#aprox_date").html(aprox_date.toUpperCase())
 }
 
-function sendDataPixel(event_track, data) {
+function sendDataPixel (event_track, data) {
   if (!raffleData.client.tracking["pixel"]) return;
   fbq('track', event_track, data);
 }
 
-$(document).on('ready', function(){
+$(document).on('ready', function () {
   let params = new URLSearchParams(window.location.href.split('?')[1]);
   let refValue = params.get('ref');
   let showValue = params.get('show');
@@ -1978,11 +1975,11 @@ $(document).on('ready', function(){
   if (showValue == "terminos") {
     instanceTermsConds.open()
   }
-  if(window.location.hash) {
+  if (window.location.hash) {
     let phoneParsedUrl = window.location.hash.split("#")[1];
     if (phoneParsedUrl.indexOf("?") > -1) phoneParsedUrl = phoneParsedUrl.split("?")[0]
     if (phoneParsedUrl.indexOf("&") > -1) phoneParsedUrl = phoneParsedUrl.split("&")[0]
-    if (!isNaN(phoneParsedUrl) && phoneParsedUrl.length >= 8){
+    if (!isNaN(phoneParsedUrl) && phoneParsedUrl.length >= 8) {
       findPhone.value = phoneParsedUrl;
       setTimeout(function () {
         searchBuyer(phoneParsedUrl);
@@ -1990,18 +1987,18 @@ $(document).on('ready', function(){
     }
   }
   $('#ticketQty').val(ticket_qty);
-  $('#buttfixed').on('click', function(){$('#linksfixed').toggle()});
-  $('#openModalUseData').on('click', function(event){event.preventDefault(); instanceUseData.open()});
-  $('#openModalTermsConds').on('click', function(event){event.preventDefault(); instanceTermsConds.open()});
-  $('#btnAccepUseData').on('click', function(event){event.preventDefault();$('#checkboxPersonalData').prop('checked', true)});
-  $('#btnAccepTermsConds').on('click', function(){$('#checkboxClientTermsConds').prop('checked', true)});
-  $('#btnCancelTermsConds').on('click', function(){$('#checkboxClientTermsConds').prop('checked', false)});
-  $('#btnChooseRandomChips').on('click', function(event){event.preventDefault(); chooseTicketsRandom()});
-  $('#btnSearchTickets').on('click', function(event){event.preventDefault(); searchTicket()});
-  $('#resetSearchTicket').on('click', function(event){event.preventDefault(); closeSearchTicket()});
+  $('#buttfixed').on('click', function () { $('#linksfixed').toggle() });
+  $('#openModalUseData').on('click', function (event) { event.preventDefault(); instanceUseData.open() });
+  $('#openModalTermsConds').on('click', function (event) { event.preventDefault(); instanceTermsConds.open() });
+  $('#btnAccepUseData').on('click', function (event) { event.preventDefault(); $('#checkboxPersonalData').prop('checked', true) });
+  $('#btnAccepTermsConds').on('click', function () { $('#checkboxClientTermsConds').prop('checked', true) });
+  $('#btnCancelTermsConds').on('click', function () { $('#checkboxClientTermsConds').prop('checked', false) });
+  $('#btnChooseRandomChips').on('click', function (event) { event.preventDefault(); chooseTicketsRandom() });
+  $('#btnSearchTickets').on('click', function (event) { event.preventDefault(); searchTicket() });
+  $('#resetSearchTicket').on('click', function (event) { event.preventDefault(); closeSearchTicket() });
 
   $("#inputSearchTicket").attr('maxlength', raffleData.digits);
-  $("#inputSearchTicket").on("input", function() {
+  $("#inputSearchTicket").on("input", function () {
     let input_value = $("#inputSearchTicket").val()
     if (input_value.length < 1) {
       go_to_page(0)
@@ -2011,7 +2008,7 @@ $(document).on('ready', function(){
     }
   });
 
-  $('#checkboxPayAfter').change( function(){ // listen check novoucher
+  $('#checkboxPayAfter').change(function () { // listen check novoucher
     if ($(this).is(':checked')) {
       $('#msgTimeVoucherUpload').show()
       $('.s-voucher').hide()
@@ -2022,7 +2019,7 @@ $(document).on('ready', function(){
     }
   });
   if (raffleData.client.redirect_whats) {
-    $('#checkboxPayAfter').prop( "checked", true );
+    $('#checkboxPayAfter').prop("checked", true);
     $('.s-voucher').hide()
   }
   if (window.pageYOffset > 0) {
@@ -2030,49 +2027,49 @@ $(document).on('ready', function(){
   }
 });
 
-function setCarouselSponsors(sponsorsSize){
+function setCarouselSponsors (sponsorsSize) {
   count = sponsorsSize > 2 ? 3 : sponsorsSize
   $("#sponsorList").owlCarousel({
     items: count,
     loop: (count > 2),
-    nav:true,
-    autoplay:true,
-    autoplayTimeout:9200,
-    autoplayHoverPause:true,
-    responsiveClass:true,
-    responsive:{
-        0:{
-            items: 1
-        },
-        600:{
-            items: count
-        },
-        1000:{
-            items: count
-        }
+    nav: true,
+    autoplay: true,
+    autoplayTimeout: 9200,
+    autoplayHoverPause: true,
+    responsiveClass: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: count
+      },
+      1000: {
+        items: count
+      }
     }
   });
 }
-function setCarouselAwards(awardsSize){
+function setCarouselAwards (awardsSize) {
   count = awardsSize > 2 ? 3 : 1
   $("#awardList").owlCarousel({
     items: count,
     loop: (awardsSize > 3),
-    nav:true,
+    nav: true,
     autoplay: (awardsSize > 3),
-    autoplayTimeout:6600,
-    autoplayHoverPause:true,
-    responsiveClass:true,
-    responsive:{
-        0:{
-            items: 1
-        },
-        600:{
-            items: count
-        },
-        1000:{
-            items: count
-        }
+    autoplayTimeout: 6600,
+    autoplayHoverPause: true,
+    responsiveClass: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: count
+      },
+      1000: {
+        items: count
+      }
     }
   });
 };

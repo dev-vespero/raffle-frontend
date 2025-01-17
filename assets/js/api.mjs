@@ -1,3 +1,5 @@
+import { FormManager } from "./forms.mjs";
+
 export const APIManager = {
   getAllTickets: () => {
     $.ajax({
@@ -176,5 +178,33 @@ function execPayOnline (purchase_token) {
       showError("Ocurrió un error con la Pasarela de Pagos, por favor vuelva a intentar el pago o comuníquese a Soporte.");
       // handleException(request, message, error);
     }
+  });
+}
+
+function getTokenFirebase (action_name, obj) {
+  grecaptcha.ready(function () {
+    grecaptcha.execute('6LctjKkfAAAAAAvlMbLxs_6tz_2H_jzkh0MT87V1', { action: action_name })
+      .then(function (token) {
+        if (action_name == 'build_buyer') {
+          FormManager.buildBuyer(token);
+        }
+        else if (action_name == 'build_purchase') {
+          FormManager.buildPurchase(token, obj);
+        }
+        else if (action_name == 'build_voucher') {
+          FormManager.buildVoucher(token, obj);
+        }
+        else if (action_name == 'build_find_phone') {
+          buildFindPhone(token, obj);
+        }
+        else if (action_name == 'build_find_ticket') {
+          buildFindTicket(token, obj);
+        }
+      })
+      .catch(function (error) {
+        console.error('Error al obtener el token de reCAPTCHA:', error);
+        showError("Ocurrió un error, reintentar por favor.");
+        instanceLoader.close();
+      });
   });
 }

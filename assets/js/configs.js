@@ -1,48 +1,3 @@
-import { raffleData } from "./constants.mjs";
-
-let formBuyerData = new FormData();
-let formPurchaseData = new FormData();
-let formVoucherData = new FormData();
-let currentPaymentType = {}
-let buyerFoundData = {}
-let purchaseWOPayFoundData = {}
-let purchaseWOPayTotalAmount = 0
-let ticket_qty = 1;
-let priceTotal = 1;
-let costByTicket = 0;
-let imagePushed = false;
-let nameFileDate = "";
-let imageBlob = new Blob();
-let total_promo_discount = 0;
-let total_tickets_promo = 0;
-let chipslibres = "";
-let ticketsSelected = [];
-let limitTicketsChoosen = 0;
-let countTicketsSelected = 0;
-let switchViewNumbers = false;
-let loadRaffleTickets = false;
-let participatingTickets = [];
-let max_tickets_buy = 100;
-let min_tickets_buy = 1;
-let div_ticket_download = "";
-let a_all_tickets = []
-let hash_all_tickets = []
-let number_of_pages = 0
-
-let startTime, intervalPlusId, intervalMinusId
-
-const contentChips = document.getElementById("pagingBox");
-const numeros_seleccionados = document.getElementById("numeros_seleccionados");
-const textSeleccionados = document.getElementById("textSeleccionados");
-const resultTickets = document.getElementById("resultTickets");
-const btn_upload_voucher = document.getElementById("btn_upload_voucher");
-
-const container_fixed = document.getElementById('container_select_to_fixed');
-const priceConvert = document.getElementById("priceConvert");
-const container_element = document.getElementById('container-get-ticket');
-const btn_view_selected = document.getElementById('btn_view_selected');
-const btn_view_selected_bot = document.getElementById('btn_view_selected_bot');
-
 window.addEventListener('scroll', () => {
   var rect = contentChips.getBoundingClientRect();
   var windowHeight = window.innerHeight;
@@ -89,45 +44,6 @@ function toogleSelected () {
     btn_view_selected_bot.classList.add('fa-chevron-down')
   }
 }
-
-const clientLogo = document.getElementById("clientLogo");
-const montoTotalPrecio = document.getElementById("montoTotal");
-const datosBanco = document.getElementById("datosBanco");
-const banner = document.getElementById("banner");
-const pagorealizado = document.getElementById("pagorealizado");
-const cardmetodopago = document.getElementById("cardmetodopago");
-const cardcantrifas = document.getElementById("cardcantrifas");
-const btnrealizepago = document.getElementById("btnyarealizepago");
-const step01 = document.getElementById("step01");
-const step02 = document.getElementById("step02");
-const msjerror = document.getElementById("msjerror");
-const containimagenVoucher = document.getElementById("containimagenVoucher");
-const montoCorrecto = document.getElementById("montoCorrecto");
-const nameBuyer = document.getElementById("nombre");
-const countryCode = document.getElementById("country_code");
-const phoneBuyer = document.getElementById("celular");
-const emailBuyer = document.getElementById("email");
-const identificationBuyer = document.getElementById("identification");
-const addressBuyer = document.getElementById("address");
-const locationBuyer = document.getElementById("location");
-const customFieldBuyer = document.getElementById("custom_field");
-const notesPurchase = document.getElementById("notes");
-const sellerBuyer = document.getElementById("seller");
-const modalError = document.getElementById("modalError");
-const modalSuccess = document.getElementById("modalSuccess");
-const modalUseData = document.getElementById("modalUseData");
-const modalTermsConds = document.getElementById("modalTermsConds");
-const modalVoucher = document.getElementById("modalVoucher");
-const modalMachine = document.getElementById("modalMachine");
-const instanceError = M.Modal.init(modalError, {});
-const instanceUseData = M.Modal.init(modalUseData);
-const instanceTermsConds = M.Modal.init(modalTermsConds);
-const instanceVoucher = M.Modal.init(modalVoucher);
-const instanceSuccess = M.Modal.init(modalSuccess, { dismissible: false });
-const instanceMachine = M.Modal.init(modalMachine, { dismissible: false });
-const findPhone = document.getElementById("findPhone");
-const msjRptaBusqueda = document.getElementById("msjRptaBusqueda");
-const qrCode = document.getElementById("qrCode");
 
 function showError (msj) {
   msjerror.innerHTML = msj
@@ -203,7 +119,6 @@ $("#btnMinus").on("mouseup mouseout touchend touchleave", function () {
             inputFunc(picker);
           }
         };
-
       m.on('click', function () {
         let difference_number = limitTicketsChoosen - countTicketsSelected
         if (difference_number < raffleData.multiplier) {
@@ -217,7 +132,6 @@ $("#btnMinus").on("mouseup mouseout touchend touchleave", function () {
         calcTotalPrice("minus");
         printSelectedTickets();
       });
-
       p.on('click', function () {
         changeFunc(picker, 1);
         ticket_qty++;
@@ -226,7 +140,6 @@ $("#btnMinus").on("mouseup mouseout touchend touchleave", function () {
         calcTotalPrice("plus");
         printSelectedTickets();
       });
-
       input.on('change', function () { inputFunc(picker); });
       inputFunc(picker); //init
     });
@@ -246,24 +159,49 @@ getSponsors()
 getAwards()
 setClient()
 
+
+if (!raffleData.questions || raffleData.questions.length == 0) {
+  $(".services-section").hide();
+  $(".awardsFaq").hide();
+  $(".faqLink").hide();
+}
+
 function getAllTickets () {
-  $.ajax({
-    url: `${baseUrl}raffles/${raffleData.token}/all_tickets`,
-    type: 'GET',
-    beforeSend: function (request) {
-      request.setRequestHeader("Authorization", tokenBearer);
-    },
-    dataType: 'json',
-    success: function (tickets) {
+  fetch('assets/js/database.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(tickets => {
       a_all_tickets = tickets
       setNumbers()
       if (raffleData.show_progress) calculateProgress();
       if (raffleData.modality == "percentage") calcDrawDate();
-    },
-    error: function (request, message, error) {
-      handleException(request, message, error);
-    }
-  });
+    })
+    .catch(error => {
+      showError("Ocurrió un Error: " + error.message);
+      instanceLoader.close();
+    });
+
+  // $.ajax({
+  //   url: `${baseUrl}raffles/${raffleData.token}/all_tickets`,
+  //   type: 'GET',
+  //   beforeSend: function (request) {
+  //     request.setRequestHeader("Authorization", tokenBearer);
+  //   },
+  //   dataType: 'json',
+  //   success: function (tickets) {
+  //     a_all_tickets = tickets
+  //     setNumbers()
+  //     if (raffleData.show_progress) calculateProgress();
+  //     if (raffleData.modality == "percentage") calcDrawDate();
+  //   },
+  //   error: function (request, message, error) {
+  //     showError("Ocurrió un Error")
+  //   }
+  // });
 }
 
 function buildFindPhone (token, phone) {
@@ -318,6 +256,7 @@ function getRaffleTickets () {
     return;
   }
   instanceLoader.open();
+  
   $.ajax({
     url: `${baseUrl}raffles/${configClient.raffleToken}/tickets`,
     type: 'GET',
@@ -357,7 +296,7 @@ function getSponsors () {
 }
 
 function getPaymentTypes () {
-  currentPaymentType = configPaymentTypes[0]
+  currentPaymentType = configPaymentTypes
   changeBtnToPayOnline()
 }
 
@@ -618,9 +557,10 @@ function sponsorBuildTableRow (sponsor) {
 }
 
 function setPaymentTypes (paymentTypes) {
-  $.each(paymentTypes, function (index, paymentType) {
-    paymentTypeAddRow(index, paymentType);
-  });
+  // $.each(paymentTypes, function (index, paymentType) {
+  //   paymentTypeAddRow(index, paymentType);
+  // });
+  paymentTypeAddRow(0, paymentTypes);
 }
 function paymentTypeAddRow (index, paymentType) {
   $("#container-payments").append(paymentTypeBuildTableRow(index, paymentType));
@@ -630,6 +570,7 @@ function paymentTypeBuildTableRow (index, paymentType) {
   if (index == 0) {
     selected = "selected"
   }
+
   let divPaymentType = `
     <div id="${paymentType.bank.var_name}-${paymentType.id}" data-id="${paymentType.id}" class="type option-payment ${selected}">
       <div class="logo">
@@ -803,7 +744,7 @@ function parsePriceCountry (price, nation) {
     exchangeRate = 1
   }
   else if (nation == "inter") {
-    country_code = currentPaymentType.currency.country_code
+    country_code = currentPaymentType.currency.country_code ?? 'VE'
     currency_code = currentPaymentType.currency.code
     currencyDecimals = currentPaymentType.currency.decimals
     exchangeRate = currentPaymentType.exchange_rate
@@ -811,8 +752,6 @@ function parsePriceCountry (price, nation) {
   if (raffleData.country.code != currentPaymentType.currency.country_code && nation == "inter") {
     currencyName = currentPaymentType.currency.code
   }
-
-  // return new Intl.NumberFormat('es-PE', { style: 'currency', currency: 'PEN' }).format(price);
   let languageCountryCode = `es-${country_code}`
 
   try {
@@ -829,7 +768,7 @@ function setDemo () {
 
 function openVerMisTickets () {
   instanceSuccess.close();
-  findPhone.value = phoneBuyer.value || buyerFoundData.phone;
+  // findPhone.value = phoneBuyer.value || buyerFoundData.phone;
   searchBuyer(findPhone.value)
   resetTodo();
 }
@@ -846,7 +785,7 @@ function clicPaymentOption (my_object) {
 }
 
 function changeBtnToPayOnline () {
-  if (currentPaymentType.mode == "online") {
+  if (currentPaymentType?.mode == "online") {
     $(".containerAllVoucher").hide();
     $('#checkboxPayAfter').prop("checked", true);
   }
@@ -880,9 +819,7 @@ function execPayOnline (purchase_token) {
     },
     error: function (request, message, error) {
       instanceLoader.close();
-      console.error(request.responseJSON.errors);
       showError("Ocurrió un error con la Pasarela de Pagos, por favor vuelva a intentar el pago o comuníquese a Soporte.");
-      // handleException(request, message, error);
     }
   });
 }
@@ -1275,13 +1212,6 @@ function changeViewTicket () {
   switchViewNumbers = !switchViewNumbers
 }
 
-findPhone.addEventListener("keyup", function (event) {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    searchBuyer(findPhone.value)
-  }
-});
-
 function searchBuyer (buyerPhone = findPhone.value) {
   let size_ticket = raffleData.digits
   let is_ticket = buyerPhone.length == size_ticket
@@ -1302,7 +1232,6 @@ function searchBuyer (buyerPhone = findPhone.value) {
   msjNombre.innerHTML = "";
   msjRptaBusqueda.innerHTML = "";
   resultTickets.style.display = "none";
-  // btn_upload_voucher.style.display = "none";
   instanceLoader.open();
   if (is_ticket) {
     getTokenFirebase("build_find_ticket", buyerPhone)
@@ -1380,7 +1309,6 @@ function optionRedirectWhats (purchase) {
 }
 
 function urlSendTicketsWhatsApp (purchase) {
-  // $("#log").append("<br>build voucher ")
   let datetime = purchase.created_at_time_zone.split(".")[0].split("T")
   let url = (window.location.href.split(/\?|#/)[0]) + "#" + purchase.phone
   let tickets = generateAllNumbers(purchase.tickets, 'whatsapp')
@@ -1993,6 +1921,7 @@ $(document).on('ready', function () {
   $('#btnAccepUseData').on('click', function (event) { event.preventDefault(); $('#checkboxPersonalData').prop('checked', true) });
   $('#btnAccepTermsConds').on('click', function () { $('#checkboxClientTermsConds').prop('checked', true) });
   $('#btnCancelTermsConds').on('click', function () { $('#checkboxClientTermsConds').prop('checked', false) });
+  $('#btnChooseAutoChips').on('click', function (event) { event.preventDefault(); chooseTicketsAuto() });
   $('#btnChooseRandomChips').on('click', function (event) { event.preventDefault(); chooseTicketsRandom() });
   $('#btnSearchTickets').on('click', function (event) { event.preventDefault(); searchTicket() });
   $('#resetSearchTicket').on('click', function (event) { event.preventDefault(); closeSearchTicket() });

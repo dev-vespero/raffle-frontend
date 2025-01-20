@@ -1,3 +1,29 @@
+let tokenRecaptcha = ""
+const recaptchaGroup = "G1"
+const modalLoader = document.getElementById("modalLoader");
+const instanceLoader = M.Modal.init(modalLoader, { dismissible: false });
+const baseUrl = "/api/v1/"
+const configClient = {
+  clientToken: "WqX5DQ",
+  raffleToken: "vyUrgVCW"
+}
+const listSponsors = []
+const listAwards = []
+const tokenBearer = "0000+L22:20:71L41-100000+L22:20:71L41-10"
+
+let formBuyerData = new FormData();
+let formPurchaseData = new FormData();
+let formVoucherData = new FormData();
+
+const modalTermsConds = document.getElementById("modalTermsConds");
+const modalVoucher = document.getElementById("modalVoucher");
+const modalMachine = document.getElementById("modalMachine");
+const instanceTermsConds = M.Modal.init(modalTermsConds);
+const instanceVoucher = M.Modal.init(modalVoucher);
+const instanceMachine = M.Modal.init(modalMachine, { dismissible: false });
+
+
+
 let currentPaymentType = {}
 let buyerFoundData = {}
 let purchaseWOPayFoundData = {}
@@ -27,24 +53,25 @@ let number_of_pages = 0
 let startTime, intervalPlusId, intervalMinusId
 
 const ticketName = "boleto"
-export const form = document.getElementById('formimage');
+const form = document.getElementById('formimage');
 const contentChips = document.getElementById("pagingBox");
-export const numeros_seleccionados = document.getElementById("numeros_seleccionados");
+const numeros_seleccionados = document.getElementById("numeros_seleccionados");
 const textSeleccionados = document.getElementById("textSeleccionados");
 const resultTickets = document.getElementById("resultTickets");
-export const container_fixed = document.getElementById('container_select_to_fixed');
-export const priceConvert = document.getElementById("priceConvert");
+const container_fixed = document.getElementById('container_select_to_fixed');
+const priceConvert = document.getElementById("priceConvert");
 const container_element = document.getElementById('container-get-ticket');
 
 /******************************************************
  *** File input                                     ***
  ******************************************************/
-export const max_width = fileinput.getAttribute('data-maxwidth');
-export const max_height = fileinput.getAttribute('data-maxheight');
+const fileinput = document.getElementById('files');
+let max_width = fileinput.getAttribute('data-maxwidth');
+let max_height = fileinput.getAttribute('data-maxheight');
 
 const btn_upload_voucher = document.getElementById("btn_upload_voucher");
-export const btn_view_selected = document.getElementById('btn_view_selected');
-export const btn_view_selected_bot = document.getElementById('btn_view_selected_bot');
+const btn_view_selected = document.getElementById('btn_view_selected');
+const btn_view_selected_bot = document.getElementById('btn_view_selected_bot');
 
 const clientLogo = document.getElementById("clientLogo");
 const montoTotalPrecio = document.getElementById("montoTotal");
@@ -89,7 +116,7 @@ const instanceSuccess = M.Modal.init(modalSuccess, { dismissible: false });
 /******************************************************
  *** Configuracion de la rifa                       *** 
  ******************************************************/
-export const raffleData = {
+const raffleData = {
   "digits": 3,
   "multiplier": 1,
   "done_successfully": false,
@@ -169,7 +196,7 @@ export const raffleData = {
   }
 }
 
-export const configPaymentTypes = {
+const configPaymentTypes = {
   "name": "KATIUSKA MIRELES",
   "type_account": "personal",
   "number": "0412 9753098",
@@ -182,5 +209,10 @@ export const configPaymentTypes = {
     "name": "PagomóvilBDV",
     "var_name": "PAGO_MOVIL",
     "logo": "https://rifarito.s3.amazonaws.com/uploads/bank/logo/54/vepagomovilc2c.png"
+  },
+  "currency": {
+    "name": "Dólares Americanos",
+    "code": "USD",
+    "decimals": 2,
   }
 }

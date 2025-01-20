@@ -106,11 +106,13 @@ const qrCode = document.getElementById("qrCode");
 const modalError = document.getElementById("modalError");
 const modalSuccess = document.getElementById("modalSuccess");
 const modalUseData = document.getElementById("modalUseData");
+const modalSale = document.getElementById("modalSale");
 /******************************************************
  *** Modal Materialize                              *** 
  ******************************************************/
 const instanceError = M.Modal.init(modalError, {});
 const instanceUseData = M.Modal.init(modalUseData);
+const instanceSale = M.Modal.init(modalSale);
 const instanceSuccess = M.Modal.init(modalSuccess, { dismissible: false });
 
 /******************************************************

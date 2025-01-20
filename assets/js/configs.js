@@ -19,6 +19,7 @@ function continueForm () {
   if (numeros_seleccionados.style.display === "block") {
     toogleSelected()
   }
+  instanceSale.open();
   $("#nombre").focus();
 }
 

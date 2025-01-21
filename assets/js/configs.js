@@ -20,6 +20,7 @@ function continueForm () {
     toogleSelected()
   }
   instanceSale.open();
+  nextTab('home');
   $("#nombre").focus();
 }
 

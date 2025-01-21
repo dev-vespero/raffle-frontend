@@ -129,6 +129,7 @@ $("#btnMinus").on("mouseup mouseout touchend touchleave", function () {
         changeFunc(picker, -1);
         ticket_qty--;
         $("#continueForm").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
+        $("#continueFormFixed").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
         calcMaxTicketSelect("decrease");
         calcTotalPrice("minus");
         printSelectedTickets();
@@ -137,6 +138,7 @@ $("#btnMinus").on("mouseup mouseout touchend touchleave", function () {
         changeFunc(picker, 1);
         ticket_qty++;
         $("#continueForm").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
+        $("#continueFormFixed").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
         calcMaxTicketSelect("increase");
         calcTotalPrice("plus");
         printSelectedTickets();
@@ -1476,6 +1478,7 @@ function selectChip (chip) {
     sendDataPixel('AddedNumbers', { number_ticket: contenidoChip });
   }
   $("#continueForm").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
+  $("#continueFormFixed").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
   printSelectedTickets()
 }
 
@@ -1496,6 +1499,7 @@ function deleteChip (numeroChip) {
     $("#btnMinus").click();
   }
   $("#continueForm").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
+  $("#continueFormFixed").attr("disabled", (countTicketsSelected == 0 || countTicketsSelected < ticket_qty))
 }
 
 function printSelectedTickets () {
@@ -2003,3 +2007,8 @@ function setCarouselAwards (awardsSize) {
     }
   });
 };
+
+function nextTab (tab) {
+  console.info(tab)
+  $(`#pills-tab button[data-target="#pills-${tab}"]`).tab('show')
+}

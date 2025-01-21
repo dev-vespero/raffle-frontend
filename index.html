@@ -16,8 +16,10 @@
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
   <link rel="icon" type="image/png" href="https://rifarito.s3.amazonaws.com/uploads/client/logo/2334/llgLOGO1-min.png">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -130,7 +132,7 @@
                   <small data-toggle="tooltip" data-placement="bottom" data-original-title="Más boletos, más descuento"
                     class="textDiscounts" style="display:none">Descuentos activados</small>
                 </div>
-                
+
                 <div id="new-purchase">
                   <div id="containerBtnTickets" class="col-lg-12 mb-40">
                     <div class="row">
@@ -138,9 +140,12 @@
                         <h3 class="textMultiplier" style="display:none">
                           <span class="quantityTotalMultiplier"></span> Opciones en Total
                         </h3>
-                        <h3 class="textOpportunities" style="display:none"><span class="quantityTotalOpportunities"></span> Oportunidades</h3>
-                        <h3 class="textTicketPromos" style="display:none" data-toggle="tooltip" data-placement="top" data-original-title="Promoción 0x-1">
-                          <i class="fa fa-ticket" aria-hidden="true"></i> <span class="quantityTotalTicketsPromos"></span> ¡Gratis!
+                        <h3 class="textOpportunities" style="display:none"><span
+                            class="quantityTotalOpportunities"></span> Oportunidades</h3>
+                        <h3 class="textTicketPromos" style="display:none" data-toggle="tooltip" data-placement="top"
+                          data-original-title="Promoción 0x-1">
+                          <i class="fa fa-ticket" aria-hidden="true"></i> <span
+                            class="quantityTotalTicketsPromos"></span> ¡Gratis!
                         </h3>
                       </div>
 
@@ -157,7 +162,8 @@
 
                       <div class="col s12 m12 text-center monto-total-compra">
                         <h3 id="montoTotal" data-toggle="tooltip" data-placement="bottom">1</h3>
-                        <small class="textDiscounts" style="display:none" id="textCostByTicket" data-toggle="tooltip" data-placement="bottom" title="Boleto con Descuento">
+                        <small class="textDiscounts" style="display:none" id="textCostByTicket" data-toggle="tooltip"
+                          data-placement="bottom" title="Boleto con Descuento">
                           Boleto: <span id="costByTicket">0</span>
                         </small>
                       </div>
@@ -171,18 +177,21 @@
                           <div class="col-12 s12 m6 p0">
                             <h6>
                               <div id="containerSearch" class="mb-2">
-                                <button id="btnSearchTickets" style="display:none" class="magic_button show"><i class="fa fa-search" aria-hidden="true"></i> BUSCAR</button>
-                                <input id="inputSearchTicket" style="display:none" type="tel" class="validate invalid" maxlength="5">
-                                <button id="resetSearchTicket" class="magic_button" style="display:none" value="Reset"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                <button id="btnSearchTickets" style="display:none" class="magic_button show"><i
+                                    class="fa fa-search" aria-hidden="true"></i> BUSCAR</button>
+                                <input id="inputSearchTicket" style="display:none" type="tel" class="validate invalid"
+                                  maxlength="5">
+                                <button id="resetSearchTicket" class="magic_button" style="display:none"
+                                  value="Reset"><i class="fa fa-times" aria-hidden="true"></i></button>
                               </div>
                               <br>
-                              <button id="btnChooseRandomChips" class="magic_button show" style="display:none"> 
+                              <button id="btnChooseRandomChips" class="magic_button show" style="display:none">
                                 <i class="fa fa-star" aria-hidden="true"></i>
-                                <small id="formBtnRandom">Elegir a la Suerte</small> 
+                                <small id="formBtnRandom">Elegir a la Suerte</small>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                               </button>
                             </h6>
-                            
+
                             <div id="lista" class="input-field col s12 containtickets">
                               <input type='hidden' id='current_page' />
                               <input type='hidden' id='show_per_page' />
@@ -202,7 +211,8 @@
                       <div id="container_select_to_fixed" class="row center text-center container_selected"
                         style="display:block">
                         <div class="col-12 s12 m6 p0">
-                          <div id="btn_view_selected" class="btn_view_selected fa fa-chevron-up" style="display: none;" aria-hidden="true"></div>
+                          <div id="btn_view_selected" class="btn_view_selected fa fa-chevron-up" style="display: none;"
+                            aria-hidden="true"></div>
 
                           <div class="info_fixed">
                             <div class="cards_fixed">
@@ -218,102 +228,34 @@
                             </div>
                           </div>
 
-                          <div class="textSelectOpportunities" style="display:none"><span id="text_total_opportunities"></span> OPORTUNIDADES</div>
+                          <div class="textSelectOpportunities" style="display:none">
+                            <span id="text_total_opportunities"></span> OPORTUNIDADES
+                          </div>
                           <div id="numeros_seleccionados" class="input-field col s12 p0" style="display: none;"></div>
-                          <div id="btn_view_selected_bot" class="btn_view_selected fa fa-chevron-down" aria-hidden="true"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-                <div id="sectionAllPayments">
-                  <h4 class="mt-20"><i class="fa fa-bank" aria-hidden="true"></i> MODOS DE PAGO</h4>
-                  <div class="col-lg-12 mb-10">
-                    <div class="row">
-                      <div class="input-field col s6 m6">
-                        <h6>Transferencia o depósito</h6>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="container-payments" class="types flex justify-space-between payments-options mb-30">
-                  </div>
-                  <div id="datosBanco" class="text-center input-field col s12 m6"></div>
-                  <div id="priceConvert">$$$</div>
-                </div>
-
-                <div class="containerAllVoucher">
-                  <h4 class="mt-40"><i class="fa fa-file-text" aria-hidden="true"></i> COMPROBANTE DE PAGO</h4>
-                  <div class="col-lg-12 mb-10">
-                    <div class="row">
-                      <div class="input-field col s6 m6">
-                        <h6 id="formLblVoucher">Foto o Captura de Pantalla</h6>
-                      </div>
-
-                      <label class="checkboxPayAfter form-check" for="checkboxPayAfter" content="">
-                        <input id="checkboxPayAfter" class="form-check-input" name="checkboxPayAfter"
-                          type="checkbox"><span id="sendVoucherTextOption">Enviaré el voucher después</span>
-                      </label>
-
-                    </div>
-                  </div>
-                  <div class="col-lg-12 mb-30 nopadding">
-                    <div class="row">
-                      <div id="container_voucher_up" class="col col-12 s12 m6 col-lg-12 elegirbanco">
-                        <div id="formimage" class="file-field input-field s-voucher">
-                          <div class="btn">
-                            <span><i class="fa fa-upload" aria-hidden="true"></i></span>
-                          </div>
-                          <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Foto/Captura de Pantalla" />
-                          </div>
-                          <input id="files" data-maxwidth="992" data-maxheight="992" type="file" accept="image/*" />
-                        </div>
-                        <h6 id="montoCorrecto">$</h6>
-                        <input name="recaptcha_group" type="hidden" id="recaptcha_group" value="G1" />
-                      </div>
-                      <div class="col s12 m6 elegirbanco">
-                        <div style="display: none;" id="containimagenVoucher">
-                          <div class="lds-ripple">
-                            <div></div>
-                            <div></div>
-                          </div>
+                          <div id="btn_view_selected_bot" class="btn_view_selected fa fa-chevron-down"
+                            aria-hidden="true"></div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
 
             <div class="col-lg-12 mb-30 text-center">
-              <label class="labelPersonalData form-check" content="">
-                <small>Al confirmar autorizo el uso de <a href="#" id="openModalUseData" class="link">Mis Datos
-                    Personales</a></small>
-              </label>
-
-              <label class="labelClientTermsConds form-check" for="checkboxClientTermsConds" content=""
-                style="display:none">
-                <input id="checkboxClientTermsConds" class="form-check-input" name="checkboxClientTermsConds"
-                  type="checkbox">
-                <small>Acepto los <a href="#" id="openModalTermsConds" class="link">Términos y Condiciones</a>
-                </small>
-              </label>
-            </div>
-
-            <div class="col-lg-12 mb-30 text-center">
-              <button class="btn-large" id="confirmTickets" onclick="confirmTickets()">Confirmar</button>
+              <button class="btn-large" id="continueFormFixed" onclick="continueForm()" disabled>
+                <i class="fa fa-arrow-down" aria-hidden="true"></i> CONTINUAR
+              </button>
             </div>
           </div>
         </article>
-        <p class="text-center termsGoogle"><small class="gray">Sitio Web protegido por reCaptcha&trade; de Google.
-            Aplican su <a class="link link-s" rel="nofollow noopener noreferrer"
-              href="https://policies.google.com/privacy" target="_blank">Política de Privacidad</a> y <a
-              class="link link-s" href="https://policies.google.com/terms" rel="nofollow noopener noreferrer"
-              target="_blank">Términos del Servicio</a></small></p>
-        <p class="text-center"> <small class="gray">Centro de Ayuda: <i class="fa fa-whatsapp" aria-hidden="true"></i>
-            <span class="phoneClient"></span></small></p>
+
+        <p class="text-center">
+          <small class="gray">
+            Centro de Ayuda: <i class="fa fa-whatsapp" aria-hidden="true"></i>
+            <span class="phoneClient"></span>
+          </small>
+        </p>
       </div>
     </div>
 
@@ -470,39 +412,48 @@
   </div>
 
   <div id="modalSale" class="modal center">
-    <div class="modal-content">
+    <div class="modal-content h-100">
       <i class="fa fa-check-circle" aria-hidden="true"></i>
-      <h4 id="titleSale">Falta poco, solo falta registra tu pago..!</h4>
+      <h4 id="titleSale" class="mb-3">Falta poco, solo debes registrar tu pago..!</h4>
 
-      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="pills-datos-personales-tab" data-toggle="pill" data-target="#pills-datos-personales" type="button" role="tab" aria-controls="pills-datos-personales" aria-selected="true">
-            <i class="fa fa-user mr-2" aria-hidden="true"></i> DATOS PERSONALES
+          <button class="nav-link active" id="pills-home-tab" data-toggle="pill" data-target="#pills-home" type="button"
+            role="tab" aria-controls="pills-home" aria-selected="true">
+            <i class="fa fa-user" aria-hidden="true"></i> DATOS PERSONALES
           </button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-profile-tab" data-toggle="pill" data-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</button>
+          <button class="nav-link" id="pills-profile-tab" data-toggle="pill" data-target="#pills-profile" type="button"
+            role="tab" aria-controls="pills-profile" aria-selected="false">
+            <i class="fa fa-bank" aria-hidden="true"></i> MODOS DE PAGO
+          </button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-contact-tab" data-toggle="pill" data-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+          <button class="nav-link" id="pills-contact-tab" data-toggle="pill" data-target="#pills-contact" type="button"
+            role="tab" aria-controls="pills-contact" aria-selected="false">
+            <i class="fa fa-file-text" aria-hidden="true"></i> COMPROBANTE DE PAGO
+          </button>
         </li>
       </ul>
 
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="pills-datos-personales" role="tabpanel" aria-labelledby="pills-datos-personales-tab">
+      <div class="tab-content mt-3 h-100" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
           <div class="col-lg-12 mb-30 p0">
             <div class="row mbp0">
-              <div class="input-field col col-lg-6 col-6">
+              <div class="input-field col col-12 px-lg-5">
                 <label for="nombre" class="">Nombres y Apellidos *</label>
-                <input placeholder="" id="nombre" type="text" class="validate invalid" minlength="8" maxlength="66" required="">
+                <input placeholder="" id="nombre" type="text" class="validate invalid" minlength="8" maxlength="66"
+                  required="">
               </div>
-              
+
               <div class="input-field col col-lg-6 col-6 extra_field_identification" style="display:none">
                 <label id="label_identification" for="identification" class="active">Identificación</label>
-                <input placeholder="" id="identification" type="text" class="validate invalid" maxlength="12" minlength="6">
+                <input placeholder="" id="identification" type="text" class="validate invalid" maxlength="12"
+                  minlength="6">
               </div>
-    
-              <div class="input-field col col-lg-6 col-6">
+
+              <div class="input-field col col-12 px-lg-5">
                 <label class="mr20" for="celular" class="">Celular *</label><br>
                 <select id="country_code" name="country_code">
                   <option value="+1">🇩🇴 +1</option>
@@ -527,44 +478,81 @@
                   <option value="+595">🇵🇾 +595</option>
                   <option value="+598">🇺🇾 +598</option>
                 </select>
-    
-                <input placeholder="" id="celular" type="tel" class="validate invalid" maxlength="14" minlength="8" required="">
+
+                <input placeholder="" id="celular" type="tel" class="validate invalid" maxlength="14" minlength="8"
+                  required="">
               </div>
-    
-              <div class="input-field col col-lg-6 col-6 extra_field_email" style="display:none">
+
+              <div class="input-field col col-12 px-lg-5 extra_field_email">
                 <label id="label_email" for="email" class="active">Email</label>
                 <input placeholder="" id="email" type="email" class="validate invalid" maxlength="66" minlength="9">
               </div>
-    
+
               <div class="input-field col col-lg-6 col-6 extra_field_location" style="display:none">
                 <label id="label_location" for="location" class="active">Ubicación</label>
                 <select id="location" name="location"></select>
               </div>
-    
+
               <div class="input-field col col-lg-6 col-6 extra_field_address" style="display:none">
                 <label id="label_address" for="address" class="active">Dirección</label>
                 <input placeholder="" id="address" type="text" class="validate invalid" maxlength="180" minlength="9">
               </div>
-    
+
               <div class="input-field col col-lg-6 col-6 extra_field_custom" style="display:none"></div>
-    
+
               <div class="input-field col col-lg-6 col-6 extra_field_notes" style="display:none">
                 <label id="label_notes" for="notes" class="active">Notas</label>
                 <input placeholder="" id="notes" type="text" class="validate invalid" maxlength="180" minlength="9">
               </div>
-    
+
               <div class="input-field col col-lg-6 col-6 extra_field_seller" style="display:none"></div>
             </div>
           </div>
+          
+          <button id="btnSuccessModal" onclick="nextTab('profile')" class="btn-large fixed-bottom m-5">Siguiente</button>
         </div>
 
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">PAGINA 2</div>
-        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">PAGINA 3</div>
-      </div>
-    </div>
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+          <div id="sectionAllPayments">
+            <div id="container-payments" class="types flex justify-space-between payments-options mb-30"></div>
+            <div id="datosBanco" class="text-center input-field col s12 m6"></div>
+            <div id="priceConvert">$$$</div>
+          </div>
+          
+          <button id="btnSuccessModal" onclick="nextTab('contact')" class="btn-large bottom-button">Siguiente</button>
+        </div>
 
-    <div class="modal-footer row center">
-      <button id="btnSuccessModal" onclick="openVerMisTickets()" class="btn-large">Ver mis Boletos</a>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+          <div class="col-lg-12 mb-30 nopadding">
+            <div class="row">
+              <div id="container_voucher_up" class="col col-12 s12 m6 col-lg-12 elegirbanco">
+                <div id="formimage" class="file-field input-field s-voucher">
+                  <div class="btn">
+                    <span><i class="fa fa-upload" aria-hidden="true"></i></span>
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Foto/Captura de Pantalla" />
+                  </div>
+                  <input id="files" data-maxwidth="992" data-maxheight="992" type="file" accept="image/*" />
+                </div>
+                <h6 id="montoCorrecto">$</h6>
+              </div>
+            </div>
+          </div>
+
+          <div class="fixed-bottom m-5">
+            <div class="col-lg-12 mb-30">
+              <label class="labelPersonalData form-check" content="">
+                <small>Al confirmar autorizo el uso de <a href="#" id="openModalUseData" class="link"> Mis Datos Personales</a></small>
+              </label>
+            </div>
+    
+            <div class="col-lg-12 mb-30">
+              <button class="btn-large" id="confirmTickets" onclick="confirmTickets()">Confirmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -572,8 +560,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+    integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
   <script src="/assets/js/constants.js"></script>
   <script src="/assets/js/configs.js"></script>
   <script src="/assets/js/ready.js"></script>

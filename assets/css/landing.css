@@ -34,13 +34,24 @@ body {
   background-image: linear-gradient(#FCFCFC, #FBFBFB, #f5f5f5, #F0F0F0)
 }
 
-h1,h2,h3,h4,h5,h6,p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
   font-size: 1em;
   font-weight: 500
 }
 
-h1,h2,h3,h4,h5,h6 {  
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Jaro", serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -70,7 +81,8 @@ button:focus {
   padding: 15px 28px !important
 }
 
-.navbar-toggler:focus,.navbar-toggler:hover {
+.navbar-toggler:focus,
+.navbar-toggler:hover {
   background-color: inherit
 }
 
@@ -166,7 +178,8 @@ button:focus {
   border-radius: 12px
 }
 
-.learn-more-btn,button {
+.learn-more-btn,
+button {
   font-size: 18px;
   font-weight: 800;
   color: var(--color-primary);
@@ -174,38 +187,39 @@ button:focus {
   border-radius: 100px
 }
 
-.learn-more-btn:hover,button:hover {
+.learn-more-btn:hover,
+button:hover {
   color: var(--color-primary)
 }
 
 @media screen and (max-width: 991.98px) {
   .navbar {
-      background-color:var(--color-primary)
+    background-color: var(--color-primary)
   }
 
   .navbar-brand img {
-      width: 100px;
-      padding: 5px 0;
-      left: 0 !important
+    width: 100px;
+    padding: 5px 0;
+    left: 0 !important
   }
 
   .header-scrolled .navbar-brand img {
-      width: 100px
+    width: 100px
   }
 
   .header-scrolled {
-      height: auto
+    height: auto
   }
 }
 
 @media screen and (max-width: 575.98px) {
   .navbar {
-      padding-top:0;
-      padding-bottom: 0
+    padding-top: 0;
+    padding-bottom: 0
   }
 
   .menu-navbar-nav {
-      padding-bottom: 10px
+    padding-bottom: 10px
   }
 }
 
@@ -292,70 +306,70 @@ button:focus {
 
 @media screen and (max-width: 991.98px) {
   .header-container {
-      flex-direction:column
+    flex-direction: column
   }
 
   .header-title-section {
-      text-align: center;
-      margin-top: 40px
+    text-align: center;
+    margin-top: 40px
   }
 
   .navbar-collapse {
-      background-color: var(--color-primary);
-      color: #000;
-      padding-bottom: 20px;
-      padding-top: 30px;
-      margin-bottom: 20px
+    background-color: var(--color-primary);
+    color: #000;
+    padding-bottom: 20px;
+    padding-top: 30px;
+    margin-bottom: 20px
   }
 
   .navbar-collapse .nav-link-menu {
-      color: #000
+    color: #000
   }
 
   .nav-link-number {
-      display: none
+    display: none
   }
 
   .nav-link-menu {
-      color: var(--color-primary)
+    color: var(--color-primary)
   }
 
   .learn-more-btn-section {
-      justify-content: center
+    justify-content: center
   }
 
   .navbar-expand-lg .navbar-nav .nav-link {
-      padding-right: 0.5rem;
-      padding-left: 0.5rem
+    padding-right: 0.5rem;
+    padding-left: 0.5rem
   }
 }
 
 @media screen and (max-width: 799.98px) {
   .header {
-      height:auto;
-      padding-top: 20%
+    height: auto;
+    padding-top: 20%
   }
 
   .header-img-section img {
-      border-radius: 22px
+    border-radius: 22px
   }
 }
 
 @media screen and (max-width: 499.98px) {
   .header {
-      padding-top:24%
+    padding-top: 24%
   }
 
   .header-subtitle {
-      font-size: 22px
+    font-size: 22px
   }
 
   .header-title {
-      font-size: 38px
+    font-size: 38px
   }
 
   .header-title-text {
-      font-size: 18px
+    font-size: 18px
   }
 }
 
@@ -432,18 +446,19 @@ button:focus {
 
 @media screen and (max-width: 991.98px) {
   .services-section .services-container {
-      flex-direction:column-reverse;
-      justify-content: center;
-      align-items: center;
-      text-align: center
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    text-align: center
   }
 
   .services-container img {
-      margin-bottom: 25px
+    margin-bottom: 25px
   }
 
-  .services-subtitle,.services-title {
-      text-align: center
+  .services-subtitle,
+  .services-title {
+    text-align: center
   }
 }
 
@@ -489,7 +504,7 @@ button:focus {
 
 @media screen and (max-width: 991.98px) {
   .pricing-title p {
-      max-width:428px
+    max-width: 428px
   }
 }
 
@@ -539,7 +554,8 @@ button:focus {
   display: none
 }
 
-.owl-theme .owl-dots,.owl-theme .owl-nav {
+.owl-theme .owl-dots,
+.owl-theme .owl-nav {
   margin-top: 20px
 }
 
@@ -547,7 +563,8 @@ button:focus {
   background-color: #CCCCCC !important
 }
 
-.owl-theme .owl-dots .owl-dot.active span,.owl-theme .owl-dots .owl-dot:hover span {
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
   background-color: #161616 !important
 }
 
@@ -668,7 +685,7 @@ button:focus {
 
 @media screen and (max-width: 991.98px) {
   .blog-posts-section {
-      flex-direction:column
+    flex-direction: column
   }
 }
 
@@ -733,13 +750,13 @@ label {
 
 @media screen and (max-width: 991.98px) {
   .contact-container {
-      justify-content:center;
-      align-items: center;
-      text-align: center
+    justify-content: center;
+    align-items: center;
+    text-align: center
   }
 
   .contact-title-section {
-      text-align: center
+    text-align: center
   }
 }
 
@@ -867,7 +884,11 @@ p.footer-subsection-text.clientDescription {
   color: #dbdbdb
 }
 
-.footer-subsection-list li:nth-child(3):before,.footer-subsection-list li:nth-child(4):before,.footer-subsection-list li:nth-child(5):before,.footer-subsection-list li:nth-child(6):before,.footer-subsection-list li:nth-child(7):before {
+.footer-subsection-list li:nth-child(3):before,
+.footer-subsection-list li:nth-child(4):before,
+.footer-subsection-list li:nth-child(5):before,
+.footer-subsection-list li:nth-child(6):before,
+.footer-subsection-list li:nth-child(7):before {
   font-family: "FontAwesome";
   content: "\f232";
   font-size: 20px;
@@ -977,19 +998,19 @@ p.footer-subsection-text.clientDescription {
 
 @media screen and (max-width: 991.98px) {
   .footer-container {
-      flex-wrap:wrap
+    flex-wrap: wrap
   }
 
   .footer-logo {
-      padding-left: 40px
+    padding-left: 40px
   }
 
   .footer-form {
-      padding-right: 40px !important
+    padding-right: 40px !important
   }
 
   .footer-subsection-form-input {
-      width: 85%
+    width: 85%
   }
 }
 
@@ -1083,7 +1104,9 @@ button.magic_button:active {
   margin-left: -9px
 }
 
-.plusminus button:last-child:focus,button.waves-effect.next:focus,button.waves-effect.prev:focus {
+.plusminus button:last-child:focus,
+button.waves-effect.next:focus,
+button.waves-effect.prev:focus {
   color: var(--color-primary)
 }
 
@@ -1101,7 +1124,8 @@ button.magic_button:active {
   -moz-appearance: textfield
 }
 
-.plusminus input[type="number"]::-webkit-outer-spin-button,.plusminus input[type="number"]::-webkit-inner-spin-button {
+.plusminus input[type="number"]::-webkit-outer-spin-button,
+.plusminus input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0
 }
@@ -1200,7 +1224,8 @@ button.magic_button:active {
   border-radius: 17px
 }
 
-button.next,button.prev {
+button.next,
+button.prev {
   width: 44px;
   height: 44px;
   margin: 0 5px
@@ -1214,7 +1239,8 @@ button.prev {
   padding: 2px 12px !important
 }
 
-nav ul a,nav .brand-logo {
+nav ul a,
+nav .brand-logo {
   color: #444
 }
 
@@ -1230,7 +1256,7 @@ p {
   min-height: 380px;
   line-height: 0;
   height: auto;
-  color: rgba(255,255,255,0.9)
+  color: rgba(255, 255, 255, 0.9)
 }
 
 .parallax-container .section {
@@ -1257,7 +1283,19 @@ body.page .parallax-container.valign-wrapper {
   border-radius: 13px
 }
 
-input:not([type]),input[type=text]:not(.browser-default),input[type=password]:not(.browser-default),input[type=email]:not(.browser-default),input[type=url]:not(.browser-default),input[type=time]:not(.browser-default),input[type=date]:not(.browser-default),input[type=datetime]:not(.browser-default),input[type=datetime-local]:not(.browser-default),input[type=tel]:not(.browser-default),input[type=number]:not(.browser-default),input[type=search]:not(.browser-default),textarea.materialize-textarea {
+input:not([type]),
+input[type=text]:not(.browser-default),
+input[type=password]:not(.browser-default),
+input[type=email]:not(.browser-default),
+input[type=url]:not(.browser-default),
+input[type=time]:not(.browser-default),
+input[type=date]:not(.browser-default),
+input[type=datetime]:not(.browser-default),
+input[type=datetime-local]:not(.browser-default),
+input[type=tel]:not(.browser-default),
+input[type=number]:not(.browser-default),
+input[type=search]:not(.browser-default),
+textarea.materialize-textarea {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #9e9e9e;
@@ -1310,7 +1348,8 @@ input#inputSearchTicket {
   margin: 0.2rem 0 0.6rem 0
 }
 
-.card>div>.row,form>.row {
+.card>div>.row,
+form>.row {
   margin-bottom: 0
 }
 
@@ -1349,22 +1388,29 @@ input[type=range]+.thumb.active .value {
   text-transform: uppercase
 }
 
-button.btn-large,button.btn-small,a.btn-large,a.btn-small {
+button.btn-large,
+button.btn-small,
+a.btn-large,
+a.btn-small {
   border-radius: 24px;
   cursor: pointer;
   text-transform: uppercase;
   user-select: none
 }
 
-body.page .section>.row,body.page .section>#pagorealizado>.row {
+body.page .section>.row,
+body.page .section>#pagorealizado>.row {
   margin-bottom: 0
 }
 
-[type="radio"]:checked+span:after,.with-gap[type="radio"]:checked+span:after {
+[type="radio"]:checked+span:after,
+.with-gap[type="radio"]:checked+span:after {
   background-color: #373737
 }
 
-[type="radio"]:checked+span:after,.with-gap[type="radio"]:checked+span:before,.with-gap[type="radio"]:checked+span:after {
+[type="radio"]:checked+span:after,
+.with-gap[type="radio"]:checked+span:before,
+.with-gap[type="radio"]:checked+span:after {
   border: 2px solid #373737
 }
 
@@ -1470,7 +1516,9 @@ a.learn-more-btn.large-btn:hover {
   margin: 2px
 }
 
-.minibtn>a,#btn_upload_voucher>a,.minibtn_download>a {
+.minibtn>a,
+#btn_upload_voucher>a,
+.minibtn_download>a {
   font-weight: 700
 }
 
@@ -1479,7 +1527,8 @@ img.banner {
   height: auto
 }
 
-a.waves-effect.btn,button.waves-effect.btn {
+a.waves-effect.btn,
+button.waves-effect.btn {
   border-radius: 24px;
   cursor: pointer;
   min-width: 112px
@@ -1556,7 +1605,10 @@ strong#textSeleccionados {
   display: inline-block
 }
 
-.textSelectOpportunities,.text_selected_ticket,.text_selected_ticket_bot,.total_ticket {
+.textSelectOpportunities,
+.text_selected_ticket,
+.text_selected_ticket_bot,
+.total_ticket {
   display: block;
   font-size: 14px;
   color: #2c2c2c;
@@ -1733,7 +1785,19 @@ h4 {
   width: 66%
 }
 
-input:not([type]),input[type=text]:not(.browser-default),input[type=password]:not(.browser-default),input[type=email]:not(.browser-default),input[type=url]:not(.browser-default),input[type=time]:not(.browser-default),input[type=date]:not(.browser-default),input[type=datetime]:not(.browser-default),input[type=datetime-local]:not(.browser-default),input[type=tel]:not(.browser-default),input[type=number]:not(.browser-default),input[type=search]:not(.browser-default),textarea.materialize-textarea {
+input:not([type]),
+input[type=text]:not(.browser-default),
+input[type=password]:not(.browser-default),
+input[type=email]:not(.browser-default),
+input[type=url]:not(.browser-default),
+input[type=time]:not(.browser-default),
+input[type=date]:not(.browser-default),
+input[type=datetime]:not(.browser-default),
+input[type=datetime-local]:not(.browser-default),
+input[type=tel]:not(.browser-default),
+input[type=number]:not(.browser-default),
+input[type=search]:not(.browser-default),
+textarea.materialize-textarea {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #9e9e9e;
@@ -1754,7 +1818,8 @@ input:not([type]),input[type=text]:not(.browser-default),input[type=password]:no
   transition: box-shadow .3s, border .3s, -webkit-box-shadow .3s
 }
 
-button.magic_button,button.download-button {
+button.magic_button,
+button.download-button {
   background: var(--color-primary);
   padding: 6px 11px !important;
   border: 0;
@@ -1854,7 +1919,8 @@ div#formimage {
   padding: 0
 }
 
-.vcv-timeline-item::before,.vcv-timeline-item::after {
+.vcv-timeline-item::before,
+.vcv-timeline-item::after {
   content: ""
 }
 
@@ -1931,88 +1997,93 @@ button.magic_button>small {
 
 @media screen and (max-width: 768px) {
   .fixed {
-      width:100%;
-      left: 50% !important;
-      margin-left: -50% !important
+    width: 100%;
+    left: 50% !important;
+    margin-left: -50% !important
   }
 
   .container.pricing-container.pricing-head {
-      padding-right: 0;
-      padding-left: 0
+    padding-right: 0;
+    padding-left: 0
   }
 
   .btnfix {
-      display: block;
-      margin: auto
+    display: block;
+    margin: auto
   }
 
   .vcv-timeline {
-      margin: 0 0 40px 25px
+    margin: 0 0 40px 25px
   }
 
   .vcv-timeline-item {
-      position: relative
+    position: relative
   }
 
   .vcv-timeline-item span {
-      text-align: center;
-      margin: 10px 0 0;
-      position: absolute;
-      top: 25px;
-      width: 88px;
-      left: -29px;
-      line-height: 14px;
-      font-size: 12px
+    text-align: center;
+    margin: 10px 0 0;
+    position: absolute;
+    top: 25px;
+    width: 88px;
+    left: -29px;
+    line-height: 14px;
+    font-size: 12px
   }
 
   .vcv-timeline-item:last-of-type {
-      -webkit-box-flex: 0;
-      flex: 0 0 120px
+    -webkit-box-flex: 0;
+    flex: 0 0 120px
   }
 
   .vcv-timeline-item:last-of-type {
-      -webkit-box-flex: 0;
-      flex: 0 0 auto;
-      margin: 0
+    -webkit-box-flex: 0;
+    flex: 0 0 auto;
+    margin: 0
   }
 
   .vcv-timeline-item::before {
-      margin: 0
+    margin: 0
   }
 
   .vcv-timeline-item::after {
-      -webkit-box-flex: 0;
-      flex: 0 1 auto
+    -webkit-box-flex: 0;
+    flex: 0 1 auto
   }
 
   #btnChooseAutoChips {
-      margin-left: inherit
+    margin-left: inherit
   }
 
   button.magic_button>small {
-      font-size: 20px
+    font-size: 20px
   }
 }
 
 @media only screen and (max-width: 600px) {
-  body.page>.container>.section>.row>div,body.page>.container>.section>#pagorealizado>.row>div {
-      padding:0
+
+  body.page>.container>.section>.row>div,
+  body.page>.container>.section>#pagorealizado>.row>div {
+    padding: 0
   }
 
   #cardsSeleccionTickets>div>div {
-      padding: 0
+    padding: 0
   }
 
   #boxsearchcel {
-      text-align: center
+    text-align: center
   }
 
   #banner img.pressed {
-      max-height: 606px
+    max-height: 606px
   }
 }
 
-body a,body button,.btn,#buttfixed {
+body a,
+body button,
+.btn,
+#buttfixed {
   text-decoration: none;
   transition: all 0.5s ease;
   user-select: none
@@ -2073,7 +2144,7 @@ body a,body button,.btn,#buttfixed {
   background: var(--color-primary);
   border-radius: 26px !important;
   box-sizing: border-box;
-  box-shadow: 0px 24px 60px -1px rgba(37,44,54,0.14)
+  box-shadow: 0px 24px 60px -1px rgba(37, 44, 54, 0.14)
 }
 
 .card h6 {
@@ -2082,18 +2153,17 @@ body a,body button,.btn,#buttfixed {
 }
 
 #priceConvert {
-  font-size: 20px;
-  text-align: center;
-  margin: auto;
-  width: fit-content;
-  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.25rem;
   border-radius: 12px;
   padding: 2px 12px;
-  font-weight: 700;
   color: var(--color-primary);
   background-color: #4e4e4e;
   border: 2px solid #353535;
-  height: 38px
+  height: 36px
 }
 
 #priceConvert.pricefixed {
@@ -2105,7 +2175,15 @@ body a,body button,.btn,#buttfixed {
   z-index: 9999999999
 }
 
-input#nombre,input#identification,input#celular,input#email,input#address,input#seller,input#custom_field,input#findPhone,input#notes {
+input#nombre,
+input#identification,
+input#celular,
+input#email,
+input#address,
+input#seller,
+input#custom_field,
+input#findPhone,
+input#notes {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 5px;
@@ -2128,7 +2206,9 @@ input#celular {
   margin-left: 10px
 }
 
-select#location,select#custom_field,select#seller {
+select#location,
+select#custom_field,
+select#seller {
   width: 100%;
   font-size: 22px
 }
@@ -2139,7 +2219,10 @@ select#country_code {
   font-size: 24px
 }
 
-select#location,select#custom_field,select#seller,select#country_code {
+select#location,
+select#custom_field,
+select#seller,
+select#country_code {
   border-radius: 12px;
   font-weight: 700;
   padding: 5px 8px !important;
@@ -2151,7 +2234,8 @@ select#location,select#custom_field,select#seller,select#country_code {
   font-weight: 600
 }
 
-.input-field.col.s6.m6>h6,.input-field.col.col-lg-12.s12.m12>h6 {
+.input-field.col.s6.m6>h6,
+.input-field.col.col-lg-12.s12.m12>h6 {
   color: #b5b5b5
 }
 
@@ -2168,7 +2252,8 @@ select#location,select#custom_field,select#seller,select#country_code {
   margin: 0
 }
 
-.card .card-body .payment-type,.card .card-body .payment-info {
+.card .card-body .payment-type,
+.card .card-body .payment-info {
   margin-bottom: 25px
 }
 
@@ -2215,14 +2300,15 @@ select#location,select#custom_field,select#seller,select#country_code {
   cursor: pointer
 }
 
-.card .card-body .payment-type .types .type:hover .logo,.card .card-body .payment-type .types .type:hover p {
+.card .card-body .payment-type .types .type:hover .logo,
+.card .card-body .payment-type .types .type:hover p {
   color: #a13e96;
   cursor: pointer
 }
 
 .card .card-body .payment-type .types .type.selected {
   border-color: transparent;
-  background: rgba(209,93,255,0.1)
+  background: rgba(209, 93, 255, 0.1)
 }
 
 .card .card-body .payment-type .types .type.selected .logo {
@@ -2249,7 +2335,8 @@ select#location,select#custom_field,select#seller,select#country_code {
   justify-content: center
 }
 
-.card .card-body .payment-type .types .type .logo,.card .card-body .payment-type .types .type p {
+.card .card-body .payment-type .types .type .logo,
+.card .card-body .payment-type .types .type p {
   transition: all 0.5s ease
 }
 
@@ -2306,7 +2393,7 @@ select#location,select#custom_field,select#seller,select#country_code {
 .button.button-link {
   padding: 0 0 2px;
   margin: 0 25px;
-  border-bottom: 2px solid rgba(64,179,255,0.5);
+  border-bottom: 2px solid rgba(64, 179, 255, 0.5);
   border-radius: 0;
   opacity: 0.75
 }
@@ -2412,7 +2499,8 @@ p.featured_award {
   transition: all 0.5s ease
 }
 
-#datosBanco div>h3,.monto-total-compra>h3 {
+#datosBanco div>h3,
+.monto-total-compra>h3 {
   background: #f7f7f7;
   width: fit-content;
   margin: -4px auto -4px;
@@ -2445,7 +2533,9 @@ p.featured_award {
   border-radius: 18px
 }
 
-#datosBanco span.nameAccountNumber,#datosBanco .interbankNumber>span,#datosBanco .titularBank>span {
+#datosBanco span.nameAccountNumber,
+#datosBanco .interbankNumber>span,
+#datosBanco .titularBank>span {
   font-size: 12px;
   font-weight: 700;
   display: block;
@@ -2469,13 +2559,15 @@ pre {
   margin-bottom: 0
 }
 
-#modalLoader,#modalMachine {
+#modalLoader,
+#modalMachine {
   background: transparent !important;
   box-shadow: none !important;
   top: 40% !important
 }
 
-#modalLoader>.modal-content,#modalMachine>.modal-content {
+#modalLoader>.modal-content,
+#modalMachine>.modal-content {
   background-color: transparent
 }
 
@@ -2493,7 +2585,7 @@ img.icon_loading {
 img.loading {
   width: 58px;
   margin: auto;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 50%;
   padding: 5px
 }
@@ -2504,7 +2596,8 @@ img.loading {
   width: 80px;
   height: 80px;
   margin: 0 auto;
-  zoom:1.4}
+  zoom: 1.4
+}
 
 .lds-grid div {
   position: absolute;
@@ -2570,12 +2663,14 @@ img.loading {
 }
 
 @keyframes lds-grid {
-  0%,100% {
-      opacity: 1
+
+  0%,
+  100% {
+    opacity: 1
   }
 
   50% {
-      opacity: 0.5
+    opacity: 0.5
   }
 }
 
@@ -2587,7 +2682,8 @@ small.gray {
   line-height: 1rem
 }
 
-#modalUseData h4,#modalUseData h5 {
+#modalUseData h4,
+#modalUseData h5 {
   margin-bottom: 5px
 }
 
@@ -2609,7 +2705,8 @@ body widget[type="ticket"] .orange {
   color: orange
 }
 
-i.fa.fa-ticket.fixleft,i.fa.fa-ticket.fixright {
+i.fa.fa-ticket.fixleft,
+i.fa.fa-ticket.fixright {
   position: absolute;
   top: 15px;
   font-size: 192px;
@@ -2626,7 +2723,8 @@ i.fa.fa-ticket.fixright {
   transform: scaleX(-1)
 }
 
-input#checkboxPayAfter,input#checkboxClientTermsConds {
+input#checkboxPayAfter,
+input#checkboxClientTermsConds {
   cursor: pointer;
   width: 24px;
   height: 24px;
@@ -2657,7 +2755,8 @@ input#checkboxPayAfter,input#checkboxClientTermsConds {
   outline: none
 }
 
-button:disabled,button:hover:disabled {
+button:disabled,
+button:hover:disabled {
   user-select: none;
   pointer-events: none;
   background: #9c9c9c
@@ -2743,7 +2842,7 @@ button:disabled,button:hover:disabled {
 
 .legalLinks a {
   font-weight: 500;
-  color: rgba(255,255,255,0.671);
+  color: rgba(255, 255, 255, 0.671);
   font-size: 14px
 }
 
@@ -2753,163 +2852,175 @@ button:disabled,button:hover:disabled {
 
 @keyframes lds-ripple {
   0% {
-      top: 36px;
-      left: 36px;
-      width: 0;
-      height: 0;
-      opacity: 1
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1
   }
 
   100% {
-      top: 0px;
-      left: 0px;
-      width: 72px;
-      height: 72px;
-      opacity: 0
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0
   }
 }
 
 @media only screen and (max-width: 992px) {
   .parallax-container .section {
-      position:absolute;
-      top: 40%
+    position: absolute;
+    top: 40%
   }
 
   #index-banner .section {
-      top: 10%
+    top: 10%
   }
 
   #containimagenVoucher {
-      margin-top: 15px
+    margin-top: 15px
   }
 }
 
 @media only screen and (max-width: 600px) {
-  i.fa.fa-ticket.fixleft,i.fa.fa-ticket.fixright {
-      top:0;
-      font-size: 92px
+
+  i.fa.fa-ticket.fixleft,
+  i.fa.fa-ticket.fixright {
+    top: 0;
+    font-size: 92px
   }
 
   i.fa.fa-ticket.fixleft {
-      left: 0
+    left: 0
   }
 
   i.fa.fa-ticket.fixright {
-      right: 0
+    right: 0
   }
 
   button.magic_button {
-      padding: 6px 8px !important
+    padding: 6px 8px !important
   }
 
   .card .card-body .payment-type .types .type.selected::after {
-      font-size: 18px;
-      height: 24px;
-      width: 24px;
-      top: -10px;
-      right: -10px
+    font-size: 18px;
+    height: 24px;
+    width: 24px;
+    top: -10px;
+    right: -10px
   }
 
   .card .card-body .payment-type .types .type {
-      margin: 2px
+    margin: 2px
   }
 
   .modal {
-      width: 90%
+    width: 90%
   }
 
   .col {
-      max-width: 100%
+    max-width: 100%
   }
 
   label.checkboxPayAfter {
-      margin: 10px auto
+    margin: 10px auto
   }
 
-  .pricing-title h2,h2.clients-title,.contact-title {
-      font-size: 36px
+  .pricing-title h2,
+  h2.clients-title,
+  .contact-title {
+    font-size: 36px
   }
 
   .pricing-head h4 {
-      margin: 20px 0 0 5px
+    margin: 20px 0 0 5px
   }
 
-  .services-title,.blog-title {
-      font-size: 32px
+  .services-title,
+  .blog-title {
+    font-size: 32px
   }
 
   .navbar-brand-logo>img {
-      width: 115px;
-      top: -42px
+    width: 115px;
+    top: -42px
   }
 
   .row {
-      margin-right: 0;
-      margin-left: 0
+    margin-right: 0;
+    margin-left: 0
   }
 
   .col {
-      flex-basis: inherit
+    flex-basis: inherit
   }
 
   #index-banner .section {
-      top: 0
+    top: 0
   }
 
   .parallax-container .parallax img {
-      left: 63%;
-      top: -306px
+    left: 63%;
+    top: -306px
   }
 
   ul#nav-mobile {
-      padding-top: 44px
+    padding-top: 44px
   }
 
   .card {
-      padding: 0 !important
+    padding: 0 !important
   }
 
   .contact-title-section.card {
-      padding: 20px 0 30px !important
+    padding: 20px 0 30px !important
   }
 
   .pricing-head h4 {
-      font-size: 23px
+    font-size: 23px
   }
 
-  input#nombre,input#identification,input#celular,input#email,input#address,input#custom_field,select#country_code {
-      font-size: 22px
+  input#nombre,
+  input#identification,
+  input#celular,
+  input#email,
+  input#address,
+  input#custom_field,
+  select#country_code {
+    font-size: 1.7rem
   }
 
   input#celular {
-      width: -moz-calc(100% - 132px);
-      width: -webkit-calc(100% - 132px);
-      width: -o-calc(100% - 132px);
-      width: calc(100% - 132px)
+    width: -moz-calc(100% - 132px);
+    width: -webkit-calc(100% - 132px);
+    width: -o-calc(100% - 132px);
+    width: calc(100% - 132px)
   }
 
   select#country_code {
-      width: 126px
+    width: 126px
   }
 
   .mbp0>div {
-      padding: 0px
+    padding: 0px
   }
 
   #modalUseData p {
-      line-height: 1.6em;
-      font-size: 14px
+    line-height: 1.6em;
+    font-size: 14px
   }
 
   #openModalUseData {
-      display: block
+    display: block
   }
 
-  #datosBanco div>h3,.monto-total-compra>h3 {
-      font-size: 6vw
+  #datosBanco div>h3,
+  .monto-total-compra>h3 {
+    font-size: 6vw
   }
 
   .monto-total-compra>h3 {
-      font-size: 7vw
+    font-size: 7vw
   }
 }

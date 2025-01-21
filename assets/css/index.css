@@ -405,3 +405,69 @@ img.loading {
 body .chip {
   width: 48px;
 }
+
+
+
+h4 {
+  font-size: 1.5rem;
+}
+
+
+.nav {
+  flex-direction: column;
+}
+
+.nav .nav-link {
+  color: var(--color-important);
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 1rem !important;
+  font-size: 1.45rem;
+}
+
+.nav .nav-link.active {
+  color: var(--color-accent);
+  background-color: var(--color-important-ex);
+}
+
+.nav .nav-link.active i {
+  color: var(--color-accent);
+}
+
+.nav .nav-link i {
+  color: var(--color-important);
+  width: 20px;
+}
+
+.tab-content>.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  height: 100%;
+}
+
+.bottom-button {
+  margin-top: auto;
+}
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {
+  .nav {
+    flex-direction: row;
+  }
+  .nav .nav-link {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 1200px) {}
+
+@media (min-width: 1400px) {}

@@ -1,0 +1,29 @@
+:root {
+  /* Colores principales */
+  --color-primary: #ffd700; /* Dorado: simboliza lujo y riqueza */
+  --color-secondary: #c82333; /* Rojo oscuro: emoción y riesgo */
+  --color-accent: #007bff; /* Azul brillante: confianza y acción */
+
+  /* Colores de fondo */
+  --color-background-dark: #1a1a1a; /* Fondo oscuro para contraste */
+  --color-background-light: #2c2c2c; /* Gris oscuro para secciones secundarias */
+
+  /* Colores de texto */
+  --color-text-light: #ffffff; /* Blanco para texto principal */
+  --color-text-dark: #000000; /* Negro para texto sobre fondos claros */
+  --color-text-accent: #ffd700; /* Dorado para resaltar texto importante */
+
+  /* Colores de botones y llamadas a la acción (CTA) */
+  --color-cta-primary: #c82333; /* Rojo oscuro para botones principales */
+  --color-cta-secondary: #ffd700; /* Dorado para botones secundarios */
+  --color-cta-hover: #e63946; /* Rojo más claro para hover en botones */
+
+  /* Colores de bordes y detalles */
+  --color-border-light: #ffd700; /* Dorado para bordes y separadores */
+  --color-border-dark: #1a1a1a; /* Borde oscuro para contraste */
+
+  /* Colores de alertas y notificaciones */
+  --color-success: #28a745; /* Verde para indicar éxito */
+  --color-warning: #ffc107; /* Amarillo para advertencias */
+  --color-error: #dc3545; /* Rojo para errores o alertas críticas */
+}

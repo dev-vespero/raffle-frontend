@@ -7,12 +7,13 @@ window.addEventListener('scroll', () => {
   } else {
     container_fixed.classList.remove('fixed');
   }
-  const height_fixed = window.innerWidth < 600 ? 92 : 300
-  if (rect.bottom + height_fixed <= windowHeight && rect.bottom + 1100 > windowHeight) {
-    priceConvert.classList.add('pricefixed');
-  } else {
-    priceConvert.classList.remove('pricefixed');
-  }
+  
+  // const height_fixed = window.innerWidth < 600 ? 92 : 300
+  // if (rect.bottom + height_fixed <= windowHeight && rect.bottom + 1100 > windowHeight) {
+  //   priceConvert.classList.add('pricefixed');
+  // } else {
+  //   priceConvert.classList.remove('pricefixed');
+  // }
 });
 
 function continueForm () {

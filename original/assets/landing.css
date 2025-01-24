@@ -64,86 +64,29 @@ button:focus {
   outline: none !important
 }
 
-.navbar-toggler:not(:disabled):not(.disabled) {
-  cursor: pointer;
-  font-size: 32px;
-  padding: 15px 28px !important
-}
 
-.navbar-toggler:focus,.navbar-toggler:hover {
-  background-color: inherit
-}
 
 #datosBanco h6 {
   font-weight: 600
 }
 
-.header-scrolled {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 75px;
-  background-color: var(--color-primary) !important
-}
 
-.header-scrolled .navbar-brand img {
-  width: 122px;
-  height: auto
-}
 
-.header-scrolled .nav-link-number {
-  display: none
-}
 
-.navbar {
-  background-color: var(--color-primary);
-  padding-top: 8px;
-  padding-bottom: 9px;
-  -webkit-transition: all .2s linear;
-  -o-transition: all .2s linear;
-  transition: all .2s linear
-}
 
-.navbar-nav {
-  align-items: center
-}
 
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  z-index: 1
-}
 
-.navbar-brand img {
-  margin-left: 15px;
-  width: 220px;
-  height: auto
-}
 
-.navbar-brand-menu {
-  margin-right: 40px
-}
 
-.menu-navbar-nav {
-  width: 100%;
-  display: flex;
-  justify-content: right
-}
 
-.nav-item {
-  margin-left: 0;
-  margin-right: 0
-}
 
-.navbar-nav:not(.menu-navbar-nav) .nav-item:last-of-type {
-  margin-left: 0px !important;
-  margin-right: 0px !important
-}
 
-.nav-item .nav-link {
-  text-align: right
-}
+
+
+
+
+
+
 
 .nav-link-number {
   font-size: 12px;
@@ -161,10 +104,7 @@ button:focus {
   line-height: 1
 }
 
-.navbar-expand-lg ul.menu-navbar-nav.navbar-nav a.nav-link:hover {
-  background: #f4f4f4;
-  border-radius: 12px
-}
+
 
 .learn-more-btn,button {
   font-size: 18px;
@@ -178,36 +118,9 @@ button:focus {
   color: var(--color-primary)
 }
 
-@media screen and (max-width: 991.98px) {
-  .navbar {
-      background-color:var(--color-primary)
-  }
 
-  .navbar-brand img {
-      width: 100px;
-      padding: 5px 0;
-      left: 0 !important
-  }
 
-  .header-scrolled .navbar-brand img {
-      width: 100px
-  }
 
-  .header-scrolled {
-      height: auto
-  }
-}
-
-@media screen and (max-width: 575.98px) {
-  .navbar {
-      padding-top:0;
-      padding-bottom: 0
-  }
-
-  .menu-navbar-nav {
-      padding-bottom: 10px
-  }
-}
 
 .header {
   display: flex;
@@ -300,17 +213,7 @@ button:focus {
       margin-top: 40px
   }
 
-  .navbar-collapse {
-      background-color: var(--color-primary);
-      color: #000;
-      padding-bottom: 20px;
-      padding-top: 30px;
-      margin-bottom: 20px
-  }
-
-  .navbar-collapse .nav-link-menu {
-      color: #000
-  }
+  
 
   .nav-link-number {
       display: none
@@ -322,11 +225,6 @@ button:focus {
 
   .learn-more-btn-section {
       justify-content: center
-  }
-
-  .navbar-expand-lg .navbar-nav .nav-link {
-      padding-right: 0.5rem;
-      padding-left: 0.5rem
   }
 }
 
@@ -2399,18 +2297,9 @@ p.featured_award {
   color: #000
 }
 
-.navbar-brand-logo {
-  position: relative
-}
 
-.navbar-brand-logo>img {
-  position: absolute;
-  top: -37px;
-  left: 15px;
-  width: 144px;
-  border-radius: 18px;
-  transition: all 0.5s ease
-}
+
+
 
 #datosBanco div>h3,.monto-total-compra>h3 {
   background: #f7f7f7;
@@ -2838,10 +2727,7 @@ button:disabled,button:hover:disabled {
       font-size: 32px
   }
 
-  .navbar-brand-logo>img {
-      width: 115px;
-      top: -42px
-  }
+  
 
   .row {
       margin-right: 0;

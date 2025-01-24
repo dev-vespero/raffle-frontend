@@ -10,15 +10,8 @@
   color: #faf6f6;
 }
 
-.navbar {
-  border-top: 8px solid var(--color-accent);
-  border-bottom: 8px solid var(--color-accent);
-}
 
-.header-scrolled {
-  -webkit-box-shadow: 0 5px 6px 0 var(--color-dark);
-  box-shadow: 0 5px 6px 0 var(--color-dark);
-}
+
 
 a.link {
   color: var(--color-accent);
@@ -42,17 +35,9 @@ button.waves-effect.prev:active {
   color: var(--color-important) !important;
 }
 
-.nav-item .nav-link:hover .nav-link-number {
-  color: var(--color-accent) !important;
-}
 
-.nav-item .nav-link:hover .nav-link-menu {
-  color: var(--color-accent) !important;
-}
 
-.navbar-toggler:not(:disabled):not(.disabled) {
-  color: var(--color-accent);
-}
+
 
 .learn-more-btn,
 button {

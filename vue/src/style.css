@@ -1,29 +1,57 @@
-:root {
-  /* Colores principales */
-  --color-primary: #ffd700; /* Dorado: simboliza lujo y riqueza */
-  --color-secondary: #c82333; /* Rojo oscuro: emoción y riesgo */
-  --color-accent: #007bff; /* Azul brillante: confianza y acción */
+@import "tailwindcss";
 
-  /* Colores de fondo */
-  --color-background-dark: #1a1a1a; /* Fondo oscuro para contraste */
-  --color-background-light: #2c2c2c; /* Gris oscuro para secciones secundarias */
+/* Importar fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap');
 
-  /* Colores de texto */
-  --color-text-light: #ffffff; /* Blanco para texto principal */
-  --color-text-dark: #000000; /* Negro para texto sobre fondos claros */
-  --color-text-accent: #ffd700; /* Dorado para resaltar texto importante */
+/* Variables CSS para tema dinámico */
+@theme inline {
+  --color-primary: #DC2626;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #FBBF24;
+  --color-secondary-foreground: #0F172A;
+  --color-accent: #16A34A;
+  --color-accent-foreground: #FFFFFF;
+  
+  --color-dark-bg: #0F172A;
+  --color-dark-surface: #1E293B;
+  --color-dark-surface-elevated: #334155;
+  
+  --color-light-bg: #F8FAFC;
+  --color-light-surface: #FFFFFF;
+  --color-light-surface-elevated: #F1F5F9;
+  
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+  
+  --color-border: #334155;
+  
+  --font-sans: Poppins, system-ui, sans-serif;
+  --font-display: Jaro, system-ui, sans-serif;
+}
 
-  /* Colores de botones y llamadas a la acción (CTA) */
-  --color-cta-primary: #c82333; /* Rojo oscuro para botones principales */
-  --color-cta-secondary: #ffd700; /* Dorado para botones secundarios */
-  --color-cta-hover: #e63946; /* Rojo más claro para hover en botones */
+/* Modo claro */
+@layer base {
+  html.light {
+    --color-text-primary: #0F172A;
+    --color-text-secondary: #475569;
+    --color-text-muted: #94A3B8;
+    --color-border: #E2E8F0;
+  }
+}
 
-  /* Colores de bordes y detalles */
-  --color-border-light: #ffd700; /* Dorado para bordes y separadores */
-  --color-border-dark: #1a1a1a; /* Borde oscuro para contraste */
-
-  /* Colores de alertas y notificaciones */
-  --color-success: #28a745; /* Verde para indicar éxito */
-  --color-warning: #ffc107; /* Amarillo para advertencias */
-  --color-error: #dc3545; /* Rojo para errores o alertas críticas */
+/* Estilos base */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark-bg text-text-primary font-sans antialiased;
+  }
+  
+  body.light {
+    @apply bg-light-bg;
+  }
 }

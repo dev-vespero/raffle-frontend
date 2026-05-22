@@ -33,16 +33,16 @@ const { data: ticketsData, isLoading } = useQuery({
 
 // Tickets paginados
 const paginatedTickets = computed(() => {
-  if (!ticketsData) return [];
+  if (!ticketsData.value) return [];
   
   const start = currentPage.value * ticketsPerPage;
   const end = start + ticketsPerPage;
-  return ticketsData.slice(start, end);
+  return ticketsData.value.slice(start, end);
 });
 
 const totalPages = computed(() => {
-  if (!ticketsData) return 0;
-  return Math.ceil(ticketsData.length / ticketsPerPage);
+  if (!ticketsData.value) return 0;
+  return Math.ceil(ticketsData.value.length / ticketsPerPage);
 });
 
 // Búsqueda
@@ -92,10 +92,10 @@ const toggleSearch = () => {
 
 // Selección aleatoria
 const selectRandom = () => {
-  if (!ticketsData) return;
+  if (!ticketsData.value) return;
   
   const availableCount = ticketStore.quantity;
-  const availableTickets = ticketsData.filter(
+  const availableTickets = ticketsData.value.filter(
     t => !ticketStore.isTicketSelected(t)
   );
   

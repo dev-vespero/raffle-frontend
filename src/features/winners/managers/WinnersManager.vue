@@ -32,8 +32,8 @@ const { data: historicalData, isLoading } = useQuery({
 });
 
 const hasMorePages = computed(() => {
-  if (!historicalData) return false;
-  return currentPage.value < historicalData.meta.totalPages;
+  if (!historicalData.value) return false;
+  return currentPage.value < historicalData.value.meta.totalPages;
 });
 
 const goToPage = (page: number) => {

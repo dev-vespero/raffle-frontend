@@ -92,7 +92,7 @@ const resetSearch = () => {
         <BaseButton
           variant="primary"
           :icon="Search"
-          :disabled="!searchValue.value"
+          :disabled="!searchValue"
           @click="handleSearch"
         >
           Buscar
@@ -158,9 +158,9 @@ const resetSearch = () => {
                 ${{ purchase.total.toFixed(2) }}
               </p>
               <BaseBadge
-                :variant="purchase.status === 'verified' ? 'success' : purchase.status === 'unverified' ? 'warning' : 'danger'"
+                :variant="purchase.status === 'verified' ? 'success' : purchase.status === 'pending' ? 'warning' : 'danger'"
               >
-                {{ purchase.status === 'verified' ? 'Verificado' : purchase.status === 'unverified' ? 'En verificación' : 'Pendiente' }}
+                {{ purchase.status === 'verified' ? 'Verificado' : purchase.status === 'pending' ? 'En verificación' : 'Pendiente' }}
               </BaseBadge>
             </div>
           </div>

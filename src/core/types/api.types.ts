@@ -54,6 +54,7 @@ export interface User {
     whatsapp: boolean;
   };
   createdAt: string;
+  password?: string;
 }
 
 // Tipos para tickets
@@ -85,7 +86,7 @@ export interface Purchase {
   token: string;
   tickets: string[];
   total: number;
-  status: 'pending' | 'verified' | 'cancelled';
+  status: 'pending' | 'verified' | 'cancelled' | 'unverified';
   paymentMethod: PaymentMethod;
   createdAt: string;
 }

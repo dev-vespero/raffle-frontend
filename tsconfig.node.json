@@ -10,7 +10,8 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./dist",
     
     /* Linting */
     "strict": true,

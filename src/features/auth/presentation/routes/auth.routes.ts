@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { AUTH_ROUTES } from '../../domain/constants/route.constant';
-import PublicLayout from '@/shared/components/layout/public-layout.vue';
+import PublicLayout from '@/shared/components/layout/PublicLayout.vue';
 
 export default [
   {

@@ -8,6 +8,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Changed
+- refactor(router): implementado auto-registro de rutas con import.meta.glob y rutas por feature.
 - refactor(home): migrado feature home a clean architecture con capas domain/application/infrastructure/presentation.
 - Reorganizado `AGENTS.md` monolito en subagentes modulares bajo `.agents/`.
 - Creado flujo de orquestación con checklist, tests y commits obligatorios.

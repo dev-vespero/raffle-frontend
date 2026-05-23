@@ -11,7 +11,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: '',
         name: 'Home',
-        component: () => import('@/features/home/managers/HomeManager.vue'),
+        component: () => import('@/features/home/presentation/views/HomeIndexPage.vue'),
         meta: {
           title: 'Inicio',
         },

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useQuery } from '@tanstack/vue-query';
-import { raffleService } from '@/features/raffles/services/raffleService';
+import { homeService } from '../services/homeService';
 import { RaffleCard, BaseLoader, BaseCard } from '@/shared/components/ui';
 import { Ticket, Trophy, Clock, AlertCircle } from 'lucide-vue-next';
 
@@ -11,24 +11,24 @@ const selectedFilter = ref<'all' | 'ending-soon'>('all');
 // Obtener rifas activas
 const { data: raffles, isLoading, error } = useQuery({
   queryKey: ['raffles', 'active'],
-  queryFn: () => raffleService.getActive(),
+  queryFn: () => homeService.getActiveRaffles(),
   select: (data) => data.data,
 });
 
 // Filtrar rifas
 const filteredRaffles = computed(() => {
-  if (!raffles) return [];
-  
+  const list = raffles.value || [];
+
   if (selectedFilter.value === 'ending-soon') {
     const now = new Date();
-    return raffles.filter(raffle => {
+    return list.filter(raffle => {
       const drawDate = new Date(raffle.drawDate);
       const diffHours = (drawDate.getTime() - now.getTime()) / (1000 * 60 * 60);
       return diffHours <= 48;
     });
   }
-  
-  return raffles;
+
+  return list;
 });
 
 // Ordenar: las que finalizan pronto primero
@@ -39,7 +39,7 @@ const sortedRaffles = computed(() => {
 });
 
 const totalAvailable = computed(() => {
-  return raffles?.reduce((sum, r) => sum + r.tickets.available, 0) || 0;
+  return (raffles.value || []).reduce((sum, r) => sum + r.tickets.available, 0);
 });
 </script>
 
@@ -134,7 +134,7 @@ const totalAvailable = computed(() => {
             </p>
             <button
               @click="() => window.location.reload()"
-              class="btn-primary"
+              class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary/90"
             >
               Recargar
             </button>

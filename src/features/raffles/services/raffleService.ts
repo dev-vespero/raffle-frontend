@@ -1,4 +1,4 @@
-import { axiosInstance } from '@/core/api/axiosInstance';
+import axiosInstance from '@/core/api/axiosInstance';
 import type { ApiResponse, Raffle, RaffleDetail } from '@/core/types/api.types';
 
 const USE_MOCKS = import.meta.env.DEV;
@@ -9,7 +9,8 @@ export const raffleService = {
       const { raffleMock } = await import('@/mocks/api');
       return raffleMock.getAll();
     }
-    return axiosInstance.get<ApiResponse<Raffle[]>>('/raffles');
+    const response = await axiosInstance.get<ApiResponse<Raffle[]>>('/raffles');
+    return response.data;
   },
 
   async getById(id: string): Promise<ApiResponse<RaffleDetail>> {
@@ -17,7 +18,8 @@ export const raffleService = {
       const { raffleMock } = await import('@/mocks/api');
       return raffleMock.getById(id);
     }
-    return axiosInstance.get<ApiResponse<RaffleDetail>>(`/raffles/${id}`);
+    const response = await axiosInstance.get<ApiResponse<RaffleDetail>>(`/raffles/${id}`);
+    return response.data;
   },
 
   async getActive(): Promise<ApiResponse<Raffle[]>> {
@@ -25,6 +27,7 @@ export const raffleService = {
       const { raffleMock } = await import('@/mocks/api');
       return raffleMock.getActive();
     }
-    return axiosInstance.get<ApiResponse<Raffle[]>>('/raffles/active');
+    const response = await axiosInstance.get<ApiResponse<Raffle[]>>('/raffles/active');
+    return response.data;
   },
 };

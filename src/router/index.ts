@@ -70,7 +70,6 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/cuenta',
-    name: 'Account',
     component: () => import('@/features/account/managers/AccountManager.vue'),
     meta: {
       title: 'Mi Cuenta',
@@ -78,6 +77,11 @@ const routes: RouteRecordRaw[] = [
       requiresAuth: true,
     },
     children: [
+      {
+        path: '',
+        name: 'Account',
+        redirect: '/cuenta/numeros',
+      },
       {
         path: 'numeros',
         name: 'MyNumbers',
@@ -109,10 +113,6 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: 'Notificaciones',
         },
-      },
-      {
-        path: '',
-        redirect: '/cuenta/numeros',
       },
     ],
   },

@@ -8,6 +8,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Changed
+- refactor(account): migrado feature account a clean architecture con Purchase entity, repository ports, use-cases y TanStack Query.
 - refactor(auth): integrado TanStack Query mutations y simplificado auth store (solo estado + persistencia).
 - refactor(auth): migrado feature auth a clean architecture con User entity, AuthRepository port, use-cases y Zod DTOs.
 - refactor(router): implementado auto-registro de rutas con import.meta.glob y rutas por feature.

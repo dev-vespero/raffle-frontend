@@ -65,9 +65,9 @@ src/
 │       │
 │       └── presentation/                   # Todo lo Vue-specific. Desechable si migras a React.
 |           ├── views/                      # Páginas (rutas)
-|           │   └── {entity}-{action}.page.vue
+|           │   └── {Entity}{Action}.page.vue
 |           ├── components/                 # Componentes atómicos del feature
-|           │   └── {entity}-{component}.vue
+|           │   └── {Entity}{Component}.vue
 |           ├── composables/                # Hooks reactivos que orquestan use-cases + stores
 |           │   └── use-{action}-{entity}.ts # Llama al use-case, maneja estado UI, errores
 |           ├── stores/                     # Estado local del feature (Pinia)
@@ -80,20 +80,20 @@ src/
 ├── shared/                          # Código reusable cross-feature, sin estado de negocio
 │   ├── components/
 │   │   ├── layout/
-│   │   │   ├── navbar.vue
-│   │   │   ├── footer.vue
-│   │   │   ├── internal-server-error.vue
-│   │   │   └── not-found.vue
+│   │   │   ├── Navbar.vue
+│   │   │   ├── Footer.vue
+│   │   │   ├── InternalServerError.vue
+│   │   │   └── NotFound.vue
 │   │   └── ui/
 │   │       ├── index.ts             # Barrel export
-│   │       ├── core-button.vue
-│   │       ├── core-input.vue
-│   │       ├── core-select.vue
-│   │       ├── core-card.vue
-│   │       ├── core-modal.vue
-│   │       ├── core-alert.vue
-│   │       ├── core-badge.vue
-│   │       └── core-loader.vue
+│   │       ├── BaseButton.vue
+│   │       ├── BaseInput.vue
+│   │       ├── BaseSelect.vue
+│   │       ├── BaseCard.vue
+│   │       ├── BaseModal.vue
+│   │       ├── BaseAlert.vue
+│   │       ├── BaseBadge.vue
+│   │       └── BaseLoader.vue
 │   └── utils/
 │       ├── currency.utils.ts
 │       └── date.utils.ts
@@ -134,8 +134,8 @@ src/
 | **Config de feature**                 | `{feature}.config.ts`           | `ticket-management.config.ts`                                   | Nombre del feature, no del archivo técnico                       |
 | **Constantes de dominio**             | `{dominio}.constant.ts`         | `route.constant.ts`, `ticket-status.constant.ts`                | Sustantivo del dominio + `.constant`                             |
 | **Enums**                             | `{dominio}.enum.ts`             | `ticket-status.enum.ts`, `user-role.enum.ts`                    | Nunca `{entity}.enum.ts` — un entity puede tener múltiples enums |
-| **Páginas/Vistas**                    | `{entity}-{action}.page.vue`    | `ticket-list.page.vue`, `user-profile.page.vue`                 | Sustantivo + verbo + `.page.vue`                                 |
-| **Componentes**                       | `{dominio}-{rol}.vue`           | `ticket-card.vue`, `ticket-filter.vue`, `core-button.vue`       | Prefijo de dominio para evitar colisiones                        |
+| **Páginas/Vistas**                    | `{Entity}{Action}Page.vue`    | `TicketListPage.vue`, `UserProfilePage.vue`                 | Sustantivo + verbo + `.page.vue`                                 |
+| **Componentes**                       | `{Dominio}{Rol}.vue`           | `TicketCard.vue`, `TicketFilter.vue`, `BaseButton.vue`       | Prefijo de dominio para evitar colisiones                        |
 | **Composables**                       | `use-{action}-{entity}.ts`      | `use-create-ticket.ts`, `use-fetch-users.ts`, `use-ui-toast.ts` | Siempre `use-` + verbo + sustantivo. Nunca `useTickets`.         |
 | **Stores (archivo)**                  | `{feature}.store.ts`            | `ticket-management.store.ts`, `auth.store.ts`                   | Nombre del feature                                               |
 | **Stores (función exportada)**        | `use{Feature}Store`             | `useTicketManagementStore`, `useAuthStore`                      | PascalCase, prefijo `use`, sufijo `Store`                        |
@@ -161,7 +161,7 @@ src/
 ### 4. Reglas de arquitectura (naming como guardián)
 | Regla                                                                                                 | Aplicación                                                                                |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| Si un archivo no tiene prefijo de dominio, va en `shared/` o `core/`                                  | `ticket-card.vue` → feature. `core-button.vue` → shared.                                  |
+| Si un archivo no tiene prefijo de dominio, va en `shared/` o `core/`                                  | `TicketCard.vue` → feature. `BaseButton.vue` → shared.                                  |
 | Si un composable no empieza con `use-`, no es composable                                              | `ticketService.ts` → no es composable, es un servicio (¿dónde va? No en tu arquitectura). |
 | Si un archivo en `domain/` importa de `vue`, `pinia`, o `axios`, está mal nombrado o mal ubicado      | `domain/` es puro.                                                                        |
 | Si un caso de uso conoce `ref`, `reactive`, o `useRouter`, está mal                                   | `application/` orquesta dominio, no UI.                                                   |
@@ -195,11 +195,11 @@ features/ticket-management/
 │
 └── presentation/
     ├── views/
-    │   └── ticket-list.page.vue
+    │   └── TicketListPage.vue
     ├── components/
-    │   ├── ticket-card.vue
-    │   ├── ticket-filter.vue
-    │   └── ticket-empty-state.vue
+    │   ├── TicketCard.vue
+    │   ├── TicketFilter.vue
+    │   └── TicketEmptyState.vue
     ├── composables/
     │   ├── use-create-ticket.ts        # Llama a CreateTicketUseCase, maneja toast/loading
     │   └── use-fetch-tickets.ts        # Llama a repo, maneja paginación

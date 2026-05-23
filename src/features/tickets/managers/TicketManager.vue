@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { useTicketStore } from '@/stores/ticketStore';
-import { useAuthStore } from '@/stores/authStore';
-import { useUiStore } from '@/stores/uiStore';
+import { useTicketStore } from '@/app/stores/ticketStore';
+import { useAuthStore } from '@/app/stores/authStore';
+import { useUiStore } from '@/app/stores/uiStore';
 import { ticketService } from '@/features/tickets/services/ticketService';
 import { useQuery } from '@tanstack/vue-query';
 import BaseCard from '@/shared/components/ui/BaseCard.vue';
@@ -11,6 +11,7 @@ import BaseButton from '@/shared/components/ui/BaseButton.vue';
 import BaseInput from '@/shared/components/ui/BaseInput.vue';
 import BaseBadge from '@/shared/components/ui/BaseBadge.vue';
 import BaseModal from '@/shared/components/ui/BaseModal.vue';
+import PageContainer from '@/shared/components/ui/page-container.vue';
 import { Ticket, Search, Shuffle, X, Check } from 'lucide-vue-next';
 
 const router = useRouter();
@@ -141,7 +142,7 @@ const resetSearch = () => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <PageContainer>
     <!-- Header -->
     <div class="text-center mb-8">
       <h1 class="font-display text-3xl font-bold text-text-primary mb-2">
@@ -314,5 +315,5 @@ const resetSearch = () => {
     
     <!-- Spacer for fixed bar -->
     <div v-if="ticketStore.hasSelectedTickets" class="h-24" />
-  </div>
+  </PageContainer>
 </template>

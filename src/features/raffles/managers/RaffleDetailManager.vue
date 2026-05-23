@@ -2,12 +2,12 @@
 import { ref, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useQuery } from '@tanstack/vue-query';
-import { useUiStore } from '@/stores/uiStore';
-import { useTicketStore } from '@/stores/ticketStore';
+import { useUiStore } from '@/app/stores/uiStore';
+import { useTicketStore } from '@/app/stores/ticketStore';
 import { raffleService } from '@/features/raffles/services/raffleService';
-import { BaseButton, BaseCard, BaseBadge, BaseLoader, BaseAlert } from '@/shared/components/ui';
+import { BaseButton, BaseCard, BaseBadge, BaseLoader, BaseAlert, PageContainer } from '@/shared/components/ui';
 import { Calendar, Clock, Ticket, ArrowLeft, Search, Sparkles, AlertCircle } from 'lucide-vue-next';
-import { raffleConfig, calculateProgress } from '@/config/raffle.config';
+import { raffleConfig, calculateProgress } from '@/features/raffles/config/raffle.config';
 
 const route = useRoute();
 const router = useRouter();

@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue';
 import { useQuery } from '@tanstack/vue-query';
 import { homeService } from '../services/homeService';
-import { RaffleCard, BaseLoader, BaseCard } from '@/shared/components/ui';
+import { RaffleCard, BaseLoader, BaseCard, PageContainer } from '@/shared/components/ui';
 import { Ticket, Trophy, Clock, AlertCircle } from 'lucide-vue-next';
 
 // Estado local para filtros
@@ -47,7 +47,7 @@ const totalAvailable = computed(() => {
   <div>
     <!-- Hero Section -->
     <section class="gradient-hero py-12 md:py-16">
-      <div class="container mx-auto px-4">
+      <PageContainer>
         <div class="text-center max-w-3xl mx-auto">
           <div class="inline-flex items-center gap-2 bg-primary/20 px-4 py-2 rounded-full mb-4">
             <Ticket class="w-5 h-5 text-primary" />
@@ -85,12 +85,12 @@ const totalAvailable = computed(() => {
             </BaseCard>
           </div>
         </div>
-      </div>
+      </PageContainer>
     </section>
     
     <!-- Filters Section -->
     <section class="py-6 bg-dark-surface">
-      <div class="container mx-auto px-4">
+      <PageContainer>
         <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
           <div class="flex items-center gap-2">
             <button
@@ -111,12 +111,12 @@ const totalAvailable = computed(() => {
             <span>{{ sortedRaffles.length }} {{ sortedRaffles.length === 1 ? 'rifa' : 'rifas' }} encontradas</span>
           </div>
         </div>
-      </div>
+      </PageContainer>
     </section>
     
     <!-- Raffles Catalog -->
     <section class="py-12">
-      <div class="container mx-auto px-4">
+      <PageContainer>
         <!-- Loading state -->
         <div v-if="isLoading" class="flex justify-center items-center py-20">
           <BaseLoader size="lg" />
@@ -169,7 +169,7 @@ const totalAvailable = computed(() => {
     
     <!-- CTA Section -->
     <section class="py-12 bg-gradient-to-r from-primary/20 to-secondary/10">
-      <div class="container mx-auto px-4 text-center">
+      <PageContainer>
         <h2 class="font-display text-2xl md:text-3xl font-bold text-text-primary mb-4">
           ¿Cómo Participar?
         </h2>
@@ -208,7 +208,7 @@ const totalAvailable = computed(() => {
             </p>
           </BaseCard>
         </div>
-      </div>
+      </PageContainer>
     </section>
   </div>
 </template>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute } from 'vue-router';
-import { useAuthStore } from '@/stores/authStore';
+import { useAuthStore } from '@/app/stores/authStore';
 import BaseCard from '@/shared/components/ui/BaseCard.vue';
+import PageContainer from '@/shared/components/ui/page-container.vue';
 import { User, Ticket, Trophy, Settings, Bell, LogOut } from 'lucide-vue-next';
 
 const authStore = useAuthStore();
@@ -44,7 +45,7 @@ const handleLogout = () => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <PageContainer>
     <!-- Header -->
     <div class="mb-8">
       <h1 class="font-display text-3xl font-bold text-text-primary mb-2">
@@ -115,5 +116,5 @@ const handleLogout = () => {
         <RouterView />
       </div>
     </div>
-  </div>
+  </PageContainer>
 </template>

@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { useAuthStore } from '@/stores/authStore';
-import { useUiStore } from '@/stores/uiStore';
-import { useThemeStore } from '@/stores/themeStore';
+import { useAuthStore } from '@/app/stores/authStore';
+import { useUiStore } from '@/app/stores/uiStore';
+import { useThemeStore } from '@/app/stores/themeStore';
 import BaseCard from '@/shared/components/ui/BaseCard.vue';
 import BaseButton from '@/shared/components/ui/BaseButton.vue';
 import BaseInput from '@/shared/components/ui/BaseInput.vue';
 import BaseAlert from '@/shared/components/ui/BaseAlert.vue';
+import PageContainer from '@/shared/components/ui/page-container.vue';
 import { Mail, Lock, User, Phone, IdCard, Eye, EyeOff } from 'lucide-vue-next';
 
 const route = useRoute();
@@ -136,8 +137,9 @@ const formatPhone = (value: string) => {
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center px-4 py-12">
-    <BaseCard class="w-full max-w-md">
+  <PageContainer maxWidth="md" class="py-12">
+    <div class="flex items-center justify-center">
+      <BaseCard class="w-full max-w-md">
       <!-- Header -->
       <div class="text-center mb-8">
         <h1 class="font-display text-2xl font-bold text-text-primary mb-2">
@@ -274,6 +276,7 @@ const formatPhone = (value: string) => {
         </RouterLink>
         .
       </BaseAlert>
-    </BaseCard>
-  </div>
+      </BaseCard>
+    </div>
+  </PageContainer>
 </template>

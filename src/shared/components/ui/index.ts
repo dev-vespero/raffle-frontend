@@ -8,3 +8,4 @@ export { default as BaseBadge } from './BaseBadge.vue';
 export { default as BaseLoader } from './BaseLoader.vue';
 export { default as BaseAlert } from './BaseAlert.vue';
 export { default as RaffleCard } from './RaffleCard.vue';
+export { default as PageContainer } from './PageContainer.vue';

@@ -6,6 +6,7 @@ import BaseCard from '@/shared/components/ui/BaseCard.vue';
 import BaseButton from '@/shared/components/ui/BaseButton.vue';
 import BaseInput from '@/shared/components/ui/BaseInput.vue';
 import BaseBadge from '@/shared/components/ui/BaseBadge.vue';
+import PageContainer from '@/shared/components/ui/page-container.vue';
 import { Trophy, Search, Calendar } from 'lucide-vue-next';
 
 const currentPage = ref(1);
@@ -54,7 +55,7 @@ const prevPage = () => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 py-8">
+  <PageContainer>
     <!-- Header -->
     <div class="text-center mb-8">
       <h1 class="font-display text-3xl font-bold text-text-primary mb-2">
@@ -206,5 +207,5 @@ const prevPage = () => {
         </p>
       </div>
     </div>
-  </div>
+  </PageContainer>
 </template>

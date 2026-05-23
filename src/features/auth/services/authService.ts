@@ -1,4 +1,4 @@
-import axiosInstance from '@/core/api/axiosInstance';
+import axiosInstance from '@/core/api/client';
 import type { ApiResponse, LoginRequest, RegisterRequest, User } from '@/core/types/api.types';
 
 // Flag para usar mocks en desarrollo

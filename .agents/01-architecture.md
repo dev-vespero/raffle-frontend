@@ -31,7 +31,7 @@ src/
 ├── core/                            # Infraestructura compartida
 │   ├── api/
 │   │   ├── client.ts                # Instancia Axios configurada
-│   │   └── error-handler.ts         # Normalización de errores
+│   │   └── errorHandler.ts          # Normalización de errores
 │   ├── config/                      # Configuración validada
 │   │   ├── env.config.ts            # Variables de entorno con Zod
 │   │   └── theme.config.ts          # Colores del tema dinámico

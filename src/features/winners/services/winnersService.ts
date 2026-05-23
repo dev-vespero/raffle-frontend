@@ -1,4 +1,4 @@
-import axiosInstance from '@/core/api/axiosInstance';
+import axiosInstance from '@/core/api/client';
 import type { ApiResponse, PaginatedResponse, RaffleWinners } from '@/core/types/api.types';
 import { raffleConfig } from '@/config/raffle.config';
 

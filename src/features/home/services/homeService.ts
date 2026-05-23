@@ -1,4 +1,4 @@
-import axiosInstance from '@/core/api/axiosInstance';
+import axiosInstance from '@/core/api/client';
 import type { ApiResponse, Raffle } from '@/core/types/api.types';
 
 const USE_MOCKS = import.meta.env.DEV;

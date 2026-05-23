@@ -1,3 +1,3 @@
 export const HOME_ROUTES = {
-  INDEX: '/',
+  INDEX: 'home-index',
 } as const;

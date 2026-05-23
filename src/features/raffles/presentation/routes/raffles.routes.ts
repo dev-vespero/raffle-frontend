@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router';
-import { HOME_ROUTES } from '../../domain/constants/route.constant';
+import { RAFFLE_ROUTES } from '../../domain/constants/route.constant';
 import PublicLayout from '@/shared/components/layout/public-layout.vue';
 
 export default [
@@ -8,11 +8,11 @@ export default [
     component: PublicLayout,
     children: [
       {
-        path: '',
-        name: HOME_ROUTES.INDEX,
-        component: () => import('../views/HomeIndexPage.vue'),
+        path: 'rifas/:id',
+        name: RAFFLE_ROUTES.DETAIL,
+        component: () => import('../views/RaffleDetailPage.vue'),
         meta: {
-          title: 'Inicio',
+          title: 'Detalle de Rifa',
         },
       },
     ],

@@ -104,7 +104,7 @@ PREMIOS:
 };
 
 // Función para calcular porcentaje de progreso
-export const calculateProgress = (config: RaffleConfig): number => {
+export const calculateProgress = (config: RaffleConfig | { tickets: { total: number; available: number } }): number => {
   const sold = config.tickets.total - config.tickets.available;
   return Math.round((sold / config.tickets.total) * 100);
 };

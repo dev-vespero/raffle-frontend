@@ -12,12 +12,21 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: '/rifas/:id',
+    name: 'RaffleDetail',
+    component: () => import('@/features/raffles/managers/RaffleDetailManager.vue'),
+    meta: {
+      title: 'Detalle de Rifa',
+      public: true,
+    },
+  },
+  {
     path: '/boletos',
     name: 'Tickets',
-    component: () => import('@/features/tickets/managers/TicketManager.vue'),
+    redirect: '/',
     meta: {
       title: 'Seleccionar Boletos',
-      public: false,
+      public: true,
     },
   },
   {

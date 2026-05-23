@@ -1,187 +1,168 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useQuery } from '@tanstack/vue-query';
-import { raffleConfig, calculateProgress } from '@/config/raffle.config';
-import { winnersService } from '@/features/winners/services/winnersService';
-import BaseCard from '@/shared/components/ui/BaseCard.vue';
-import BaseButton from '@/shared/components/ui/BaseButton.vue';
-import BaseBadge from '@/shared/components/ui/BaseBadge.vue';
-import { Calendar, Clock, Trophy, ArrowRight, Ticket } from 'lucide-vue-next';
+import { raffleService } from '@/features/raffles/services/raffleService';
+import { RaffleCard, BaseLoader, BaseCard } from '@/shared/components/ui';
+import { Ticket, Trophy, Clock, AlertCircle } from 'lucide-vue-next';
 
-// Calcular fecha del sorteo
-const drawDate = new Date(raffleConfig.drawDate);
-const daysUntilDraw = computed(() => {
-  const diff = drawDate.getTime() - Date.now();
-  return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+// Estado local para filtros
+const selectedFilter = ref<'all' | 'ending-soon'>('all');
+
+// Obtener rifas activas
+const { data: raffles, isLoading, error } = useQuery({
+  queryKey: ['raffles', 'active'],
+  queryFn: () => raffleService.getActive(),
+  select: (data) => data.data,
 });
 
-// Progreso de venta
-const progress = computed(() => calculateProgress(raffleConfig));
+// Filtrar rifas
+const filteredRaffles = computed(() => {
+  if (!raffles) return [];
+  
+  if (selectedFilter.value === 'ending-soon') {
+    const now = new Date();
+    return raffles.filter(raffle => {
+      const drawDate = new Date(raffle.drawDate);
+      const diffHours = (drawDate.getTime() - now.getTime()) / (1000 * 60 * 60);
+      return diffHours <= 48;
+    });
+  }
+  
+  return raffles;
+});
 
-// Obtener ganadores del sorteo actual
-const { data: winnersData } = useQuery({
-  queryKey: ['winners', 'current'],
-  queryFn: () => winnersService.getCurrent(),
-  select: (data) => data.data,
+// Ordenar: las que finalizan pronto primero
+const sortedRaffles = computed(() => {
+  return [...filteredRaffles.value].sort((a, b) => 
+    new Date(a.drawDate).getTime() - new Date(b.drawDate).getTime()
+  );
+});
+
+const totalAvailable = computed(() => {
+  return raffles?.reduce((sum, r) => sum + r.tickets.available, 0) || 0;
 });
 </script>
 
 <template>
   <div>
     <!-- Hero Section -->
-    <section class="gradient-hero py-12 md:py-20">
+    <section class="gradient-hero py-12 md:py-16">
       <div class="container mx-auto px-4">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <!-- Image -->
-          <div class="relative">
-            <BaseCard class="overflow-hidden p-0">
-              <img
-                :src="raffleConfig.image"
-                :alt="raffleConfig.name"
-                class="w-full h-auto object-cover"
-              />
-            </BaseCard>
-            <!-- Progress badge -->
-            <div
-              v-if="raffleConfig.showProgress"
-              class="absolute top-4 right-4"
-            >
-              <BaseBadge variant="secondary" size="lg">
-                <Trophy class="w-4 h-4" />
-                {{ progress }}% Vendido
-              </BaseBadge>
-            </div>
+        <div class="text-center max-w-3xl mx-auto">
+          <div class="inline-flex items-center gap-2 bg-primary/20 px-4 py-2 rounded-full mb-4">
+            <Ticket class="w-5 h-5 text-primary" />
+            <span class="text-text-primary font-medium">Rifas Diarias por Hora</span>
           </div>
           
-          <!-- Info -->
-          <div class="space-y-6">
-            <div>
-              <h1 class="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-4">
-                {{ raffleConfig.name }}
-              </h1>
-              <p class="text-text-secondary whitespace-pre-line">
-                {{ raffleConfig.description }}
-              </p>
-            </div>
-            
-            <!-- Date and time -->
-            <div class="flex flex-wrap gap-4">
-              <div class="flex items-center gap-2 text-text-secondary">
-                <Calendar class="w-5 h-5 text-primary" />
-                <span>{{ raffleConfig.drawDateShort }}</span>
-              </div>
-              <div class="flex items-center gap-2 text-text-secondary">
-                <Clock class="w-5 h-5 text-primary" />
-                <span>{{ raffleConfig.drawHour }}</span>
-              </div>
-            </div>
-            
-            <!-- Countdown -->
-            <BaseCard class="text-center">
-              <p class="text-text-muted text-sm mb-2">Faltan</p>
-              <p class="font-display text-4xl font-bold text-primary">
-                {{ daysUntilDraw }} {{ daysUntilDraw === 1 ? 'día' : 'días' }}
-              </p>
-            </BaseCard>
-            
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4">
-              <RouterLink to="/boletos" class="btn-primary text-center">
-                <Ticket class="w-5 h-5" />
-                Comprar Boletos
-              </RouterLink>
-              <RouterLink to="/verificar" class="btn-ghost text-center">
-                Verificar Boletos
-              </RouterLink>
-            </div>
-            
-            <!-- Price info -->
-            <div class="flex items-center gap-2 text-text-secondary">
-              <span class="text-2xl font-bold text-primary">
-                {{ raffleConfig.currency.symbol }}{{ raffleConfig.priceUnit }}
-              </span>
-              <span>por boleto</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Progress Section -->
-    <section v-if="raffleConfig.showProgress" class="py-8 bg-dark-surface">
-      <div class="container mx-auto px-4">
-        <div class="max-w-3xl mx-auto">
-          <div class="flex justify-between mb-2">
-            <span class="text-text-secondary font-medium">Progreso de venta</span>
-            <span class="text-primary font-bold">{{ progress }}%</span>
-          </div>
-          <div class="progress-bar">
-            <div
-              class="progress-bar-fill"
-              :style="{ width: `${progress}%` }"
-            />
-          </div>
-          <p class="text-center text-text-muted text-sm mt-2">
-            {{ raffleConfig.tickets.available }} de {{ raffleConfig.tickets.total }} boletos disponibles
+          <h1 class="font-display text-3xl md:text-5xl font-bold text-text-primary mb-4">
+            Participa y Gana Premios Increíbles
+          </h1>
+          
+          <p class="text-text-secondary text-lg mb-6">
+            Múltiples sorteos al día. Elige tu rifa favorita y compra tus boletos.
           </p>
+          
+          <!-- Stats -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+            <BaseCard class="text-center p-4">
+              <p class="text-2xl font-bold text-primary">{{ raffles?.length || 0 }}</p>
+              <p class="text-text-muted text-sm">Rifas Activas</p>
+            </BaseCard>
+            <BaseCard class="text-center p-4">
+              <p class="text-2xl font-bold text-primary">{{ totalAvailable }}</p>
+              <p class="text-text-muted text-sm">Boletos Disponibles</p>
+            </BaseCard>
+            <BaseCard class="text-center p-4">
+              <p class="text-2xl font-bold text-primary">24/7</p>
+              <p class="text-text-muted text-sm">Sorteos</p>
+            </BaseCard>
+            <BaseCard class="text-center p-4">
+              <div class="flex items-center justify-center gap-1">
+                <Trophy class="w-5 h-5 text-secondary" />
+                <p class="text-2xl font-bold text-primary">100%</p>
+              </div>
+              <p class="text-text-muted text-sm">Seguros</p>
+            </BaseCard>
+          </div>
         </div>
       </div>
     </section>
     
-    <!-- Awards Section -->
+    <!-- Filters Section -->
+    <section class="py-6 bg-dark-surface">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div class="flex items-center gap-2">
+            <button
+              v-for="filter in ['all', 'ending-soon']"
+              :key="filter"
+              @click="selectedFilter = filter as 'all' | 'ending-soon'"
+              class="px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+              :class="selectedFilter === filter 
+                ? 'bg-primary text-white' 
+                : 'bg-dark-surface-elevated text-text-secondary hover:text-text-primary'"
+            >
+              {{ filter === 'all' ? 'Todas las Rifas' : 'Finalizan Pronto' }}
+            </button>
+          </div>
+          
+          <div class="flex items-center gap-2 text-text-secondary text-sm">
+            <Clock class="w-4 h-4" />
+            <span>{{ sortedRaffles.length }} {{ sortedRaffles.length === 1 ? 'rifa' : 'rifas' }} encontradas</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Raffles Catalog -->
     <section class="py-12">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-8">
-          <h2 class="font-display text-2xl md:text-3xl font-bold text-text-primary mb-2">
-            Premios
-          </h2>
-          <p class="text-text-secondary">
-            Estos son los increíbles premios que puedes ganar
-          </p>
+        <!-- Loading state -->
+        <div v-if="isLoading" class="flex justify-center items-center py-20">
+          <BaseLoader size="lg" />
         </div>
         
-        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <!-- 1er premio -->
-          <BaseCard class="text-center border-primary/30" hoverable>
-            <BaseBadge variant="secondary" size="lg" class="mb-4">
-              🥇 1ER LUGAR
-            </BaseBadge>
-            <div class="text-6xl mb-4">🏍️</div>
-            <h3 class="font-bold text-text-primary mb-2">
-              SBR 6G 0KM 2025
+        <!-- Error state -->
+        <div v-else-if="error" class="text-center py-20">
+          <BaseCard class="max-w-md mx-auto p-8">
+            <AlertCircle class="w-12 h-12 text-danger mx-auto mb-4" />
+            <h3 class="font-bold text-text-primary text-lg mb-2">
+              Error al cargar rifas
             </h3>
-            <p class="text-text-muted text-sm">
-              Moto nueva 0km, lista para estrenar
+            <p class="text-text-secondary mb-4">
+              Inténtalo de nuevo más tarde
+            </p>
+            <button
+              @click="() => window.location.reload()"
+              class="btn-primary"
+            >
+              Recargar
+            </button>
+          </BaseCard>
+        </div>
+        
+        <!-- Empty state -->
+        <div v-else-if="sortedRaffles.length === 0" class="text-center py-20">
+          <BaseCard class="max-w-md mx-auto p-8">
+            <Ticket class="w-12 h-12 text-text-muted mx-auto mb-4" />
+            <h3 class="font-bold text-text-primary text-lg mb-2">
+              No hay rifas disponibles
+            </h3>
+            <p class="text-text-secondary">
+              {{ selectedFilter === 'ending-soon' 
+                ? 'No hay rifas que finalicen pronto' 
+                : 'Próximamente tendremos nuevas rifas' }}
             </p>
           </BaseCard>
-          
-          <!-- 2do premio -->
-          <BaseCard class="text-center" hoverable>
-            <BaseBadge variant="primary" size="lg" class="mb-4">
-              🥈 2DO LUGAR
-            </BaseBadge>
-            <div class="text-6xl mb-4">💵</div>
-            <h3 class="font-bold text-text-primary mb-2">
-              $50 USD
-            </h3>
-            <p class="text-text-muted text-sm">
-              Efectivo en dólares americanos
-            </p>
-          </BaseCard>
-          
-          <!-- 3er premio -->
-          <BaseCard class="text-center" hoverable>
-            <BaseBadge variant="success" size="lg" class="mb-4">
-              🥉 3ER LUGAR
-            </BaseBadge>
-            <div class="text-6xl mb-4">🛢️</div>
-            <h3 class="font-bold text-text-primary mb-2">
-              2 Cambios de Aceite
-            </h3>
-            <p class="text-text-muted text-sm">
-              Para moto 150 CC
-            </p>
-          </BaseCard>
+        </div>
+        
+        <!-- Raffles grid -->
+        <div v-else class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <RaffleCard
+            v-for="raffle in sortedRaffles"
+            :key="raffle.id"
+            :raffle="raffle"
+          />
         </div>
       </div>
     </section>
@@ -190,54 +171,42 @@ const { data: winnersData } = useQuery({
     <section class="py-12 bg-gradient-to-r from-primary/20 to-secondary/10">
       <div class="container mx-auto px-4 text-center">
         <h2 class="font-display text-2xl md:text-3xl font-bold text-text-primary mb-4">
-          ¿Listo para participar?
+          ¿Cómo Participar?
         </h2>
         <p class="text-text-secondary mb-8 max-w-2xl mx-auto">
-          No pierdas la oportunidad de ganar esta increíble moto. ¡Entre más boletos tengas, más posibilidades de ganar!
+          Es muy fácil seguir estos pasos para participar en nuestras rifas
         </p>
-        <RouterLink to="/boletos" class="btn-primary inline-flex items-center gap-2">
-          Comprar Boletos Ahora
-          <ArrowRight class="w-5 h-5" />
-        </RouterLink>
-      </div>
-    </section>
-    
-    <!-- Winners Section (si hay ganadores) -->
-    <section v-if="winnersData?.winners && winnersData.winners.length > 0" class="py-12">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-8">
-          <h2 class="font-display text-2xl md:text-3xl font-bold text-text-primary mb-2">
-            Ganadores del Sorteo
-          </h2>
-          <p class="text-text-secondary">
-            Conoce a los afortunados ganadores
-          </p>
-        </div>
         
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          <BaseCard
-            v-for="winner in winnersData.winners"
-            :key="winner.id"
-            class="text-center"
-          >
-            <div class="text-4xl mb-3">🏆</div>
-            <h3 class="font-bold text-text-primary mb-1">
-              {{ winner.name }}
-            </h3>
-            <p class="text-primary font-mono mb-2">
-              #{{ winner.ticket }}
+        <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <BaseCard class="text-center p-6">
+            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-primary">1</span>
+            </div>
+            <h3 class="font-bold text-text-primary mb-2">Elige tu Rifa</h3>
+            <p class="text-text-secondary text-sm">
+              Selecciona la rifa que más te guste de nuestro catálogo
             </p>
-            <BaseBadge variant="success">
-              {{ winner.prize }}
-            </BaseBadge>
           </BaseCard>
-        </div>
-        
-        <div class="text-center mt-8">
-          <RouterLink to="/ganadores" class="btn-ghost inline-flex items-center gap-2">
-            Ver todos los ganadores
-            <ArrowRight class="w-5 h-5" />
-          </RouterLink>
+          
+          <BaseCard class="text-center p-6">
+            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-primary">2</span>
+            </div>
+            <h3 class="font-bold text-text-primary mb-2">Compra Boletos</h3>
+            <p class="text-text-secondary text-sm">
+              Elige tus números de la suerte y realiza tu pago
+            </p>
+          </BaseCard>
+          
+          <BaseCard class="text-center p-6">
+            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl font-bold text-primary">3</span>
+            </div>
+            <h3 class="font-bold text-text-primary mb-2">¡Espera el Sorteo!</h3>
+            <p class="text-text-secondary text-sm">
+              Participa en el sorteo y podrías ser el gran ganador
+            </p>
+          </BaseCard>
         </div>
       </div>
     </section>

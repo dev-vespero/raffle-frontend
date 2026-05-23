@@ -33,17 +33,23 @@ export const useTicketStore = defineStore('ticket', () => {
   });
   
   // Actions
-  const addTicket = (ticketNumber: string) => {
+  const addTicket = (ticketNumber: string | { number: string; price?: number; discount?: number }) => {
+    const ticketData = typeof ticketNumber === 'string' 
+      ? { number: ticketNumber, price: raffleConfig.priceUnit, discount: 0 }
+      : ticketNumber;
+    
     // Verificar si ya está seleccionado
-    if (selectedTickets.value.some(t => t.number === ticketNumber)) {
+    if (selectedTickets.value.some(t => t.number === ticketData.number)) {
       return false;
     }
     
-    // Calcular precio con descuento
-    const priceData = calculateTicketPrice(selectedTickets.value.length + 1);
+    // Calcular precio con descuento si no se proporcionó
+    const priceData = ticketData.price !== undefined
+      ? { basePrice: ticketData.price, discount: ticketData.discount || 0 }
+      : calculateTicketPrice(selectedTickets.value.length + 1);
     
     selectedTickets.value.push({
-      number: ticketNumber,
+      number: ticketData.number,
       price: priceData.basePrice,
       discount: priceData.discount,
     });

@@ -12,6 +12,9 @@ import type {
   BuyerTickets,
   RaffleWinners,
   Winner,
+  Raffle,
+  RaffleDetail,
+  RafflePrize,
 } from '@/core/types/api.types';
 
 // Utilidad para simular delay de red
@@ -112,6 +115,196 @@ const mockWinners: RaffleWinners[] = [
         createdAt: '2024-12-15T20:00:00.000Z',
       },
     ],
+  },
+];
+
+// Mock de rifas
+const mockRaffles: Raffle[] = [
+  {
+    id: '1',
+    name: 'GANATE UNA SBR 6G 2025 0KM',
+    description: 'Participa y gana esta increíble moto 0km. ¡Entre más boletos tengas, más posibilidades de ganar!',
+    image: 'https://rifarito.s3.amazonaws.com/uploads/raffle/image/54/moto-sbr-6g.jpg',
+    drawDate: '2025-02-24',
+    drawHour: '8:00 PM',
+    status: 'active',
+    tickets: {
+      total: 700,
+      available: 612,
+      sold: 88,
+    },
+    price: 1.5,
+    currency: {
+      symbol: '$',
+      code: 'USD',
+    },
+    prizes: [
+      {
+        position: 1,
+        name: 'SBR 6G 0KM 2025',
+        description: 'Moto nueva 0km, lista para estrenar',
+        icon: '🏍️',
+        value: 1200,
+      },
+      {
+        position: 2,
+        name: '$50 USD',
+        description: 'Efectivo en dólares americanos',
+        icon: '💵',
+        value: 50,
+      },
+      {
+        position: 3,
+        name: '2 Cambios de Aceite',
+        description: 'Para moto 150 CC',
+        icon: '🛢️',
+      },
+    ],
+    showProgress: true,
+  },
+  {
+    id: '2',
+    name: 'RIFA DIARIA - PREMIO EN EFECTIVO',
+    description: 'Participa en nuestra rifa diaria y gana $100 USD en efectivo. ¡Sorteo todos los días a las 8:00 PM!',
+    image: 'https://rifarito.s3.amazonaws.com/uploads/raffle/image/55/premio-efectivo.jpg',
+    drawDate: new Date(Date.now() + 86400000).toISOString().split('T')[0],
+    drawHour: '8:00 PM',
+    status: 'active',
+    tickets: {
+      total: 500,
+      available: 320,
+      sold: 180,
+    },
+    price: 2,
+    currency: {
+      symbol: '$',
+      code: 'USD',
+    },
+    prizes: [
+      {
+        position: 1,
+        name: '$100 USD',
+        description: 'Efectivo en dólares americanos',
+        icon: '💵',
+        value: 100,
+      },
+      {
+        position: 2,
+        name: '$30 USD',
+        description: 'Efectivo en dólares americanos',
+        icon: '💵',
+        value: 30,
+      },
+    ],
+    showProgress: true,
+  },
+  {
+    id: '3',
+    name: 'RIFA VESPERTINA - IPHONE 15 PRO',
+    description: 'Gana un iPhone 15 Pro nuevo. Sorteo especial de la tarde.',
+    image: 'https://rifarito.s3.amazonaws.com/uploads/raffle/image/56/iphone-15-pro.jpg',
+    drawDate: new Date(Date.now() + 172800000).toISOString().split('T')[0],
+    drawHour: '4:00 PM',
+    status: 'active',
+    tickets: {
+      total: 1000,
+      available: 850,
+      sold: 150,
+    },
+    price: 3,
+    currency: {
+      symbol: '$',
+      code: 'USD',
+    },
+    prizes: [
+      {
+        position: 1,
+        name: 'iPhone 15 Pro',
+        description: 'Nuevo, sellado, 256GB',
+        icon: '📱',
+        value: 999,
+      },
+      {
+        position: 2,
+        name: '$200 USD',
+        description: 'Efectivo en dólares americanos',
+        icon: '💵',
+        value: 200,
+      },
+    ],
+    showProgress: true,
+  },
+  {
+    id: '4',
+    name: 'RIFA DE LA NOCHE - PS5',
+    description: 'Participa y gana una PlayStation 5. Sorteo nocturno especial.',
+    image: 'https://rifarito.s3.amazonaws.com/uploads/raffle/image/57/ps5.jpg',
+    drawDate: new Date(Date.now() + 259200000).toISOString().split('T')[0],
+    drawHour: '10:00 PM',
+    status: 'active',
+    tickets: {
+      total: 800,
+      available: 720,
+      sold: 80,
+    },
+    price: 2.5,
+    currency: {
+      symbol: '$',
+      code: 'USD',
+    },
+    prizes: [
+      {
+        position: 1,
+        name: 'PlayStation 5',
+        description: 'Consola nueva sellada',
+        icon: '🎮',
+        value: 499,
+      },
+      {
+        position: 2,
+        name: '$100 USD',
+        description: 'Efectivo en dólares americanos',
+        icon: '💵',
+        value: 100,
+      },
+    ],
+    showProgress: true,
+  },
+  {
+    id: '5',
+    name: 'RIFA MATUTINA - SMART TV',
+    description: 'Gana un Smart TV 55" 4K. Sorteo de la mañana.',
+    image: 'https://rifarito.s3.amazonaws.com/uploads/raffle/image/58/smart-tv.jpg',
+    drawDate: new Date(Date.now() + 345600000).toISOString().split('T')[0],
+    drawHour: '11:00 AM',
+    status: 'active',
+    tickets: {
+      total: 600,
+      available: 480,
+      sold: 120,
+    },
+    price: 2,
+    currency: {
+      symbol: '$',
+      code: 'USD',
+    },
+    prizes: [
+      {
+        position: 1,
+        name: 'Smart TV 55" 4K',
+        description: 'Ultra HD, Smart TV',
+        icon: '📺',
+        value: 450,
+      },
+      {
+        position: 2,
+        name: '$50 USD',
+        description: 'Efectivo en dólares americanos',
+        icon: '💵',
+        value: 50,
+      },
+    ],
+    showProgress: true,
   },
 ];
 
@@ -487,6 +680,58 @@ export const paymentMethodsMock = {
     return {
       success: true,
       data: method,
+    };
+  },
+};
+
+// ==================== RAFFLE SERVICE MOCK ====================
+
+export const raffleMock = {
+  getAll: async (): Promise<ApiResponse<Raffle[]>> => {
+    await delay(600);
+    
+    return {
+      success: true,
+      data: mockRaffles,
+    };
+  },
+  
+  getActive: async (): Promise<ApiResponse<Raffle[]>> => {
+    await delay(500);
+    
+    const active = mockRaffles.filter(r => r.status === 'active');
+    
+    // Ordenar por fecha de sorteo (más próximas primero)
+    active.sort((a, b) => new Date(a.drawDate).getTime() - new Date(b.drawDate).getTime());
+    
+    return {
+      success: true,
+      data: active,
+    };
+  },
+  
+  getById: async (id: string): Promise<ApiResponse<RaffleDetail>> => {
+    await delay(500);
+    
+    const raffle = mockRaffles.find(r => r.id === id);
+    
+    if (!raffle) {
+      createError('Rifa no encontrada', 404);
+    }
+    
+    // Generar tickets disponibles
+    const availableTickets = Array.from({ length: raffle.tickets.available }, (_, i) => 
+      String(i).padStart(3, '0')
+    );
+    
+    const raffleDetail: RaffleDetail = {
+      ...raffle,
+      availableTickets,
+    };
+    
+    return {
+      success: true,
+      data: raffleDetail,
     };
   },
 };

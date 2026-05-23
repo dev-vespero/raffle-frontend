@@ -132,3 +132,38 @@ export interface RaffleWinners {
   winners: Winner[];
   isCurrent: boolean;
 }
+
+// Tipos para rifas
+export interface Raffle {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  drawDate: string;
+  drawHour: string;
+  status: 'active' | 'completed' | 'cancelled';
+  tickets: {
+    total: number;
+    available: number;
+    sold: number;
+  };
+  price: number;
+  currency: {
+    symbol: string;
+    code: string;
+  };
+  prizes: RafflePrize[];
+  showProgress: boolean;
+}
+
+export interface RafflePrize {
+  position: number;
+  name: string;
+  description: string;
+  icon: string;
+  value?: number;
+}
+
+export interface RaffleDetail extends Raffle {
+  availableTickets: string[];
+}

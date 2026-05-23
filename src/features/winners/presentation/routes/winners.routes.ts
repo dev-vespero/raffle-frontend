@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router';
-import { HOME_ROUTES } from '../../domain/constants/route.constant';
+import { WINNERS_ROUTES } from '../../domain/constants/route.constant';
 import PublicLayout from '@/shared/components/layout/public-layout.vue';
 
 export default [
@@ -8,11 +8,11 @@ export default [
     component: PublicLayout,
     children: [
       {
-        path: '',
-        name: HOME_ROUTES.INDEX,
-        component: () => import('../views/HomeIndexPage.vue'),
+        path: 'ganadores',
+        name: WINNERS_ROUTES.INDEX,
+        component: () => import('../views/WinnersPage.vue'),
         meta: {
-          title: 'Inicio',
+          title: 'Ganadores',
         },
       },
     ],

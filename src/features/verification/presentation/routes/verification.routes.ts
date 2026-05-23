@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router';
-import { HOME_ROUTES } from '../../domain/constants/route.constant';
+import { VERIFICATION_ROUTES } from '../../domain/constants/route.constant';
 import PublicLayout from '@/shared/components/layout/public-layout.vue';
 
 export default [
@@ -8,11 +8,11 @@ export default [
     component: PublicLayout,
     children: [
       {
-        path: '',
-        name: HOME_ROUTES.INDEX,
-        component: () => import('../views/HomeIndexPage.vue'),
+        path: 'verificar',
+        name: VERIFICATION_ROUTES.INDEX,
+        component: () => import('../views/VerificationPage.vue'),
         meta: {
-          title: 'Inicio',
+          title: 'Verificar Boletos',
         },
       },
     ],

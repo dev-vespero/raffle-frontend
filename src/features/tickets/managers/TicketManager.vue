@@ -124,7 +124,7 @@ const continueToPurchase = () => {
   if (!authStore.isAuthenticated) {
     // Redirigir a login con redirect
     router.push({
-      name: 'Login',
+      name: 'auth-login',
       query: { redirect: '/boletos' },
     });
     return;

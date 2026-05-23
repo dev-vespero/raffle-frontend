@@ -2,12 +2,10 @@ import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '@/app/stores/authStore';
 import { useUiStore } from '@/app/stores/uiStore';
-import { LoginUseCase } from '../../application/use-cases/login.use-case';
+import { useLoginMutation } from '../queries/auth.queries';
 import { LoginSchema, type LoginDto } from '../../application/dto/login.dto';
-import { createAuthRepository } from '../../infrastructure/auth-repository.factory';
 
 export function useLogin() {
-  const loading = ref(false);
   const errors = ref<Record<string, string>>({});
 
   const router = useRouter();
@@ -15,7 +13,7 @@ export function useLogin() {
   const authStore = useAuthStore();
   const uiStore = useUiStore();
 
-  const loginUseCase = new LoginUseCase(createAuthRepository());
+  const { mutateAsync, isPending } = useLoginMutation();
 
   const submit = async (dto: LoginDto) => {
     errors.value = {};
@@ -29,10 +27,8 @@ export function useLogin() {
       return false;
     }
 
-    loading.value = true;
-
     try {
-      const result = await loginUseCase.execute(parsed.data);
+      const result = await mutateAsync(parsed.data);
       authStore.persistAuth(result.user, result.token);
 
       uiStore.showSuccess('¡Bienvenido!', 'Has iniciado sesión correctamente');
@@ -44,10 +40,8 @@ export function useLogin() {
     } catch {
       uiStore.showError('Error de login', 'Email o contraseña incorrectos');
       return false;
-    } finally {
-      loading.value = false;
     }
   };
 
-  return { loading, errors, submit };
+  return { loading: isPending, errors, submit };
 }

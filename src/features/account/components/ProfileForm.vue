@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useAuthStore } from '@/stores/authStore';
-import { useUiStore } from '@/stores/uiStore';
+import { useAuthStore } from '@/app/stores/authStore';
+import { useUiStore } from '@/app/stores/uiStore';
 import BaseCard from '@/shared/components/ui/BaseCard.vue';
 import BaseButton from '@/shared/components/ui/BaseButton.vue';
 import BaseInput from '@/shared/components/ui/BaseInput.vue';

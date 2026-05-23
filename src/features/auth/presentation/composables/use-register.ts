@@ -2,12 +2,10 @@ import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from '@/app/stores/authStore';
 import { useUiStore } from '@/app/stores/uiStore';
-import { RegisterUseCase } from '../../application/use-cases/register.use-case';
+import { useRegisterMutation } from '../queries/auth.queries';
 import { RegisterSchema, type RegisterDto } from '../../application/dto/register.dto';
-import { createAuthRepository } from '../../infrastructure/auth-repository.factory';
 
 export function useRegister() {
-  const loading = ref(false);
   const errors = ref<Record<string, string>>({});
 
   const router = useRouter();
@@ -15,7 +13,7 @@ export function useRegister() {
   const authStore = useAuthStore();
   const uiStore = useUiStore();
 
-  const registerUseCase = new RegisterUseCase(createAuthRepository());
+  const { mutateAsync, isPending } = useRegisterMutation();
 
   const submit = async (dto: RegisterDto) => {
     errors.value = {};
@@ -29,10 +27,8 @@ export function useRegister() {
       return false;
     }
 
-    loading.value = true;
-
     try {
-      const result = await registerUseCase.execute(parsed.data);
+      const result = await mutateAsync(parsed.data);
       authStore.persistAuth(result.user, result.token);
 
       uiStore.showSuccess(
@@ -47,10 +43,8 @@ export function useRegister() {
     } catch {
       uiStore.showError('Error de registro', 'El email ya está registrado');
       return false;
-    } finally {
-      loading.value = false;
     }
   };
 
-  return { loading, errors, submit };
+  return { loading: isPending, errors, submit };
 }

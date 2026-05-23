@@ -8,6 +8,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Changed
+- refactor(home): migrado feature home a clean architecture con capas domain/application/infrastructure/presentation.
 - Reorganizado `AGENTS.md` monolito en subagentes modulares bajo `.agents/`.
 - Creado flujo de orquestación con checklist, tests y commits obligatorios.
 - **Git Flow con Staging**: actualizado el flujo profesional para incluir rama `staging` entre `develop` y `main`.

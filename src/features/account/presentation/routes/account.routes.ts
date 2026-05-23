@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { ACCOUNT_ROUTES } from '../../domain/constants/route.constant';
-import PrivateLayout from '@/shared/components/layout/private-layout.vue';
+import PrivateLayout from '@/shared/components/layout/PrivateLayout.vue';
 
 export default [
   {
@@ -22,7 +22,7 @@ export default [
           {
             path: 'numeros',
             name: ACCOUNT_ROUTES.NUMBERS,
-            component: () => import('../components/MyNumbers.vue'),
+            component: () => import('../views/MyNumbersPage.vue'),
             meta: {
               title: 'Mis Números',
             },
@@ -30,7 +30,7 @@ export default [
           {
             path: 'premios',
             name: ACCOUNT_ROUTES.PRIZES,
-            component: () => import('../components/MyPrizes.vue'),
+            component: () => import('../views/MyPrizesPage.vue'),
             meta: {
               title: 'Mis Premios',
             },
@@ -38,7 +38,7 @@ export default [
           {
             path: 'perfil',
             name: ACCOUNT_ROUTES.PROFILE,
-            component: () => import('../components/ProfileForm.vue'),
+            component: () => import('../views/ProfilePage.vue'),
             meta: {
               title: 'Mi Perfil',
             },
@@ -46,7 +46,7 @@ export default [
           {
             path: 'notificaciones',
             name: ACCOUNT_ROUTES.NOTIFICATIONS,
-            component: () => import('../components/NotificationSettings.vue'),
+            component: () => import('../views/NotificationPreferencesPage.vue'),
             meta: {
               title: 'Notificaciones',
             },
